@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes'
+import {assign} from '../utils/Object'
 
 const initialState = {
   type:2,
@@ -47,7 +48,7 @@ const initialState = {
 export default function points(state = initialState, action){
   switch (action.type) {
     case types.POINT_CHANGE_TYPE:
-      return Object.assign({},state,{
+      return assign({},state,{
         type:action.val
       })
     default:

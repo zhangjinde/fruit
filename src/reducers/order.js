@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes'
+import {assign} from '../utils/Object'
 
 const initialState = {
   list1:[],
@@ -9,7 +10,7 @@ const initialState = {
 export default function cart(state = initialState, action){
   switch (action.type) {
     case types.ORDER_CHANGE_TYPE:
-      return Object.assign({},state,{
+      return assign({},state,{
         type:action.val
       })
     default:

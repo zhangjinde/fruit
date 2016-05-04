@@ -34,9 +34,9 @@ nav .city p:last-child{top:40%;border-bottom:4px solid #58B1C5;}
 nav .me{width:10%;color:#58B1C5}
 /*nav back*/
 .nav-back{position:fixed;top:0;line-height:3em;height:3em;color:#fff;-webkit-user-select:none;}
+.nav-back .fa-angle-left{margin-left:0.5em;margin-top:0.3em;}
 .nav-back.white{background:white;width:100%;color:#53CBE6}
-.nav-back .user{margin-right:0.5em;color:#53CBE6}
-.nav-back .back{margin-left:0.5em;}
+.nav-back .user{margin-right:1em;color:#53CBE6}
 .nav-back .item{color:#ccc;cursor:pointer;position:absolute;}
 .nav-back .item.active{color:#53CBE6}
 .nav-back .item.active:after{display:inline-block;content: "";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#53CBE6;}
@@ -72,7 +72,8 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 
 /*cart*/
 .cart-bottom{position:fixed;bottom:0.5em;left:0;right:0;margin:auto;z-index:9999;border-radius:1.5em;height:3em;background:#53CBE6;width:8em;line-height:3em;-webkit-user-select:none;cursor:pointer;}
-.cart-bottom i{display:inline-block;margin:0.1em;height:2.8em;width:2.8em;border-radius:1.4em;background:#fff;color:#53CBE6;}
+.cart-bottom .icon{display:inline-block;margin:0.1em;height:2.8em;width:2.8em;border-radius:1.4em;background:#fff;color:#53CBE6;}
+.cart-bottom .icon i{margin-left:0.2em;}
 .cart-bottom .total{display:inline-block;vertical-align:top;color:#fff;}
 /*me*/
 .myinfo .profile{margin:0;background:#53CBE6;padding:3em 0 1em 0;text-align:center;color:#fff;}
@@ -80,6 +81,7 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 .myinfo  ul{background:#fff;}
 .myinfo li{border-bottom:1px solid #eee;padding:0.8em}
 .myinfo li a{color:#000;display:inline-block;width:100%;}
+.myinfo li .icon{color:#aaa;}
 
 /*cart*/
 
@@ -130,3 +132,22 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .coupon ul.items li .txt .title .new{color:#f00;font-size:50%;}
 .coupon ul.items li .txt .title .qianti{position:absolute;right:0;top:0;line-height:1;padding:0.4em;background:#15BFD0;color:#fff;}
 .coupon ul.items li .txt .dead,.coupon ul.items li .txt .guize{color:#aaa;font-size:0.8em;line-height:2;}
+
+/*city*/
+.city .nav-back{background:#53CBE6;width:100%;}
+.city .title{color:#fff;width:80%;position:absolute;left:10%;top:0;text-align:center;-webkit-user-select:none;}
+.city .title .ct{height:2em;line-height:2em;}
+.city .title .des{height:1em;font-size:0.8em;line-height:1em;}
+.city .choose{position:absolute;right:0.5em;line-height:3em;color:#fff;-webkit-user-select:none;}
+.city .choose i{margin-left:0.2em;transition:transform 0.6s;-webkit-transition:transform 0.6s;}
+.city .choose i.rotate{transform:rotate(180deg);-webkit-transform:rotate(180deg)}
+
+.city ul.qu{margin-top:3em;color:#666;}
+.city ul.qu li{box-sizing:border-box;-webkit-box-sizing:border-box;float:left;width:25%;background:#fff;line-height:2em;padding:1em 0;text-align:center;}
+.city ul.qu li:not(last-child){border-right:1px solid #eee;}
+.city ul.qu li .name.active{color:#53CBE6;border-bottom:2px solid #53CBE6;}
+.city ul.city{margin-top:3em;color:#111;}
+.city ul.city li{background:#fff;line-height:3em;padding:0.5em 1em;border-bottom:1px solid #eee;}
+.city ul.city li img{vertical-align:middle;width:3em;height:3em;border-radius:1.5em;margin-right:1em;}
+.city ul.city li .icon{float:right;color:#aaa;font-size:120%;}
+.city ul.city li.other{text-align:center;line-height:4em;font-size:80%;color:#aaa;}

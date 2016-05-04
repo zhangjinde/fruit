@@ -9,7 +9,7 @@ export default class Cart extends Component{
     let { total } = this.props
     return (
       <div className="cart-bottom" onClick={this.go.bind(this)}>
-        <i></i>
+        <span className="icon"><i className="fa fa-shopping-cart fa-2x"></i></span>
         <span className="total">￥{total}</span>
       </div>
     )

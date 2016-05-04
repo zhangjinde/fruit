@@ -9,16 +9,16 @@ export default class NavBack extends Component{
   render() {
     let { white, children } = this.props
     return (
-      <p className={white ? "nav-back white" : "nav-back"}>
-        <i className="icon back" onClick={this.back.bind(this)}>返回</i>
+      <div className={white ? "nav-back white" : "nav-back"}>
+        <i className="fa fa-angle-left fa-2x" onClick={this.back.bind(this)}></i>
         {children}
         {
           this.props.me ? 
-          <Link to="/me"><i className="icon user right">ME</i></Link>
+          <a href="javascript:;" className="user right"><i className="fa fa-user"></i></a>
           :
           ''
         }
-      </p>
+      </div>
     )
   }
 }

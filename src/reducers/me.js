@@ -1,3 +1,5 @@
+import {assign} from '../utils/Object'
+
 const initialState = {
   points:120,
   name:'hahahah',

@@ -8,6 +8,7 @@ import CartBuy from './containers/CartBuy'
 import Order from './containers/Order'
 import Coupon from './containers/Coupon'
 import Points from './containers/Points'
+import City from './containers/City'
 
 export default class AppRouter extends Component{
   render(){
@@ -24,7 +25,10 @@ export default class AppRouter extends Component{
         <Route path="/cart">
           <IndexRoute component={CartList} />
           <Route path="/cart/buy" component={CartBuy} />
-        </Route>         
+        </Route>  
+        <Route path="/city">
+          <IndexRoute component={City} />
+        </Route>  
       </Router>
     )
   }

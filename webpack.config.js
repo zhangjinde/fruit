@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var extractSCSS = new ExtractTextPlugin('style.css')
 
 module.exports = {
   //devtool: 'cheap-module-eval-source-map',
@@ -14,7 +16,8 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin() 
+    new webpack.HotModuleReplacementPlugin(),
+    extractSCSS,
   ],
   module: {
     loaders: [
@@ -22,7 +25,11 @@ module.exports = {
         loaders: [ 'babel' ],
         exclude: /node_modules/,
         include: __dirname
-      }
+      },{
+          test   : /\.(scss|css)/,
+          exclude: [/node_modules/],
+          loader : extractSCSS.extract('style', 'css!autoprefixer!sass!css-path-loader')
+      }     
     ]
   }
 }

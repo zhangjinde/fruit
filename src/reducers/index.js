@@ -1,9 +1,12 @@
+import {assign} from '../utils/Object'
+
 import { combineReducers } from 'redux'
 import me from './me'
 import cart from './cart'
 import order from './order'
 import coupon from './coupon'
 import points from './points'
+import city from './city'
 //import * from '../constants/ActionTypes'
 
 var initialState = {
@@ -54,7 +57,8 @@ const rootReducer = combineReducers({
   cart,
   order,
   coupon,
-  points
+  points,
+  city
 })
 
 export default rootReducer
