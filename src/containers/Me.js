@@ -4,24 +4,19 @@ import { connect } from 'react-redux'
 
 import Head from '../components/Head'
 import MeItem from '../components/MeItem'
+import NavBack from '../components/NavBack'
 
 class Me extends Component {
-  back(){
-    let { history } = this.props
-    history.go(-1)
-  }
   render() { 
-    let { name, head, points } = this.props  
+    let { name, head, points, history } = this.props  
     return (
       <div className="myinfo">
-        <p className="nav-back">
-          <i className="icon back" onClick={this.back.bind(this)}>返回</i>
-        </p>      
+        <NavBack history={history}></NavBack>
         <Head name={name} head={head} points={points}/>
         <ul>
-          <MeItem desc="我的订单"/>
-          <MeItem desc="我的优惠券"/>
-          <MeItem desc="我的积分中心"/>        
+          <MeItem desc="我的订单" to="/me/order"/>
+          <MeItem desc="我的优惠券" to="/me/coupon"/>
+          <MeItem desc="我的积分中心" to="/me/points"/>        
         </ul>
       </div>
     )

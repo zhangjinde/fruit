@@ -4,18 +4,18 @@ import CartItem from '../components/CartItem'
 
 export default class CartBottom extends Component{
   render() {
-    let { cart } = this.props
+    let { cart, edit } = this.props
     return (
       <div className="block detail">
         <p className="tit">
           已购买商品
-          <a href="javascript:;">编辑</a>
+          <a href="javascript:;" onClick={edit}>编辑</a>
         </p>
         <ul className="list">
         {
           cart.goods.map(function(item){
             return (
-              <CartItem item={item} key={item.id}/>
+              <CartItem item={item} key={item.id} edit={cart.editing}/>
             )
           })
         }

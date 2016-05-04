@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 export default class CartItem extends Component{
   render() {
-    let { item } = this.props;
+    let { item, edit } = this.props;
     return (
       <li className="small">
         <p className="img"><img src={item.img}/></p>
@@ -16,7 +16,17 @@ export default class CartItem extends Component{
             <span className="cnt">/{item.type}</span>
           </p>
         </div>
-        <a className="buy">{item.count}</a>
+        {
+          !edit ?
+            <a className="buy">{item.count}</a>
+          :
+            <p>
+              <span className="inc">+</span>
+                <input className="num-inp" value={item.count}/>
+              <span className="dec">-</span>         
+            </p>          
+        }
+        
       </li>
     )
   }

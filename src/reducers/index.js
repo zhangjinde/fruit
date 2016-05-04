@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 import me from './me'
 import cart from './cart'
+import order from './order'
+import coupon from './coupon'
+import points from './points'
 //import * from '../constants/ActionTypes'
 
 var initialState = {
@@ -48,7 +51,10 @@ function fruit(
 const rootReducer = combineReducers({
   fruit,
   me,
-  cart
+  cart,
+  order,
+  coupon,
+  points
 })
 
 export default rootReducer

@@ -4,6 +4,7 @@ const initialState = {
   total:0,
   count:0,
   position:null,
+  editing:false,
   goods:[{
     id:1,
     name:'a',
@@ -19,6 +20,10 @@ export default function cart(state = initialState, action){
     case types.CART_UPDPOS:
       return Object.assign({},state,{
         position:action.val
+      })
+    case types.CART_EDIT:
+      return Object.assign({},state,{
+        editing:!state.editing
       })
     default:
       return state

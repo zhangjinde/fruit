@@ -5,6 +5,9 @@ import Fruit from './containers/Fruit'
 import Me from './containers/Me'
 import CartList from './containers/CartList'
 import CartBuy from './containers/CartBuy'
+import Order from './containers/Order'
+import Coupon from './containers/Coupon'
+import Points from './containers/Points'
 
 export default class AppRouter extends Component{
   render(){
@@ -14,6 +17,9 @@ export default class AppRouter extends Component{
         <Route path="/" component={Fruit}></Route>
         <Route path="/me">
           <IndexRoute component={Me} />
+          <Route path="/me/order" component={Order} />
+          <Route path="/me/coupon" component={Coupon} />
+          <Route path="/me/points" component={Points} />
         </Route>    
         <Route path="/cart">
           <IndexRoute component={CartList} />

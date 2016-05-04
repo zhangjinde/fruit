@@ -3,16 +3,22 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
+import * as actions from '../actions/cart'
+
 import CartBottom from '../components/CartBottom'
 import CartDetail from '../components/CartDetail'
 import CartBlock from '../components/CartBlock'
 
 class CartBuy extends Component {
+  edit(){
+    let { actions } = this.props
+    actions.edit()
+  }
   render() { 
     let { name, head, points, cart } = this.props  
     return (
       <div className='cart-buy'>
-        <CartDetail cart={cart}/>
+        <CartDetail cart={cart} edit={this.edit.bind(this)}/>
         <CartBlock til1="送货" til2="方式"></CartBlock>
         <CartBlock til1="收货" til2="信息"></CartBlock>
         <CartBlock til1="付款" til2="方式"></CartBlock>
@@ -46,6 +52,12 @@ function mapStateToProps(state) {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  }
+}
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CartBuy)

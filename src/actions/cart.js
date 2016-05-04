@@ -6,3 +6,8 @@ export function updPos(val){
     val
   }
 }
+export function edit(){
+  return {
+    type:types.CART_EDIT
+  }
+}

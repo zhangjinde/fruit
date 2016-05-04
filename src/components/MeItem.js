@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-export default class FruitList extends Component{
+export default class MeItem extends Component{
   render() {
-    let { icon, desc } = this.props;
+    let { icon, desc, to } = this.props;
     return (
       <li>
-        <i className={"icon "+icon}></i>
-        {desc}
-        <i className="icon go"></i>
+        <Link to={to}>
+          <i className={"icon "+icon}></i>
+          {desc}
+          <i className="icon go"></i>
+        </Link>
       </li>
     )
   }

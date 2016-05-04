@@ -1,1 +1,10 @@
 export const CART_UPDPOS = 'CART_UPDPOS'
+export const CART_EDIT = 'CART_EDIT'
+
+export const COUPON_CHANGE_TYPE = 'COUPON_CHANGE_TYPE'
+
+
+export const POINT_CHANGE_TYPE = 'POINT_CHANGE_TYPE'
+
+
+export const ORDER_CHANGE_TYPE = 'ORDER_CHANGE_TYPE'
