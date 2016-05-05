@@ -9,6 +9,8 @@ import Order from './containers/Order'
 import Coupon from './containers/Coupon'
 import Points from './containers/Points'
 import City from './containers/City'
+import Addr from './containers/Addr'
+import AddrAdd from './containers/AddrAdd'
 
 export default class AppRouter extends Component{
   render(){
@@ -29,6 +31,10 @@ export default class AppRouter extends Component{
         <Route path="/city">
           <IndexRoute component={City} />
         </Route>  
+        <Route path="/addr">
+          <IndexRoute component={Addr} />
+          <Route path="/addr/add" component={AddrAdd} />
+        </Route>          
       </Router>
     )
   }

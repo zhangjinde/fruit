@@ -7,6 +7,7 @@ import order from './order'
 import coupon from './coupon'
 import points from './points'
 import city from './city'
+import address from './address'
 //import * from '../constants/ActionTypes'
 
 var initialState = {
@@ -58,7 +59,8 @@ const rootReducer = combineReducers({
   order,
   coupon,
   points,
-  city
+  city,
+  address
 })
 
 export default rootReducer

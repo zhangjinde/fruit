@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 export default class CartItem extends Component{
+  add(){
+    let {item,add} = this.props
+    add(item)
+  }
+  del(){
+    let {item,del} = this.props
+    del(item)
+  }  
   render() {
     let { item, edit } = this.props;
     return (
@@ -18,12 +26,12 @@ export default class CartItem extends Component{
         </div>
         {
           !edit ?
-            <a className="buy">{item.count}</a>
+            <a className="buy num">{item.count}</a>
           :
-            <p>
-              <span className="inc">+</span>
-                <input className="num-inp" value={item.count}/>
-              <span className="dec">-</span>         
+            <p className="updnum">
+              <a className="op" onClick={this.del.bind(this)}>-</a>
+                <a className="num">{item.count}</a>
+              <a className="op" onClick={this.add.bind(this)}>+</a>
             </p>          
         }
         

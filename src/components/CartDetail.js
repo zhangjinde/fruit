@@ -3,6 +3,12 @@ import React, { Component } from 'react'
 import CartItem from '../components/CartItem'
 
 export default class CartBottom extends Component{
+  add(item){
+    this.props.add(item,1)
+  }
+  del(item){
+    this.props.add(item,-1)
+  }
   render() {
     let { cart, edit } = this.props
     return (
@@ -13,11 +19,11 @@ export default class CartBottom extends Component{
         </p>
         <ul className="list">
         {
-          cart.goods.map(function(item){
-            return (
-              <CartItem item={item} key={item.id} edit={cart.editing}/>
+          cart.goods.map(item =>
+            (
+              <CartItem item={item} key={item.id} edit={cart.editing} add={this.add.bind(this)}  del={this.del.bind(this)}/>
             )
-          })
+          )
         }
         </ul>
         <div className="foot">
@@ -25,7 +31,7 @@ export default class CartBottom extends Component{
           <p className="right">
             总价：
             <span className="num">
-            ￥{cart.total}
+            ￥{cart.total.toFixed(2)}
             </span>
           </p>
         </div>

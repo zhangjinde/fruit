@@ -22,10 +22,10 @@ class City extends Component {
             <p className="ct">{city.name}</p>
             <p className="des">{city.desc}</p>
           </div>
-          <span className="choose" onClick={this.change.bind(this)}>
+          <a className="choose" onClick={this.change.bind(this)}>
             切换城市
             <i className={ type===2 ? "fa fa-angle-up":"fa fa-angle-up rotate" }></i>
-          </span>
+          </a>
         </NavBack>
         {
           type===1?

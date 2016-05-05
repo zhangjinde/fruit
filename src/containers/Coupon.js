@@ -18,8 +18,8 @@ class Coupon extends Component {
     return (
       <div className="coupon">
         <NavBack me={true} history={history} white={true}>
-          <span className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未使用优惠券</span>
-          <span className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已过期优惠券</span>
+          <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未使用优惠券</a>
+          <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已过期优惠券</a>
         </NavBack>
         <ul className="items">
         {

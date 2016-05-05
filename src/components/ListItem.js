@@ -2,12 +2,20 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 export default class ListItem extends Component{
-  add(e){
+  add(hide,e){
+    if(!e){
+      e=hide
+      hide=false
+    }
     let {add,item} = this.props
-    add(item.id,e.target)
+    add(item,e.target,hide)
+  }
+  del(e){
+    let {del,item} = this.props
+    del(item)
   }
   render() {
-    let { item } = this.props;
+    let { item, count } = this.props;
     return (
       <li className={item.big ? "big":"small"}>
         <p className="img"><img src={item.img}/></p>
@@ -32,7 +40,13 @@ export default class ListItem extends Component{
         </div>
         {
           item.remain != 0 ?
-            <a className="buy" href="javascript:;" onClick={this.add.bind(this)}>买</a>
+            count===0?
+              <a className="buy" href="javascript:;" onClick={this.add.bind(this,false)}>买</a>
+            :
+              <p className="upd">
+                <a href="javascript:;" className="del" onClick={this.del.bind(this)}>-</a>
+                <a href="javascript:;" className="add" onClick={this.add.bind(this,true)}>+</a>
+              </p>
           :
             <a className="buy not" href="javascript:;">
               <span>暂时</span>

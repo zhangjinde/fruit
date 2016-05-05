@@ -9,10 +9,10 @@ export default class Nav extends Component{
     let {type,city,qu} = this.props;
     return (
       <nav className="blue">
-        <div onClick={this.changeCity.bind(this)} className="item city">
+        <a onClick={this.changeCity.bind(this)} className="item city">
           <p>{city}</p>
           <p>{qu}</p>
-        </div>
+        </a>
         <Link to="" className={type==1 ? "item active":"item"}>水果</Link>
         <Link to="" className={type==2 ? "item active":"item"}>食材</Link>
         <Link to="" className={type==3 ? "item active":"item"}>零食</Link>
