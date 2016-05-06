@@ -8,6 +8,7 @@ import coupon from './coupon'
 import points from './points'
 import city from './city'
 import address from './address'
+import detail from './detail'
 //import * from '../constants/ActionTypes'
 
 var initialState = {
@@ -60,7 +61,8 @@ const rootReducer = combineReducers({
   coupon,
   points,
   city,
-  address
+  address,
+  detail
 })
 
 export default rootReducer

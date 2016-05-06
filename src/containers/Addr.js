@@ -27,6 +27,11 @@ class Addr extends Component {
   del(id){
     this.props.actions.del(id)
   }
+  choose(id){
+    let {actions,history} = this.props
+    actions.chooseAddr(id)
+    history.go(-1)
+  }
   render() { 
     let {history,editing,addrs,moren} = this.props
     return (
@@ -38,7 +43,7 @@ class Addr extends Component {
         <ul className={editing?"addr-list":"addr-list editing"}>
         {
           addrs.map(add=>(
-            <AddrItem item={add} key={add.id} moren={add.id===moren} del={this.del.bind(this)} history={history}/>
+            <AddrItem item={add} key={add.id} moren={add.id===moren} del={this.del.bind(this)} history={history} choose={this.choose.bind(this)} editing={editing}/>
           ))
         }
         </ul>

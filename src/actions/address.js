@@ -34,6 +34,20 @@ export function del(id){
   }
 }
 
+export function chooseAddr(id){
+  return {
+    type:types.ADDR_CHOOSE,
+    val:id
+  }
+}
+
+export function chooseTime(id){
+  return {
+    type:types.ADDR_CHOOSE_TIME,
+    val:id
+  }
+}
+
 export function update(id,val){
   return {
     type:types.ADDR_UPD,

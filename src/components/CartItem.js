@@ -14,7 +14,7 @@ export default class CartItem extends Component{
     let { item, edit } = this.props;
     return (
       <li className="small">
-        <p className="img"><img src={item.img}/></p>
+        <p className="img"><Link to={"/fruit/"+item.id}><img src={item.img}/></Link></p>
         <div className="txt">
           <p className="tit">
             {item.name}

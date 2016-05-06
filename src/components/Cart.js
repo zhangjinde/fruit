@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 
 export default class Cart extends Component{
   go(){
-    let {history} = this.props
-    history.push('/cart/buy')
+    let {history,count} = this.props
+    if(count>0){
+      history.push('/cart/buy')
+    }
   }
   render() {
     let { total } = this.props

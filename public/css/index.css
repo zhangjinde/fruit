@@ -11,7 +11,7 @@ input,textarea,button,a,li,i{ -webkit-tap-highlight-color:rgba(0,0,0,0);outline:
 .left{float:left;}  
 .right{float:right;}  
 .clear {clear: both;display: block;} 
-.clearfix:after{content:".";display:block;}  
+.clearfix:after{content:"";display:block;}  
 .clearfix{display:inline-table;} 
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-thumb  {-webkit-border-radius: 6px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background:#53CBE6} 
@@ -91,6 +91,9 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 
 /*cart*/
 
+.modal{position:fixed;top:0;left:0;bottom:0;right:0;background:rgba(0,0,0,0.7);display:none}
+.modal.show{display:block}
+
 /*cart-buy*/
 .block{background:#fff;margin:0.5em 0.4em 0 0.4em;padding:0.5em;}
 .block.item{display:-webkit-flex;display:flex;align-items:center;-webkit-align-items:center;}
@@ -103,6 +106,7 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 .block.item .r .two div{flex:1;-webkit-flex:1;}
 .block.item .r .two .name{margin-right:1em;line-height:1.2}
 .block.item .r img{vertical-align:middle;height:2em;}
+.cart-buy{padding-bottom:4em;}
 .cart-buy .detail>.tit{color:#aaa;padding:0 0 1em 0;border-bottom:1px solid #eee;}
 .cart-buy .detail>.tit a{float:right;margin-right:1em;color:#53CBE6;border-radius:1em;border:2px solid #53CBE6;padding:0.2em 1em;}
 .cart-buy .detail .list{margin-top:0;}
@@ -118,6 +122,10 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 .cart-buy .fix-bottom .back .icon{position: relative;top: 0.2em;margin-right:0.5em;}
 .cart-buy .fix-bottom .btn-buy{position:absolute;right:1em;top:0.8em;height:2.4em;line-height:2.4em;padding:0 0.5em;border-radius:2em;display:inline-block;background:#53CBE6;color:#fff;cursor:pointer;}
 .cart-buy .fix-bottom .btn-buy .icon{margin-left:0.4em;position:relative;top:0.2em;}
+.cart-buy .modal .time{position:absolute;bottom:0;left:0;height:12em;width:100%;color:#53CBE6;-webkit-user-select:none;}
+.cart-buy .modal .time p{height:3em;line-height:3em;text-align:center;background:#fff;}
+.cart-buy .modal .time p.title{color:#aaa;background:#eee;}
+.cart-buy .modal .time p span{width:50%;line-height:3em;}
 
 /*个人记录*/
 ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
@@ -190,3 +198,34 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .addr .addr-list .op.edit{background:#58B1C5;color:#fff;top:0.5em;}
 .addr .addr-list .op.del{color:#58B1C5;bottom:0.5em;border:1px solid #58B1C5;-webkit-box-sizing:border-box;box-sizing:border-box;background:fff;}
 .addr .addr-list.editing .op{display:none;}
+
+/*detial*/
+.detial .nav-back>a{color:#58B1C5}
+.detial .fix-bottom{background:#fff;}
+.detial .fix-bottom>p{float:left;width:50%;text-align:center;}
+.detial .fix-bottom a{display:inline-block;margin-top:0.5em;height:3em;padding:0 1em;line-height:3em;border-radius:2em;}
+.detial .fix-bottom .go{border:1px solid #58B1C5;color:#58B1C5;}
+.detial .fix-bottom p:last-child a{padding:0 1em;height:2.4em;line-height:2.4em;margin:0.8em 0.2em;}
+.detial .fix-bottom .del{background:#eee;color:#fff;font-weight:bold;}
+.detial .fix-bottom .add{background:#58B1C5;color:#fff;}
+.detial .fix-bottom .num{border:1px solid #58B1C5;color:#58B1C5}
+.detial .block{margin:0 0 1em 0;}
+.detial .block.desc img{width:100%;}
+.detial .price .now{color:#53CBE6;}
+.detial .price .now .num{font-size:2em;}
+.detial .price .old{text-decoration:line-through;margin-left:0.5em;color:#ccc;}
+.detial .desc .name{color:#666;font-size:1.2em;padding:1em;font-weight:bold}
+.detial .desc .name .icon{margin-left:2em;cursor:pointer;color:#f00;}
+.detial .desc .other {padding:1em 2em;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.detial .desc .other div{width:25%;float:left;text-align:center;border-right:1px solid #eee;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.detial .desc .other div:last-child{border:none;}
+.detial .desc .other .tit{color:#aaa;font-size:0.8em;}
+.detial .desc .other .des{color:#333;}
+.detial .block.cmt{text-align:center;color:#53CBE6}
+.detial .last {padding:2em 0.5em;}
+.detial .last .up{position:relative;}
+.detial .last .up .youhui a{display:inline-block;padding:0.5em 1em;border:2px solid #F38787;color:#F38787;margin-top:0.5em;}
+.detial .last .up .tongzhi{display:inline-block;position:absolute;right:1em;height:3em;top:0;bottom:0;margin:auto;color:#fff;background:#aaa;padding:0 1em;border-radius:1em;}
+.detial .last .up .tongzhi p{height:1.5em;line-height:1.5em;}
+.detial .last .down{margin-top:1em;font-size:0.8em;color:#aaa;padding-bottom:4em;}
+.detial .comment{position:absolute;height:80%;top:10%;left:5%;width:90%;background:#fff;border-radius:4px;box-shadow:0 1px 2px #eee;}

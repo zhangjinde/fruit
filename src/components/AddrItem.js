@@ -9,10 +9,16 @@ export default class AddrItem extends Component{
     let {history,item} = this.props
     history.push('/addr/add?id='+item.id)
   }
+  choose(){
+    let {choose,item,editing} = this.props
+    if(!editing){
+      choose(item.id)
+    }
+  }
   render() {
     let {item,moren} = this.props
     return (
-      <li>
+      <li onClick={this.choose.bind(this)}>
         <p className="name">
           <span className="sp">收货人：</span>
           {item.name}

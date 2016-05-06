@@ -16,14 +16,14 @@ class Fruit extends Component {
   }
 
   render() { 
-    let { list, total, history, cartPos, cities, qus, NowCity, Nowqu, goods, actions } = this.props
+    let { list, total, count, history, cartPos, cities, qus, NowCity, Nowqu, goods, actions } = this.props
     let city = cities.filter(c=>c.id===NowCity)[0].name
     let qu = qus[NowCity].filter(c=>c.id===Nowqu)[0].name
     return (
       <div>
         <Nav type="1" history={history} city={city} qu={qu}/>
         <FruitList list={list} cartPos={cartPos} goods={goods} actions={actions}/>
-        <Cart total={total} history={history} ref='cart'/>
+        <Cart total={total} history={history} ref='cart' count={count}/>
       </div>
     )
   }
@@ -48,6 +48,7 @@ function mapStateToProps(state) {
     total,
     position,
     goods,
+    count,
   } = state.cart;
   
   const {
@@ -60,6 +61,7 @@ function mapStateToProps(state) {
   return {
     list,
     total,
+    count,
     cartPos:position,
     goods,
     cities,
