@@ -38,7 +38,7 @@ class CartBuy extends Component {
     //TEST
     alert('提交成功')
     actions.clear()
-    history.replace('/')
+    history.replace('/cart/finish')
   }
   showTime(){
     this.refs.modal.className="modal show"

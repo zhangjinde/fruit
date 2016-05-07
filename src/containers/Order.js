@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import NavBack from '../components/NavBack'
+import OrderItem from '../components/order/OrderItem'
 
 import * as orderActions from '../actions/order'
 
@@ -13,13 +14,21 @@ class Order extends Component {
     actions.changeType(t)
   }
   render() {
-    let { history, type } = this.props
+    let { history, type, list1, list2 } = this.props
+    let list = type===1?list1:list2
     return (
       <div>
         <NavBack me={true} history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未收货订单</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已收货订单</a>
         </NavBack>
+        <ul className="order-list">
+        {
+          list.map(item=>(
+            <OrderItem item={item} key={item.id}/>
+          ))
+        }
+        </ul>
       </div>
     )
   }

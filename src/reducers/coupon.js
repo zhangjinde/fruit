@@ -20,6 +20,19 @@ const initialState = {
     isNew:false
   }],
   list2:[],
+  detail:{
+    id:2,
+    img:'/img/quan.png',
+    img2:'/img/quan_de.png',
+    time:'2016-04-01',
+    discount:'2.00',
+    deadline:'2016-06-11',
+    title:'13元欢迎礼券',
+    detail:'新用户欢迎礼券',
+    qianti:'满100.00元',
+    guize:'消费满100.00元 抵扣13.00元',
+    isNew:false
+  },
   type:1
 }
 

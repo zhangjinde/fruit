@@ -7,7 +7,7 @@ export default class CouponItem extends Component{
     return (
       <li>
         <div className="img">
-          <img src={item.img} />
+          <Link to={"/me/coupon/"+item.id}><img src={item.img} /></Link>
         </div>
         <div className="txt">
           <p className="title">
