@@ -5,7 +5,7 @@ export default class BlockDesc extends Component{
     let {item} = this.props
     return (
       <div className="block desc">
-        <img src="/img/putao.jpg" />
+        <img src={item.img} />
         <p className="price">
           <span className="now">￥<span className="num">{item.price}</span></span>
           <span className="old">超市￥{item.old}元</span>
