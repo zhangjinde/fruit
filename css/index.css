@@ -228,7 +228,11 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .detial .desc .other div:last-child{border:none;}
 .detial .desc .other .tit{color:#aaa;font-size:0.8em;}
 .detial .desc .other .des{color:#333;}
-.detial .block.cmt{text-align:center;color:#53CBE6}
+.detial .block.cmt{text-align:center;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.detial .block.cmt a{color:#53CBE6;}
+.detial .block.cmt a i{margin-right:0.5em;}
+.detial .block.cmt>p{float:left;width:50%;padding:1em 0;box-sizing:border-box;-webkit-box-sizing:border-box;border-right:1px solid #eee;}
+.detial .block.cmt>p:last-child{border:none;}
 .detial .last {padding:2em 0.5em;}
 .detial .last .up{position:relative;}
 .detial .last .up .youhui a{display:inline-block;padding:0.5em 1em;border:2px solid #F38787;color:#F38787;margin-top:0.5em;}
