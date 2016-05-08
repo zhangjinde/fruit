@@ -7,27 +7,7 @@ import {move} from '../utils/animate'
 
 export default class FruitList extends Component{
   add(item,elem,hide){
-    //增加
-    this.props.actions.add(item,1)
-    if(hide)
-      return ;
-    let pos = this.props.cartPos
-    let pos2=elem.getBoundingClientRect()  
-    let cart = this.refs.cart
-    let start = {
-      left:pos2.left,
-      top:pos2.top
-    }
-    let end = {
-      left:pos.left,
-      top:pos.top
-    }
-    move(cart, {
-      start,
-      end,
-    }, function(){
-      cart.style="opacity:0;"
-    })
+    this.props.add(item,elem,hide,this.refs.cart)
   }
   del(item){
     this.props.actions.add(item,-1)
@@ -46,7 +26,7 @@ export default class FruitList extends Component{
           })
         }
         <li className="mv-cart" ref="cart">
-          caca
+          <i className="fa fa-cart-arrow-down"></i>
         </li>
       </ul>
     )

@@ -33,7 +33,7 @@ class OrderState extends Component {
           <BlockProcess order={this.ord}/>  
         </div>
         <div className="fix-bottom">
-          <Link to="/me/order">好的我知道了</Link>
+          <a onClick={this.props.history.go.bind(this,-1)}>好的我知道了</a>
         </div>
       </div>
     )

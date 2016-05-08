@@ -9,12 +9,29 @@ import Nav from '../components/Nav'
 import Cart from '../components/Cart'
 import FruitList from '../components/FruitList'
 
-class Fruit extends Component {
-  componentDidMount() {
-    let { props, refs } = this
-    props.actions.updPos(ReactDom.findDOMNode(refs.cart).getBoundingClientRect())
-  }
+import {move} from '../utils/animate'
 
+class Fruit extends Component {
+  add(item,elem,hide,cart){
+    this.props.actions.add(item,1)
+    
+    if(hide)
+      return ;
+    let bottomCart = ReactDom.findDOMNode(this.refs.cart)
+    let start = elem.getBoundingClientRect(),
+        end   = bottomCart.getBoundingClientRect()
+
+    move(cart, {
+      start,
+      end,
+    },function before(){
+      cart.style.display='block'
+      bottomCart.className="cart-bottom move"
+    },function cb(){
+      cart.style.display='none'
+      bottomCart.className="cart-bottom"
+    })      
+  }
   render() { 
     let { list, total, count, history, cartPos, cities, qus, NowCity, Nowqu, goods, actions } = this.props
     let city = cities.filter(c=>c.id===NowCity)[0].name
@@ -22,7 +39,7 @@ class Fruit extends Component {
     return (
       <div>
         <Nav type="1" history={history} city={city} qu={qu}/>
-        <FruitList list={list} cartPos={cartPos} goods={goods} actions={actions}/>
+        <FruitList list={list} add={this.add.bind(this)} cartPos={cartPos} goods={goods} actions={actions}/>
         <Cart total={total} history={history} ref='cart' count={count}/>
       </div>
     )

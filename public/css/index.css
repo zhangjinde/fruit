@@ -67,7 +67,7 @@ ul.list li .upd a{display:inline-block;width:1.5em;height:1.2em;line-height:1.2e
 ul.list li .upd .add{background:#58B1C5;margin-left:0.5em;}
 ul.list li .upd .del{background:#0f0;}
 /*move cart*/
-ul.list .mv-cart{position:fixed;z-index:10000;right:2em;background:red;width:2em;height:2em;opacity:0.7}
+ul.list .mv-cart{position:fixed;z-index:10000;display:none;background:transparent;width:1.5em;height:1.5em;opacity:0.9;font-size:1.2em;color:#fff;border-radius:0.7em;background:#58B1C5;line-height:1.5em;text-align:center;}
 /*small*/
 ul.list li.small{display:flex;display: -webkit-flex;padding:1em 0;}
 ul.list li.small .img{width:5em;}
@@ -79,7 +79,8 @@ ul.list li.small .txt{flex:1;-webkit-flex:1;}
 /*cart*/
 .cart-bottom{position:fixed;bottom:0.5em;left:0;right:0;margin:auto;z-index:9999;border-radius:1.5em;height:3em;background:#53CBE6;width:8em;line-height:3em;-webkit-user-select:none;cursor:pointer;}
 .cart-bottom .icon{display:inline-block;margin:0.1em;height:2.8em;width:2.8em;border-radius:1.4em;background:#fff;color:#53CBE6;}
-.cart-bottom .icon i{margin-left:0.2em;}
+.cart-bottom .icon i{position:relative;left:0.15em;top:0.1em;transition:top 0.5s;}
+.cart-bottom.move .icon i{top:-1em;}
 .cart-bottom .total{display:inline-block;vertical-align:top;color:#fff;}
 /*me*/
 .myinfo .profile{margin:0;background:#53CBE6;padding:3em 0 1em 0;text-align:center;color:#fff;}
@@ -243,7 +244,7 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 
 /*订单成功*/
 .finish{background:#fff;padding:1em;}
-.finish .nav-back a{color:#53CBE6}
+.finish .nav-back a{color:#53CBE6;margin-left:-1em;}
 .finish .tit{color:#53CBE6;text-align:center;margin-top:1em;}
 .finish .tit>div{display:inline-block;}
 .finish .tit .icon{margin-right: 0.5em;font-size: 2em;}
