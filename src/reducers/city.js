@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes'
 import {assign} from '../utils/Object'
 
 const initialState = {
+/*
   cities:[{
     id:1,
     name:'中山',
@@ -32,8 +33,36 @@ const initialState = {
   NowCity:1,
   Nowqu:12,
   type:1,
+  */
+  loading: false,
+  error: false,
+  cities: [],
+  qus: {},
+  NowCity: -1,
+  Nowqu: -1,
+  type: 2,
 }
-
+function setCity(list){
+  let cities=[],qus={};
+  list.map(item => {
+    const {id, cityName, avatarUrl, areas} = item;
+    cities.push({
+      id,
+      name: cityName,
+      img: avatarUrl,
+      desc: '当地网点支持六小时内到货'
+    });
+    qus[id] = [];
+    areas.split(',').map(a=>{
+      let q = a.split('=')
+      qus[id].push({
+        id: q[0],
+        name: q[1]
+      })
+    })
+  })
+  return [cities, qus];
+}
 export default function cart(state = initialState, action){
   switch (action.type) {
     case types.CITY_CHANGE_TYPE:
@@ -48,7 +77,26 @@ export default function cart(state = initialState, action){
       return assign({},state,{
         NowCity:action.val,
         type:3-state.type
-      })    
+      }) 
+    case types.CITY_GET_START:
+      return assign({},state,{
+        loading:true
+      })
+    case types.CITY_GET_SUCCESS:
+      let cities=[], qus={};
+      let all = setCity(action.val);
+
+      return assign({},state,{
+        loading:false,
+        error:false,
+        cities: all[0],
+        qus: all[1]
+      })      
+    case types.CITY_GET_ERROR:
+      return assign({},state,{
+        loading: false,
+        error: true
+      })      
     default:
       return state
   } 

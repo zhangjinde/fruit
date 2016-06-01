@@ -34,8 +34,10 @@ class Fruit extends Component {
   }
   render() { 
     let { list, total, count, history, cartPos, cities, qus, NowCity, Nowqu, goods, actions } = this.props
-    let city = cities.filter(c=>c.id===NowCity)[0].name
-    let qu = qus[NowCity].filter(c=>c.id===Nowqu)[0].name
+    let city = cities && cities.filter(c=>c.id===NowCity)[0];
+    let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu);
+      city = (city && city.name) || '城市';    
+      qu = (qu && qu[0].name) || '区域';
     return (
       <div>
         <Nav type="1" history={history} city={city} qu={qu}/>

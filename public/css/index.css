@@ -179,13 +179,15 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .city ul.qu{margin-top:3em;color:#666;}
 .city ul.qu li{box-sizing:border-box;-webkit-box-sizing:border-box;float:left;width:25%;background:#fff;line-height:2em;padding:1em 0;text-align:center;}
 .city ul.qu li:not(last-child){border-right:1px solid #eee;}
+.city ul.qu li.other{width:100%;font-size:80%;color#aaa;}
 .city ul.qu li .name.active{color:#53CBE6;border-bottom:2px solid #53CBE6;}
 .city ul.city{margin-top:3em;color:#111;}
 .city ul.city li{background:#fff;line-height:3em;padding:0.5em 1em;border-bottom:1px solid #eee;}
 .city ul.city li img{vertical-align:middle;width:3em;height:3em;border-radius:1.5em;margin-right:1em;}
 .city ul.city li .icon{float:right;color:#aaa;font-size:120%;}
 .city ul.city li.other{text-align:center;line-height:4em;font-size:80%;color:#aaa;}
-
+.city .loading,.city .error{text-align:center;margin-top:3em;background:#fff;color:#666;line-height:5em;}
+.city .error{color:#f00;}
 /*address*/
 .addr .nav-back{background:#fff;color:#53CBE6;width:100%;vertical-align:middle;}
 .addr .nav-back .tit{margin-left:2em;}

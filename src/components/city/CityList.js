@@ -17,7 +17,12 @@ export default class CityList extends Component{
           )
         })
       }
-        <li className="other">其他城市敬请期待</li>
+      {
+        cities.length ? 
+          <li className="other">其他城市敬请期待</li>
+        :
+          <li className="other">暂时没有城市</li>
+      }
       </ul>
     )
   }

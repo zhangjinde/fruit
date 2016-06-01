@@ -9,18 +9,23 @@ import QuList from '../components/city/QuList'
 import * as cityActions from '../actions/city'
 
 class City extends Component {
+  componentDidMount(){
+    if(!this.props.cities.length)
+      this.props.actions.getList();
+  }
   change(){
     this.props.actions.changeType()
   }
   render() { 
-    let { actions, history, type, qus, cities, NowCity, Nowqu } = this.props 
+    let { actions, history, type, qus, cities, NowCity, Nowqu, loading, error } = this.props 
+    console.log(cities)
     let city = cities.filter(c=>c.id===NowCity)[0]
     return (
       <div className="city">
         <NavBack history={history}>
           <div className="title">
-            <p className="ct">{city.name}</p>
-            <p className="des">{city.desc}</p>
+            <p className="ct">{city && city.name || '请选择城市'}</p>
+            <p className="des">{city && city.desc || '请选择区域'}</p>
           </div>
           <a className="choose" onClick={this.change.bind(this)}>
             切换城市
@@ -28,10 +33,16 @@ class City extends Component {
           </a>
         </NavBack>
         {
-          type===1?
-          <QuList qus={qus[NowCity]} now={Nowqu} actions={actions}/>
+          loading ? 
+            <p className='loading'>正在加载，请稍候..</p>
           :
-          <CityList cities={cities} actions={actions}/>
+            error ?
+              <p className='error'>出错了</p>
+            :
+              type===1 ? 
+              <QuList qus={qus[NowCity]} now={Nowqu} actions={actions}/>
+              :
+              <CityList cities={cities} actions={actions}/>
         }
       </div>
     )
@@ -52,7 +63,9 @@ function mapStateToProps(state) {
     qus,
     NowCity,
     Nowqu,
-    type
+    type,
+    loading,
+    error
   } = state.city;
   
   return {
@@ -60,7 +73,9 @@ function mapStateToProps(state) {
     qus,
     NowCity,
     Nowqu,
-    type
+    type,
+    loading,
+    error    
   }
 }
 function mapDispatchToProps(dispatch) {

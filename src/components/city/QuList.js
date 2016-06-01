@@ -11,11 +11,14 @@ export default class QuList extends Component{
     return (
       <ul className="qu">
       {
-        qus.map(item=>{
-          return (
-            <QuItem item={item} key={item.id} active={item.id===now} choose={this.choose.bind(this)}/>
-          )
-        })
+        qus && qus.length ? 
+          qus.map(item=>{
+            return (
+              <QuItem item={item} key={item.id} active={item.id===now} choose={this.choose.bind(this)}/>
+            )
+          })
+        :
+          <li className="other">该城市没有区域可以选择</li>
       }
       </ul>
     )
