@@ -14,10 +14,15 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
+  externals: {
+    'react':'React',
+    'react-dom':'ReactDOM'
+  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     extractSCSS,
+   // new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [
