@@ -1,6 +1,7 @@
 *{margin:0;padding:0;font-color:#444;}
 img{border:0;}
-a{text-decoration:none;}
+a{text-decoration:none;color:#3559e0;}
+b{font-weight:bold;}
 ul,li{list-style-type:none;}
 body{
   font-family: "黑体","Hiragino Sans GB","Microsoft Yahei",SimSun,Arial,"Helvetica Neue",Helvetica;
@@ -195,6 +196,18 @@ nav a{
   background:#cafbeb;
   box-shadow:0 0 4px #40f6ff;
   border-bottom:2px solid #40f6ff;
+  line-height:1.5;
+}
+#item2 .cont p{
+  margin-top:20px;
+}
+#item2 .cont p b{
+  font-size:200%;
+  font-weight:bold;
+}
+#item2 .cont p span{
+  display:inline-block;
+  width:2em;
 }
 #item3{
   background-image:url('../img/bg1.gif');
@@ -215,9 +228,18 @@ nav a{
   font-size:120%;
 }
 #item3 .cont{
+  padding-top:45px;
   background:#ffe1c3;
   box-shadow:0 0 4px #fb9a36;
   border-bottom:2px solid #fb9a36;
+}
+#item3 .cont p {
+  margin-top:20px;
+  line-height:1.5;
+}
+#item3 .cont p span{
+  display:inline-block;
+  width:2em;
 }
 #item4{
   background-image:url('../img/bg1.gif');
@@ -237,6 +259,26 @@ nav a{
   background:#ffe8e8;
   box-shadow:0 0 4px #fb365a;
   border-bottom:2px solid #fb365a;
+  line-height:1.5;
+}
+#item4 .cont p span{
+  display:inline-block;
+  width:2em;
+}
+#item4 .cont div{
+  margin-top:15px;
+}
+#item4 .cont div p{
+  vertical-align:top;
+}
+#item4 .cont div p.l{
+  width:100px;
+}
+#item4 .cont div p.r{
+  width:600px;
+}
+#item4 .cont div p{
+  display:inline-block;
 }
 #item5{
   background-image:url('../img/bg1.gif');
@@ -260,6 +302,10 @@ nav a{
 }
 #item5 .cont p{
   margin-top:10px;
+}
+#item5 .cont p span{
+  display:inline-block;
+  width:2em;
 }
 #item5 .cont .circle{
   position:relative;
@@ -293,7 +339,15 @@ nav a{
 #item6 li{
   margin-top:5px;
   width:450px;
+  height:100px;
   padding:10px;
+}
+#item6 li p span{
+  display:inline-block;
+  width:2em;
+}
+#item6 li h4{
+  margin-bottom:5px;
 }
 #item6 li.left{
   float:left;
@@ -327,7 +381,7 @@ nav a{
 #item7 .left{
   margin-left:10px;
   float:left;
-  width:460px;
+  width:500px;
 }
 #item7 .table{
   text-align:center;
@@ -390,16 +444,41 @@ nav a{
   background:#f00;
 }
 #item7 .bao{
+  position:relative;
   margin-top:10px;
   background:#eee;
   padding:20px;
 }
-#item7 .bao ul, #item7 .bao li{
-  list-style-type:amharic;
+#item7 .bao p{line-height:1.5;}
+#item7 .bao .l{
+  font-weight:bold;
+  float:left;
+  width:90px;
+}
+#item7 .bao .r{
+  float:right;
+  width:370px;
+}
+#item7 .bao .zhao{
+  color:#f00;
+  text-align:center;
+  font-size:150%;
+  font-weight:bold;
+}
+#item7 .bao .xu, #item7 .bao ul{
+  color:#dc5f5f;
+  font-weight:bold;
+}
+#item7 .bao .xu{margin-top: 10px;  font-size:130%;}
+#item7 .bao li{
+  margin-left:20px;
+  list-style-type: disc;
+  margin-top:10px;
+  line-height:1.5;
 }
 #item7 .right{
   float:right;
-  height:800px;
+  height:1100px;
   margin-right:10px;
   width:420px;
 }
@@ -408,46 +487,52 @@ nav a{
 }
 #item7 .right .c1{
   z-index:4;
-  width:200px;
-  height:200px;
-  border-radius:100px;
+  width:240px;
+  height:240px;
+  border-radius:120px;
   box-shadow:0 0 5px #ecab59;
 }
 #item7 .right .c1 .img{
   top:5px;left:5px;
-  width:190px;
-  height:190px;
-  border-radius:95px;
+  width:230px;
+  height:230px;
+  border-radius:115px;
 }
 #item7 .right .c2{
   z-index:3;
-  top:40px;left:170px;
-  width:160px;
-  height:160px;
-  border-radius:80px;
+  top:60px;left:220px;
+  width:180px;
+  height:180px;
+  border-radius:90px;
   box-shadow:0 0 5px #a9f7a9;
 }
 #item7 .right .c2 .img{
   top:5px;left:5px;
-  width:150px;
-  height:150px;
-  border-radius:75px;
+  width:170px;
+  height:170px;
+  border-radius:85px;
 }
 #item7 .right .c3{
   z-index:2;
-  top:175px;left:20px;
-  width:280px;
-  height:280px;
-  border-radius:140px;
+  top:195px;left:20px;
+  width:320px;
+  height:320px;
+  border-radius:160px;
   box-shadow:0 0 5px #dc56de;
 }
 #item7 .right .c3 .img{
   top:5px;left:5px;
-  width:270px;
-  height:270px;
-  border-radius:135px;
+  width:310px;
+  height:310px;
+  border-radius:155px;
 }
 #item7 .right .tel{
   position:absolute;
-  bottom:30px;right:10px;
+  width:400px;
+  font-size:150%;
+  font-weight:bold;
+  color:#b53737;
+  line-height:1.5;
+  text-align:center;
+  bottom:120px;right:10px;
 }
