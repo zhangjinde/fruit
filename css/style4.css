@@ -84,9 +84,10 @@ body{
   display:inline-block;
 }
 .nei .tit .b{
+  vertical-align: middle;  
   line-height: 40px;
   height: 40px;
-  width:100px;
+  width:200px;
   text-align:center;
   color:#fff;
   background:#a71d9c;
