@@ -96,6 +96,7 @@ body{
 .nei .tit .c{
   vertical-align: middle;
   width: 20px;
+  height: 40px;  
   background: #a71d9c;
   transform: scale(1.5) rotate(-30deg);
   -ms-transform:: scale(1.5) rotate(-30deg);
