@@ -84,17 +84,39 @@ body{
   display:inline-block;
 }
 .nei .tit .b{
-  line-height:40px;
-  padding: 0 1em;
+  line-height: 40px;
+  height: 40px;
+  width:100px;
+  text-align:center;
   color:#fff;
   background:#a71d9c;
   font-size:120%;
   font-weight:normal;
 }
 .nei .tit .c{
-  width:
+  vertical-align: middle;
+  width: 20px;
+  background: #a71d9c;
+  transform: scale(1.5) rotate(-30deg);
+  -ms-transform:: scale(1.5) rotate(-30deg);
+  -webkit-transform: scale(1.5) rotate(-30deg);
+  -o-transform: scale(1.5) rotate(-30deg);
+  margin-left: -15px;
 }
-.nei .tit .d{}
+.nei .tit .d{
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+  height: 40px;
+  background: #f0f;
+  line-height: 40px;
+  transform: scale(1.5) rotate(-30deg);
+  -ms-transform:: scale(1.5) rotate(-30deg);
+  -webkit-transform: scale(1.5) rotate(-30deg);
+  -o-transform: scale(1.5) rotate(-30deg);
+  margin-left: -10px;
+  z-index: -1;
+}
 .circle{
   position:absolute;
   background:#fff;
