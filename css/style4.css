@@ -132,10 +132,22 @@ body{
   height:300px;
   padding-bottom:1px;  
 }
+#item1 .img p{
+  position:absolute;
+  font-size:26px;
+  color:#3c49ff;
+  font-family:楷体;
+  font-weight:bold;
+}
+#item1 .img .p1{top:10px;left:10px;width:200px;height:100px;}
+#item1 .img .p2{top:130px;left:100px;}
+#item1 .img .p3{top:180px;left:180px;}
+#item1 .img .p4{top:230px;left:260px;}
 #item1 .img{
   width:100%;
   min-width:1000px;
   height:100%;
+  position:relative;
 }
 .img img{
   width:100%;
