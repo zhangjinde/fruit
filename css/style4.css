@@ -257,7 +257,7 @@ body{
   padding:2px;
   background:#fff;
   height:200px;
-  width:280px;
+  width:300px;
   box-shadow:0 0 2px #aaa;
 }
 #item5{
@@ -426,7 +426,7 @@ body{
 #item7 .imgs .img{
   display:inline-block;
   width:476px;
-  height:200px;
+  height:280px;
 }
 #item7 .imgs0 .img{
   margin-top:1em;
