@@ -391,7 +391,7 @@ body{
 }
 #item7 .bao p{
   line-height:1.5;
-  width:480px;
+  width:530px;
 }
 #item7 .bao .l{
   font-weight:bold;
@@ -400,7 +400,7 @@ body{
 }
 #item7 .bao .r{
   float:right;
-  width:370px;
+  width:400px;
 }
 #item7 .bao .zhao{
   position:absolute;
@@ -433,7 +433,7 @@ body{
   margin-top:1em;
   display:inline-block;
   width:232px;
-  height:160px;
+  height:180px;
 }
 #item7 .tail{
   font-size:160%;
