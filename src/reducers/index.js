@@ -1,3 +1,4 @@
+import * as types from '../constants/ActionTypes'
 import {assign} from '../utils/Object'
 
 import { combineReducers } from 'redux'
@@ -12,6 +13,7 @@ import detail from './detail'
 //import * from '../constants/ActionTypes'
 
 var initialState = {
+/*
   list:[
     {
       id:1,
@@ -43,11 +45,44 @@ var initialState = {
       old:'123.00',
       big:1
     },    
-  ]
+  ] */
+  list: []
 }
+
+function genPro(list){
+  return list.map(item=>{
+    let it = {
+      id:item.id,
+      big: item.showWay === 's' ? 0:1,  
+      img: `${IMG_URL}/${item.showWay === 's' ? item.coverSUrl : item.coverBUrl}`,
+      name: item.productName,
+      price: item.price,
+      type: item.standard,
+      old: item.marketPrice,
+      status: item.status
+    }
+    return it;
+  })
+}
+
 function fruit(
   state = initialState, action) {
   switch (action.type) { 
+    case types.FRUIT_LIST_GET_START:
+      return assign({},state,{
+        loading:true,
+        error:false
+      })
+    case types.FRUIT_LIST_GET_SUCCESS:
+      return assign({},state,{
+        loading:true,
+        list: genPro(action.val)
+      })
+    case types.FRUIT_LIST_GET_ERROR:
+      return assign({},state,{
+        loading:false,
+        error:true
+      })   
     default:
       return state
   }

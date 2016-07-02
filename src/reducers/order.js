@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import {assign} from '../utils/Object'
 
-const initialState = {
+const initialState = {/*
   list1:[{
     id:1,
     name:'老王',
@@ -87,13 +87,46 @@ const initialState = {
     yunfei:'0.00',
     total:'36.00',
     state:0,    
-  }],
+  }],*/
+  list1:[],
+  list2:[],
   type:1,
   now:2
 }
-
-export default function cart(state = initialState, action){
+function genList(list){
+  return list.map(it=>{
+    let goods = it.productNames.split(',');
+    goods = goods.map(g=>{
+      let l = g.split('=');
+      return {
+        name: l[0],
+        price: (+l[1]).toFixed(2),
+        count: l[2]
+      }
+    })
+    return {
+      id: it.id,
+      name: it.receiverName,
+      tel: it.phoneNumber,    
+      orderNo: it.number,
+      createTime: it.orderTime,
+      arriveTime: it.receiveTime,
+      arriveAddr: it.address,
+      goods,
+      yunfei: it.freight||'0',
+      total: (+it.totalPrice).toFixed(2),
+      state: it.status,     
+    }
+  })
+}
+export default function order(state = initialState, action){
   switch (action.type) {
+    case types.ORDER_LIST_GET_SUCCESS:
+      let val = action.val;
+      return assign({},state,{
+        list1: val.type==1 ? genList(val.val): state.list1,
+        list2: val.type==2 ? genList(val.val): state.list2, 
+      })
     case types.ORDER_CHANGE_TYPE:
       return assign({},state,{
         type:action.val

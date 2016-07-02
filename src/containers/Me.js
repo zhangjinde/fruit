@@ -6,7 +6,15 @@ import Head from '../components/Head'
 import MeItem from '../components/MeItem'
 import NavBack from '../components/NavBack'
 
+import * as actions from '../actions/me'
+
 class Me extends Component {
+  componentDidMount() {
+    const {actions,id} = this.props
+    if(!id){
+      actions.getUser(window.user_id)
+    }
+  }
   render() { 
     let { name, head, points, history } = this.props  
     return (
@@ -29,20 +37,29 @@ Me.propTypes = {
   head: PropTypes.string.isRequired,
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  }
+}
+
 function mapStateToProps(state) {
   const {
     points,
     name,
     head,
+    id,
   } = state.me;
   
   return {
     points,
     name,
     head,
+    id,
   }
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Me)

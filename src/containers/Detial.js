@@ -13,6 +13,9 @@ import Comment from '../components/detial/Comment'
 
 class Detial extends Component {
   componentDidMount() {
+    const {detailActions, params, item} = this.props
+    if(item.id!=params.id)
+      this.props.detailActions.getDetail(params.id)
   }
   showCmt(){
     let cmt = this.refs.cmt
@@ -41,12 +44,12 @@ class Detial extends Component {
     let good = cart.goods.filter(g=>{
       return g.id===item.id
     })
-
+console.log(item)
     return (
       <div className="detial">
         <NavBack  history={history}/>
         <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
-        <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)}/>
+        <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
         <div className="modal" ref="cmt" onClick={this.hideCmt.bind(this)}>
           <Comment />
         </div>

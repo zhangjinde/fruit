@@ -9,12 +9,21 @@ import OrderItem from '../components/order/OrderItem'
 import * as orderActions from '../actions/order'
 
 class Order extends Component {
+  componentDidMount(){
+    this._changeType(1);
+  }
   _changeType(t){
-    let { actions } = this.props
+    let { actions, list1, list2 } = this.props
     actions.changeType(t)
+    if(t==1 && !list1.length){
+      actions.getList(1, user_id)
+    }else if(t==2 && !list2.length){
+      actions.getList(2, user_id)
+    }
   }
   render() {
     let { history, type, list1, list2 } = this.props
+
     let list = type===1?list1:list2
     return (
       <div>

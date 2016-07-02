@@ -13,7 +13,10 @@ export default class OrderItem extends Component{
             </Link>
           </p>
           <p>下单时间：{item.createTime}</p>
-          <p>收货时间：{item.arriveTime} {item.state==3?" 已经":''}送达（{item.arriveAddr}）</p>
+          <p>
+            收货时间：{item.arriveTime} 送达（{item.arriveAddr}）
+            （{item.state}）
+          </p>
           {
             !item.state || item.state==3?
             ""
@@ -27,7 +30,7 @@ export default class OrderItem extends Component{
             <li key={idx}>
               <Link to={"/fruit/"+good.id} className="name">{(idx+1)+'.'+good.name}</Link>
               <span className="num">×{good.count}</span>
-              <span className="price">￥{good.price*good.count}</span>
+              <span className="price">￥{(good.price*good.count).toFixed(2)}</span>
             </li>
           ))
         }

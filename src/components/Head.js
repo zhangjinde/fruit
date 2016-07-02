@@ -10,7 +10,7 @@ export default class  extends Component{
           <img src={head} />
         </div>
         <p className="name">{name}</p>
-        <p className="points">积分：{points}积分</p>
+        <p className="points">积分：{points} 积分</p>
       </figure>
     )
   }

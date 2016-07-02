@@ -18,7 +18,6 @@ class City extends Component {
   }
   render() { 
     let { actions, history, type, qus, cities, NowCity, Nowqu, loading, error } = this.props 
-    console.log(cities)
     let city = cities.filter(c=>c.id===NowCity)[0]
     return (
       <div className="city">

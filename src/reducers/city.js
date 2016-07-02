@@ -80,7 +80,8 @@ export default function cart(state = initialState, action){
       }) 
     case types.CITY_GET_START:
       return assign({},state,{
-        loading:true
+        loading:true,
+        error:false
       })
     case types.CITY_GET_SUCCESS:
       let cities=[], qus={};

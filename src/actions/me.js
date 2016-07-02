@@ -3,28 +3,28 @@ import fetch from 'isomorphic-fetch'
 
 function getStart(){
   return {
-    type:types.FRUIT_LIST_GET_START
+    type:types.USER_GET_START
   }
 }
 function getSuccess(val){
   return {
-    type:types.FRUIT_LIST_GET_SUCCESS,
+    type:types.USER_GET_SUCCESS,
     val
   }
 }
 function getError(){
   return {
-    type:types.FRUIT_LIST_GET_ERROR
+    type:types.USER_GET_ERROR
   }
 }
-export function getList(){
+export function getUser(id){
   return dispatch => {
     dispatch(getStart())
-    
-    return fetch(URL+'/product/all/1/1')
+
+    return fetch(`${URL}/user/${id}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(getSuccess(json.products))
+      dispatch(getSuccess(json.user))
      })
     .catch(() => dispatch(getError()))
   }

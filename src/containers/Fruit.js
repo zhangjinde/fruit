@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import * as cartActions from '../actions/cart'
+import * as fruitActions from '../actions/'
 
 import Nav from '../components/Nav'
 import Cart from '../components/Cart'
@@ -12,6 +13,9 @@ import FruitList from '../components/FruitList'
 import {move} from '../utils/animate'
 
 class Fruit extends Component {
+  componentDidMount(){
+    this.props.fruitActions.getList()
+  }
   add(item,elem,hide,cart){
     this.props.actions.add(item,1)
     
@@ -54,7 +58,8 @@ Fruit.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(cartActions, dispatch)
+    actions: bindActionCreators(cartActions, dispatch),
+    fruitActions: bindActionCreators(fruitActions, dispatch),
   }
 }
 

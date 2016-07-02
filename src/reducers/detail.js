@@ -2,19 +2,30 @@ import * as types from '../constants/ActionTypes'
 import {assign} from '../utils/Object'
 
 const initialState = {
-  id:1,
-  name:'智利葡萄',
-  chandi:'智利',
-  img:'/img/putao.jpg',
-  like:false,
-  likes:9,
-  guige:'一份5个',
-  price:'35',
-  old:'40.00',
-  comments:[],
-  sales:100,
-  imgs:['/img/putao.jpg','/img/putao.jpg','/img/putao.jpg'],
-  discount:'5',
+  loading: false,
+  error: false
+}
+
+function genProd(i){
+  return {
+    id:i.id,
+    name:i.productName,
+    chandi: i.origin,
+    img: `${IMG_URL}/${i.coverBUrl}`,
+    like:false,
+    likes: i.likes,
+    guige: i.standard,
+    price: i.price,
+    old: i.marketPrice,
+    comments:[],
+    sales:i.salesVolume,
+    detailUrl: i.detailUrl,
+    status: i.status,
+    subdetailUrl: i.subdetailUrl,
+    discount: (i.marketPrice-i.price).toFixed(2),
+    loading: false,
+    error: false
+  }
 }
 
 export default function detail(state = initialState, action){
@@ -29,6 +40,18 @@ export default function detail(state = initialState, action){
         likes:state.likes-1,
         like:false
       })
+    case types.FRUIT_DETAIL_GET_START:
+      return assign({},state,{
+        loading: true,
+        error: false,
+      })
+    case types.FRUIT_DETAIL_GET_SUCCESS:
+      return genProd(action.val);
+    case types.FRUIT_DETAIL_GET_ERROR:
+      return assign({},state,{
+        loading: false,
+        error: true,
+      })      
     default:
       return state
   } 

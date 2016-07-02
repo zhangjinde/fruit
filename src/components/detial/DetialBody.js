@@ -13,11 +13,13 @@ export default class DetialBody extends Component{
         <BlockDesc item={item} like={like}/>
         <BlockCmt showCmt={showCmt}/>
         {
-          item.imgs.map((img,idx)=>(
-            <BlockImg img={img} key={idx}/>
-          ))
+          item.subdetailUrl ? 
+            <BlockImg img={IMG_URL+item.subdetailUrl}/>
+            :
+            ''      
         }
-        <DetialLast item={item}/>
+        <BlockImg img={IMG_URL+item.detailUrl}/>        
+        <DetialLast item={item}/>          
       </div>
     )
   }

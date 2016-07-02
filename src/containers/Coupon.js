@@ -9,9 +9,15 @@ import CouponItem from '../components/CouponItem'
 import * as couponActions from '../actions/coupon'
 
 class Coupon extends Component {
+  componentDidMount(){
+    this._changeType(1)
+  }
   _changeType(t){
-    let { actions } = this.props
+    let { actions, list1, list2 } = this.props
     actions.changeType(t)
+    if((t==1 && !list1.length) || (t==2 && !list2.length)){
+      actions.getCoupon(user_id, t);
+    }
   }
   render() {
     let { history, type, list1, list2 } = this.props

@@ -33,7 +33,7 @@ nav .city{width:10%;height:4em;position:relative;}
 nav .city p{height:40%;width:100%;top:0.5em;left:0;line-height:1em;display:inline-block;position:absolute;cursor:pointer;text-align:center;}
 nav .city p:last-child{top:40%;}
 nav .city:after{display:inline-block;content:'';position:absolute;bottom:8px;left:5%;width:90%;height:4px;background:#58B1C5;}
-nav .me{width:10%;color:#58B1C5}
+nav .me{width:10%;color:#58B1C5;float: right;}
 /*nav back*/
 .nav-back{position:fixed;top:0;line-height:3em;height:3em;color:#fff;-webkit-user-select:none;}
 .nav-back>a{display:inline-block;}
@@ -220,6 +220,7 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .detial .fix-bottom .add{background:#58B1C5;color:#fff;}
 .detial .fix-bottom .num{border:1px solid #58B1C5;color:#58B1C5}
 .detial .block{margin:0 0 1em 0;}
+.detial .block img{width:100%;}
 .detial .block.desc img{width:100%;}
 .detial .price .now{color:#53CBE6;}
 .detial .price .now .num{font-size:2em;}

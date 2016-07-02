@@ -23,13 +23,13 @@ export default class ListItem extends Component{
           <p className="tit">
             {item.name}
             {
-              item.remain==1 ? 
+              item.status == 1 ? 
                 <span className="jin">库存紧张</span>
               :
-              item.remain==0 ?
-                <span className="que">1/{item.all}</span>
-              :
-                ""
+                item.status == 0 ? 
+                  <span className="jin">已售罄</span>
+                :
+                  ""
             }
           </p>
           <p>
@@ -39,7 +39,7 @@ export default class ListItem extends Component{
           </p>
         </div>
         {
-          item.remain != 0 ?
+          item.status != '0' ?
             count===0?
               <a className="buy" href="javascript:;" onClick={this.add.bind(this,false)}>买</a>
             :

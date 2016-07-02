@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-const IMG_URL = 'http://madarou.ngrok.cc/static/upload/'
-
 export default class CityItem extends Component{
   render() {
     let {item,active,choose} = this.props

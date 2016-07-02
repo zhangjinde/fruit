@@ -1,6 +1,5 @@
 import * as types from '../constants/ActionTypes'
-
-const URL = 'http://madarou.ngrok.cc'
+import fetch from 'isomorphic-fetch'
 
 export function changeType(){
   return {

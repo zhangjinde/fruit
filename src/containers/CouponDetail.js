@@ -5,7 +5,14 @@ import { connect } from 'react-redux'
 
 import NavBack from '../components/NavBack'
 
+import * as couponActions from '../actions/coupon'
+
 class CouponDetail extends Component {
+  componentDidMount(){
+    const {actions, params, detail} = this.props;
+    if(detail.id != params.id)
+      actions.getCouponDetail(params.id)
+  }
   render() {
     let { history, detail } = this.props
     return (
@@ -84,6 +91,13 @@ function mapStateToProps(state) {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(couponActions, dispatch)
+  }
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CouponDetail)
