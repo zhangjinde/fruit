@@ -9,28 +9,27 @@ import BlockTime from '../components/order/BlockTime'
 import BlockProcess from '../components/order/BlockProcess'
 import BlockGoods from '../components/order/BlockGoods'
 
+import * as orderActions from '../actions/order'
+
 class OrderState extends Component {
-  componentWillMount(){
-    let id=this.props.params.id
-    let order=this.props.order
-    let ord=order.list1.filter(item=>{
-      return item.id==id
-    })[0]
-    ord=ord|| order.list2.filter(item=>{
-      return item.id==id
-    })[0]
-    this.ord=ord
+  componentDidMount(){
+    const {params, actions, location} = this.props;
+    let searchs = location.search.substr(1).split('=');
+    if(searchs[0]==='type')
+      actions.getDetail(searchs[1], params.id)
   }
   render() {
+    const ord = this.props.order.detail
+
     return (
       <div className="ord-sta">
         <NavBack history={history} white={true}>
           <span>订单追踪</span>
         </NavBack>
         <div className="body">
-          <BlockTime time={this.ord.arriveTime} state={this.ord.state}/>              
-          <BlockGoods goods={this.ord.goods}/>        
-          <BlockProcess order={this.ord}/>  
+          <BlockTime time={ord.arriveTime} state={ord.state}/>              
+          <BlockGoods goods={ord.goods || []}/>        
+          <BlockProcess history={ord.history}/>  
         </div>
         <div className="fix-bottom">
           <a onClick={this.props.history.go.bind(this,-1)}>好的我知道了</a>
@@ -51,6 +50,12 @@ function mapStateToProps(state) {
     order,
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(orderActions, dispatch)
+  }
+}
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(OrderState)

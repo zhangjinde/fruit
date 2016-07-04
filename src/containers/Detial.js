@@ -44,7 +44,7 @@ class Detial extends Component {
     let good = cart.goods.filter(g=>{
       return g.id===item.id
     })
-console.log(item)
+
     return (
       <div className="detial">
         <NavBack  history={history}/>

@@ -39,3 +39,37 @@ export function getList(type,id){
     .catch(() => dispatch(getError()))
   }
 }
+
+
+function getDetailStart(){
+  return {
+    type:types.ORDER_DETAIL_GET_START
+  }
+}
+function getDetailSuccess(order,products,type){
+  return {
+    type:types.ORDER_DETAIL_GET_SUCCESS,
+    val: {
+      order,
+      products,
+      type
+    }
+  }
+}
+function getDetailError(){
+  return {
+    type:types.ORDER_DETAIL_GET_ERROR
+  }
+}
+export function getDetail(type,id){
+  return dispatch => {
+    dispatch(getDetailStart())
+    const url = type==1 ? URL+'/orderOn/1/'+id: URL+'/orderOff/1/'+id
+    return fetch(url)
+    .then(response => response.json())
+    .then(json => {
+      dispatch(getDetailSuccess(json.order, json.products, type))
+     })
+    .catch(() => dispatch(getDetailError()))
+  }
+}

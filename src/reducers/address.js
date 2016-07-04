@@ -73,7 +73,26 @@ export default function address(state = initialState, action){
     case types.ADDR_CHOOSE_TIME:
       return assign({},state,{
         time:action.val
-      })      
+      })   
+    case types.ADDR_LIST_GET_SUCCESS:
+      let m;
+      const addrs = action.val.map(ad=>{
+        if(ad.isDefault == 'yes'){
+          m=ad.id
+        }
+        return {
+          addr: ad.detailAddress,
+          tel: ad.phoneNumber,
+          name: ad.userName,
+          id:ad.id
+        }
+      })
+
+      return assign({},state,{
+        addrs: addrs,
+        moren: m||0,
+        now: m||0
+      })
     default:
       return state
   } 

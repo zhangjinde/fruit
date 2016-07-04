@@ -25,12 +25,12 @@ export default class BlockGoods extends Component{
           goods.map(g=>(
             <li key={g.id}>
               <div className="img">
-                <Link to={"/fruit/"+g.id}><img src={g.img}/></Link>
+                <Link to={`/fruit/${g.id}?cityId=${g.cityId}&areaId=${g.areaId}`}><img src={IMG_URL+g.image}/></Link>
               </div>
               <div className="name">{g.name}</div>
               <div className="sum">
-                <p className="cnt">×{g.count}</p>
-                <p className="price">￥{g.count*g.price}</p>
+                <p className="cnt">×{g.number}</p>
+                <p className="price">￥{(g.number*g.price).toFixed(2)}</p>
               </div>
             </li>  
           ))

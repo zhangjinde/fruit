@@ -21,6 +21,12 @@ class CartBuy extends Component {
       this.props.history.replace('/')
     }
   }
+  componentDidMount(){
+    const {addrActions, addrs} = this.props
+
+    if(!addrs || !addrs.length)
+      addrActions.getList(user_id);
+  }
   edit(){
     let { actions } = this.props
     actions.edit()
@@ -50,6 +56,7 @@ class CartBuy extends Component {
   render() { 
     let { name, head, points, cart, history, time, addrs, now, moren } = this.props
     let dizhi = addrs.filter(add=>add.id===now)[0]
+
     if(!dizhi)
       dizhi = addrs.filter(add=>add.id===moren)[0]
     return (
@@ -117,6 +124,7 @@ function mapStateToProps(state) {
   
   const {
     now,
+    moren,
     addrs,
     time,
   } = state.address
@@ -128,6 +136,7 @@ function mapStateToProps(state) {
     head,
     cart,
     now,
+    moren,
     addrs,
     time,    
   }

@@ -41,14 +41,17 @@ class AddrAdd extends Component {
     this.setState({[refs[type]]: v});
   }
   save(){
-    let {actions,setDef,history} = this.props
+    let {actions,moren,setDef,location,history} = this.props
     let {name,tel,addr} = this.refs
+    
     let value = {
       name:name.value,
       tel:tel.value,
       addr:addr.value,
-      moren:setDef,
+      moren: location.query.id == moren||setDef,
+      userId: user_id
     }
+
     if(this.update){
       this.props.actions.update(this.update,value)
     }else{
@@ -60,6 +63,10 @@ class AddrAdd extends Component {
     let {history,qus,cities,NowCity,Nowqu,setDef,location,moren} = this.props
     if(!setDef && location.query.id == moren )
       setDef = true
+    let city = cities && cities.filter(c=>c.id===NowCity)[0];
+    city = city && city.name;
+    let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu)[0];
+    qu = qu && qu.name;
     return (
       <div className="addr">
         <NavBack history={history}>
@@ -80,8 +87,8 @@ class AddrAdd extends Component {
             <input placeholder="请输入手机号码" ref="tel" value={this.state.tel} onChange={this.change.bind(this,1)}/>
           </CartBlock>
           <CartBlock til1="收货" til2="地址">
-            <span className="dizhi">{cities.filter(c=>c.id===NowCity)[0].name}</span>
-            <span className="dizhi">{qus[NowCity].filter(c=>c.id===Nowqu)[0].name}</span>
+            <span className="dizhi">{city}</span>
+            <span className="dizhi">{qu}</span>
             <a><i className="fa fa-angle-right right"></i></a>
           </CartBlock>
           <CartBlock til1="具体" til2="地址">

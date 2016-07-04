@@ -34,7 +34,7 @@ class Order extends Component {
         <ul className="order-list">
         {
           list.map(item=>(
-            <OrderItem item={item} key={item.id}/>
+            <OrderItem item={item} key={item.id} type={type}/>
           ))
         }
         </ul>

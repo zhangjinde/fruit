@@ -35,7 +35,7 @@ nav .city p:last-child{top:40%;}
 nav .city:after{display:inline-block;content:'';position:absolute;bottom:8px;left:5%;width:90%;height:4px;background:#58B1C5;}
 nav .me{width:10%;color:#58B1C5;float: right;}
 /*nav back*/
-.nav-back{position:fixed;top:0;line-height:3em;height:3em;color:#fff;-webkit-user-select:none;}
+.nav-back{position:fixed;z-index:999;top:0;line-height:3em;height:3em;color:#fff;-webkit-user-select:none;}
 .nav-back>a{display:inline-block;}
 .nav-back .fa-angle-left{margin-left:0.5em;position:relative;top:0.1em;}
 .nav-back.white{background:white;width:100%;color:#53CBE6}

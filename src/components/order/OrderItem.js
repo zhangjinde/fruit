@@ -3,12 +3,12 @@ import {Link} from 'react-router'
 
 export default class OrderItem extends Component{
   render() {
-    let {item} =this.props
+    let {item, type} =this.props
     return (
       <li>
         <div className="detail">
           <p className="ding">
-            <Link to={'/me/order/'+item.id}>
+            <Link to={'/me/order/'+item.id+'?type='+type}>
               订单编号：{item.orderNo}
             </Link>
           </p>
@@ -21,7 +21,7 @@ export default class OrderItem extends Component{
             !item.state || item.state==3?
             ""
             :
-            <Link to={"/me/order/"+item.id} className="zhui">订单追踪</Link>
+            <Link to={'/me/order/'+item.id+'?type='+type} className="zhui">订单追踪</Link>
           }
         </div>
         <ul className="goods">
