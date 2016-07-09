@@ -53,11 +53,14 @@ class AddrAdd extends Component {
     }
 
     if(this.update){
-      this.props.actions.update(this.update,value)
+      this.props.actions.update(this.update,value, function(){
+        history.go(-1)
+      })
     }else{
-      this.props.actions.addSave(value)
+      this.props.actions.addSave(value, function(){
+        history.go(-1)
+      })
     }
-    history.go(-1)
   }
   render() { 
     let {history,qus,cities,NowCity,Nowqu,setDef,location,moren} = this.props

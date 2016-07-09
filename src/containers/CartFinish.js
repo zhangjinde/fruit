@@ -5,17 +5,19 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import NavBack from '../components/NavBack'
+import * as cfg from '../utils/config'
+
+const timeOp = cfg.default.Time
 
 class CartFinish extends Component {
+  componentWillMount(){
+    let { finish, history } = this.props
+    if(!finish.orderNo){
+      history.replace('/')
+    }
+  }
   render() {
-    let { order, history } = this.props
-    let ordId=order.now
-    let ord=order.list1.filter(o=>{
-      return o.id===ordId
-    })[0]
-    ord = ord || order.list2.filter(o=>{
-      return o.id===ordId
-    })[0]
+    let { finish, history } = this.props
     return (
       <div className="finish">
         <NavBack history={history} />
@@ -25,7 +27,7 @@ class CartFinish extends Component {
           </div>
           <div className="desc">
             <p>亲，您已成功下单</p>
-            <p>订单号：{ord.orderNo}</p>
+            <p>订单号：{finish.orderNo}</p>
           </div>
         </div>
         <p className="img">
@@ -34,10 +36,10 @@ class CartFinish extends Component {
         <p className="img-txt">送货员正全力奔向你啦~</p>
         <p className="detail">
           我们将在
-          <span className="color">{ord.arriveTime}</span>
+          <span className="color">{timeOp.getDay(finish.arriveTime)+" "+timeOp.getText(finish.arriveTime)}</span>
           将产品送达
-          <span className="color">{ord.name}</span>的手中，请保持电话
-          <span className="color">{ord.tel}</span>畅通
+          <span className="color">{finish.name}</span>的手中，请保持电话
+          <span className="color">{finish.tel}</span>畅通
         </p>
         <p className="bei">我们会尽快将。。。。。</p>
         <div className="fix-bottom">
@@ -50,14 +52,13 @@ class CartFinish extends Component {
 }
 
 CartFinish.propTypes = {
-  order: PropTypes.object.isRequired
+  finish: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-  const order = state.order;
-  
+  const {finish} = state.order;
   return {
-    order
+    finish
   }
 }
 

@@ -46,7 +46,9 @@ var initialState = {
       big:1
     },    
   ] */
-  list: []
+  list: [],
+  loading:true,
+  error:false  
 }
 
 function genPro(list){
@@ -75,7 +77,8 @@ function fruit(
       })
     case types.FRUIT_LIST_GET_SUCCESS:
       return assign({},state,{
-        loading:true,
+        loading:false,
+        error:false,
         list: genPro(action.val)
       })
     case types.FRUIT_LIST_GET_ERROR:

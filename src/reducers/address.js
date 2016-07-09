@@ -40,7 +40,6 @@ export default function address(state = initialState, action){
       return assign({},state,{
         setDef:false,
         editing:false,
-        time:0,
       })      
     case types.ADDR_ADD_SAVE:
       if(state.setDef){

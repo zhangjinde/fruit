@@ -6,6 +6,7 @@ const initialState = {
   count:0,
   position:null,
   editing:false,
+  couponId:0,
   goods:[]
 }
 
@@ -28,8 +29,12 @@ function _add(state,item,cnt){
   return goods
 }
 
-export default function cart(state = initialState, action){
+export default function cart(state = assign({},initialState), action){
   switch (action.type) {
+    case types.CART_CHANGE_COUPON:
+      return assign({},state,{
+        couponId:action.val
+      })
     case types.CART_UPDPOS:
       return assign({},state,{
         position:action.val

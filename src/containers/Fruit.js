@@ -14,7 +14,10 @@ import {move} from '../utils/animate'
 
 class Fruit extends Component {
   componentDidMount(){
-    this.props.fruitActions.getList()
+    const {list, fruitActions, loading, error} = this.props
+    if(error || !list.length){
+      fruitActions.getList()
+    }
   }
   add(item,elem,hide,cart){
     this.props.actions.add(item,1)
@@ -37,7 +40,8 @@ class Fruit extends Component {
     })      
   }
   render() { 
-    let { list, total, count, history, cartPos, cities, qus, NowCity, Nowqu, goods, actions } = this.props
+    let { list, total, count, history, cartPos, loading, error,
+      cities, qus, NowCity, Nowqu, goods, actions } = this.props
     let city = cities && cities.filter(c=>c.id===NowCity)[0];
     let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu);
       city = (city && city.name) || '城市';    
@@ -45,7 +49,10 @@ class Fruit extends Component {
     return (
       <div>
         <Nav type="1" history={history} city={city} qu={qu}/>
-        <FruitList list={list} add={this.add.bind(this)} cartPos={cartPos} goods={goods} actions={actions}/>
+        <FruitList list={list} add={this.add.bind(this)} 
+          cartPos={cartPos} goods={goods} actions={actions}
+          loading={loading} error={error}
+        />
         <Cart total={total} history={history} ref='cart' count={count}/>
       </div>
     )
@@ -65,9 +72,11 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   const {
-    list
+    list,
+    loading,
+    error
   } = state.fruit;
-  
+
   const {
     total,
     position,
@@ -91,7 +100,9 @@ function mapStateToProps(state) {
     cities,
     qus,
     NowCity,
-    Nowqu    
+    Nowqu,
+    loading,
+    error
   }
 }
 

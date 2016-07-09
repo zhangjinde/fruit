@@ -73,3 +73,10 @@ export function getDetail(type,id){
     .catch(() => dispatch(getDetailError()))
   }
 }
+
+export function orderFinish(val){
+  return {
+    type:types.ORDER_FINISH,
+    val
+  }
+}

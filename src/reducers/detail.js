@@ -3,7 +3,10 @@ import {assign} from '../utils/Object'
 
 const initialState = {
   loading: false,
-  error: false
+  error: false,
+  comments: [],
+  cmtLoading: false,
+  cmtError: false,
 }
 
 function genProd(i){
@@ -17,17 +20,24 @@ function genProd(i){
     guige: i.standard,
     price: i.price,
     old: i.marketPrice,
-    comments:[],
     sales:i.salesVolume,
     detailUrl: i.detailUrl,
     status: i.status,
     subdetailUrl: i.subdetailUrl,
     discount: (i.marketPrice-i.price).toFixed(2),
-    loading: false,
-    error: false
   }
 }
-
+function updCmt(cmts, id){
+  let res = []
+  res = cmts.map(c=>{
+    if(c.id==id){
+      c.likes++
+      c.liked=true
+    }
+    return c;
+  })
+  return res;
+}
 export default function detail(state = initialState, action){
   switch (action.type) {
     case types.DETAIL_LIKE:
@@ -46,11 +56,32 @@ export default function detail(state = initialState, action){
         error: false,
       })
     case types.FRUIT_DETAIL_GET_SUCCESS:
-      return genProd(action.val);
+      return assign({},state,genProd(action.val));
     case types.FRUIT_DETAIL_GET_ERROR:
       return assign({},state,{
         loading: false,
         error: true,
+      })
+    case types.FRUIT_DETAIL_CMT_LIKE:
+      return assign({},state,{
+        comments: updCmt(state.comments, action.val)
+      })
+    case types.FRUIT_DETAIL_CMT_GET_START:
+      return assign({},state,{
+        cmtLoading: true,
+        cmtError: false,
+      })      
+    case types.FRUIT_DETAIL_CMT_GET_SUCCESS:
+      return assign({},state,{
+        comments:action.val,
+        cmtLoading: false,
+        cmtError: false,
+      })
+    case types.FRUIT_DETAIL_CMT_GET_ERROR:
+      return assign({},state,{
+        comments:action.val,
+        cmtLoading: false,
+        cmtError: true,
       })      
     default:
       return state

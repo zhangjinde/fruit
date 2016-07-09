@@ -1,7 +1,7 @@
 function toDate(time){
   let da=new Date(time)
   let m=(da.getMonth()+1).toString(),
-      d=da.getDay().toString();
+      d=da.getDate().toString();
   
   m.length===1 && (m='0'+m)
   

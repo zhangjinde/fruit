@@ -20,6 +20,10 @@ class Detial extends Component {
   showCmt(){
     let cmt = this.refs.cmt
     cmt.className='modal show'
+    const {detailActions, item} = this.props
+    if(!item.comments.length){
+      detailActions.getCmt(item.id);
+    }
   }
   hideCmt(e){
     let cmt = this.refs.cmt
@@ -39,19 +43,24 @@ class Detial extends Component {
     let { actions, item } = this.props
     actions.add(item,cnt)
   }
+  cmtLike(id, cityId, areaId){
+    const {detailActions} = this.props
+    detailActions.cmtLike(id, cityId, areaId)
+  }
   render() { 
     let {history,item,cart} = this.props
     let good = cart.goods.filter(g=>{
       return g.id===item.id
     })
-
     return (
       <div className="detial">
         <NavBack  history={history}/>
         <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
         <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
-        <div className="modal" ref="cmt" onClick={this.hideCmt.bind(this)}>
-          <Comment />
+        <div className="modal" ref="cmt">
+          <Comment comments={item.comments} hideCmt={this.hideCmt.bind(this)} like={this.cmtLike.bind(this)}
+            loading={item.cmtLoading} error={item.cmtError}
+          />
         </div>
       </div>
     )

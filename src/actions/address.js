@@ -13,7 +13,7 @@ export function clear(){
   }
 }
 
-export function addSave(val){
+export function addSave(val,cb){
   return dispatch => {
     dispatch(addStart())
     const url = URL+'/address/new'
@@ -38,6 +38,7 @@ export function addSave(val){
     .then(json => {
       val.id = json.id
       dispatch(addSuccess(val))
+      cb && cb()
      })
     .catch(() => dispatch(addError()))
   }
@@ -91,7 +92,8 @@ export function del(id){
     const url = URL+'/address/'+id
     return fetch(url, {
       method: "DELETE",
-      credentials: 'include'
+      credentials: 'include',
+      mode: 'cors'
     })
     .then(json => {
       dispatch(delSuccess(id))
@@ -134,7 +136,7 @@ function updateError(){
   }
 }
 
-export function update(id,val){
+export function update(id,val,cb){
   return dispatch => {
     dispatch(updateStart())
     const url = URL+'/address/edit/'+id
@@ -154,6 +156,7 @@ export function update(id,val){
     })
     .then(json => {
       dispatch(updateSuccess(id, val))
+      cb()
      })
     .catch(() => dispatch(updateError()))
   }

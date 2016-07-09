@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 
 import * as actions from '../actions/cart'
 import * as addrActions from '../actions/address'
+import * as orderActions from '../actions/order'
 
 import CartBottom from '../components/CartBottom'
 import CartDetail from '../components/CartDetail'
@@ -36,15 +37,33 @@ class CartBuy extends Component {
     actions.add(item,cnt)
   }
   submit(){
-    let { actions, cart, history } = this.props
+    let { actions, orderActions, cart, history, time, now, addrs } = this.props
     if(cart.count===0){
       alert('请先购买东西')
       return false;
     }
-    //TEST
-    alert('提交成功')
-    actions.clear()
-    history.replace('/cart/finish')
+    if(!time){
+      alert('请选择收货时间')
+      return false;
+    }
+    let addr = addrs.filter(add=>add.id===now)[0];
+    if(!now || !addr){
+      alert('请选择收货地址')
+      return false;
+    }
+    cart.time = timeOp.getDay(time)+" "+timeOp.getText(time);    
+    cart.addr = addr;
+    actions.submit(cart, (id, val)=>{
+      alert('提交成功')
+      orderActions.orderFinish({
+        orderNo: id,
+        arriveTime: time,
+        name: addr.name,
+        tel: addr.tel,
+      })
+      actions.clear();
+      history.replace('/cart/finish')
+    })
   }
   showTime(){
     this.refs.modal.className="modal show"
@@ -94,6 +113,16 @@ class CartBuy extends Component {
              <span className="icon"><i className="fa fa-check-circle"></i></span>
           </a>
         </CartBlock>
+        <CartBlock til1="优惠" til2="券">
+        {
+          cart.couponId?
+          <div className="dizhi">
+            <div>使用优惠券{cart.couponId}</div>
+          </div>
+          :
+          <div><Link to="/me/coupon?choose=1">请选择优惠券</Link></div>
+        }
+        </CartBlock>        
         <CartBlock til1="收货" til2="时间">
           <a onClick={this.showTime.bind(this)}>
             {!time? '请选择收货时间':timeOp.getDay(time)+" "+timeOp.getText(time)}
@@ -146,6 +175,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
     addrActions: bindActionCreators(addrActions, dispatch),
+    orderActions: bindActionCreators(orderActions, dispatch),
   }
 }
 export default connect(

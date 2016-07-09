@@ -7,6 +7,7 @@ import NavBack from '../components/NavBack'
 import CouponItem from '../components/CouponItem'
 
 import * as couponActions from '../actions/coupon'
+import * as cartActions from '../actions/cart'
 
 class Coupon extends Component {
   componentDidMount(){
@@ -19,8 +20,16 @@ class Coupon extends Component {
       actions.getCoupon(user_id, t);
     }
   }
+  choose(id){
+    const {location, cartActions, type} = this.props;
+    if(location.query.choose && type==1){
+      cartActions.chooseCoupon(id);
+      history.go(-1)
+    }
+   
+  }
   render() {
-    let { history, type, list1, list2 } = this.props
+    let { history, type, list1, list2, location } = this.props
     return (
       <div className="coupon">
         <NavBack me={true} history={history} white={true}>
@@ -33,7 +42,7 @@ class Coupon extends Component {
           list1.length?
             list1.map(item=>{
               return (
-              <CouponItem item={item} key={item.id}/>
+              <CouponItem item={item} isList={!location.query.choose} key={item.id} choose={this.choose.bind(this)} history={history}/>
               )
             })
             :
@@ -42,7 +51,7 @@ class Coupon extends Component {
           list2.length?          
             list2.map(item=>{
               return (
-              <CouponItem item={item}/>
+              <CouponItem item={item} isList={!location.query.choose} key={item.id} choose={this.choose.bind(this)}/>
               )
             })
             :
@@ -75,7 +84,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(couponActions, dispatch)
+    actions: bindActionCreators(couponActions, dispatch),
+    cartActions: bindActionCreators(cartActions, dispatch)
   }
 }
 

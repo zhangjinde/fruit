@@ -25,7 +25,9 @@ class Addr extends Component {
     this.props.history.push('/addr/add')
   }
   del(id){
-    this.props.actions.del(id)
+    if(confirm('是否确定删除？')){
+      this.props.actions.del(id)
+    }
   }
   choose(id){
     let {actions,history} = this.props

@@ -2,12 +2,22 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 export default class CouponItem extends Component{
+  choose(id){
+    let {history, choose} = this.props;
+    choose(id);
+  }
   render() {
-    let { item } = this.props;
+    let { item, choose, isList } = this.props;
+
     return (
-      <li>
+      <li onClick={this.choose.bind(this, item.id)}>
         <div className="img">
-          <Link to={"/me/coupon/"+item.id}><img src={item.img} /></Link>
+        {
+          !isList?
+            <a><img src={item.img} /></a>
+          :
+            <Link to={'/me/coupon/'+item.id}><img src={item.img} /></Link>          
+        }
         </div>
         <div className="txt">
           <p className="title">

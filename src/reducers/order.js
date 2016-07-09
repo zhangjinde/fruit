@@ -92,7 +92,8 @@ const initialState = {/*
   list2:[],
   type:1,
   now:2,
-  detail:{}
+  detail:{},
+  finish:{}
 }
 function genList(list){
   return list.map(it=>{
@@ -142,6 +143,9 @@ export default function order(state = initialState, action){
       return assign({},state,{
         type:val
       })
+    case types.ORDER_FINISH:
+      state.finish= val
+      return state;
     default:
       return state
   } 

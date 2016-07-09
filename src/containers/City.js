@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import NavBack from '../components/NavBack'
 import CityList from '../components/city/CityList'
 import QuList from '../components/city/QuList'
+import Loading from '../components/Loading'
+import Error from '../components/Error'
 
 import * as cityActions from '../actions/city'
 
@@ -33,10 +35,10 @@ class City extends Component {
         </NavBack>
         {
           loading ? 
-            <p className='loading'>正在加载，请稍候..</p>
+            <Loading/>
           :
             error ?
-              <p className='error'>出错了</p>
+              <Error/>
             :
               type===1 ? 
               <QuList qus={qus[NowCity]} now={Nowqu} actions={actions}/>
