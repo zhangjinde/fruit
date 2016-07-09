@@ -131,7 +131,8 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .cart-buy .modal .time p.title{color:#aaa;background:#eee;}
 .cart-buy .modal .time p span{width:50%;line-height:3em;}
 .cart-buy .modal .center{position:absolute;height:50%;top:0;bottom:0;margin-top:auto;margin-bottom:auto;width:100%;text-align:center;}
-.cart-buy .modal .center .txt{background: #fff;padding: 1em;}
+.cart-buy .modal .center .loading{background:transparent;}
+.cart-buy .modal .center .txt{padding: 1em;color:#fff;}
 .cart-buy .dizhi .choose{color:#333;cursor:pointer;outline:none;-webkit-user-select:none;}
 .cart-buy .dizhi.choose a{color:#333 !important;}
 .cart-buy .dizhi .choose span.you{color:#53CBE6;}
