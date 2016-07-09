@@ -14,9 +14,9 @@ import * as orderActions from '../actions/order'
 class OrderState extends Component {
   componentDidMount(){
     const {params, actions, location, NowCity} = this.props;
-    let searchs = location.search.substr(1).split('=');
-    if(searchs[0]==='type')
-      actions.getDetail(searchs[1], params.id, NowCity)
+    if(location.query.type){
+      actions.getDetail(location.query.type, params.id, NowCity)
+    }
   }
   render() {
     const ord = this.props.order.detail

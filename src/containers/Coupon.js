@@ -23,16 +23,21 @@ class Coupon extends Component {
       actions.getCoupon(user_id, t, NowCity||0);
     }
   }
-  choose(id, name){
-    const {location, cartActions, type} = this.props;
+  choose(id, name, restrict){
+    const {location, cartActions, type, cartTotal} = this.props;
     if(location.query.choose && type==1){
-      cartActions.chooseCoupon(id, name);
-      history.go(-1)
+      if(cartTotal >= restrict){
+        cartActions.chooseCoupon(id, name);
+        history.go(-1)      
+      }else{
+        alert('消费不满额度')
+      }
     }
    
   }
   render() {
     let { history, type, list1, list2, location, loading, error } = this.props
+
     return (
       <div className="coupon">
         <NavBack me={true} history={history} white={true}>
@@ -87,7 +92,7 @@ function mapStateToProps(state) {
     loading,
     error
   } = state.coupon;
-  
+  const {total} = state.cart
   const {
     NowCity
   } = state.city
@@ -98,7 +103,8 @@ function mapStateToProps(state) {
     list2,
     loading,
     error,
-    NowCity    
+    NowCity,
+    cartTotal:total
   }
 }
 function mapDispatchToProps(dispatch) {

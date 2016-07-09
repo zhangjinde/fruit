@@ -63,9 +63,10 @@ function getDetailError(){
   }
 }
 export function getDetail(type,id, cid){
+  cid = cid>0? cid: cityid
   return dispatch => {
     dispatch(getDetailStart())
-    const url = type==1 ? `${URL}/orderOn/${cid}/{id}` : `${URL}/orderOff/${cid}/{id}`
+    const url = type==1 ? `${URL}/orderOn/${cid}/${id}` : `${URL}/orderOff/${cid}/${id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {

@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 export default class CouponItem extends Component{
-  choose(id,name){
+  choose(id,name, restrict){
     let {history, choose} = this.props;
-    choose(id,name);
+    choose(id,name, restrict);
   }
   render() {
     let { item, choose, isList } = this.props;
 
     return (
-      <li onClick={this.choose.bind(this, item.id, item.title)}>
+      <li onClick={this.choose.bind(this, item.id, item.title, item.restrict)}>
         <div className="img">
         {
           !isList?
