@@ -23,8 +23,8 @@ export function addSave(val,cb){
       phoneNumber: val.tel,
       detailAddress: val.addr,
       isDefault: val.moren ? 'yes':'no',
-      cityId: 1,
-      areaId: 1
+      cityId: val.cityId,
+      areaId: val.areaId
     }
 
     return fetch(url, {
@@ -38,7 +38,7 @@ export function addSave(val,cb){
     .then(json => {
       val.id = json.id
       dispatch(addSuccess(val))
-      cb && cb()
+      cb && cb(json.id)
      })
     .catch(() => dispatch(addError()))
   }
@@ -178,10 +178,12 @@ function getListError(){
     type:types.ADDR_LIST_GET_ERROR
   }
 }
-export function getList(id){
+export function getList(cid, qid, id){
   return dispatch => {
     dispatch(getListStart())
-    const url = URL+'/address/all/1/1/'+id
+    cid<0 && (cid=cityid)
+    qid<0 && (qid=areaid)    
+    const url = `${URL}/address/all/${cid}/${qid}/${id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {

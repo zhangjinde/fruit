@@ -12,10 +12,13 @@ export function edit(){
   }
 }
 
-export function chooseCoupon(id){
+export function chooseCoupon(id,name){
   return {
     type:types.CART_CHANGE_COUPON,
-    val:id
+    val:{
+      id,
+      name
+    }
   }
 }
 
@@ -51,7 +54,7 @@ function submitError(){
     type:types.CART_SUBMIT_ERROR
   }
 }
-export function submit(data, cb){
+export function submit(data, cb, errorCb){
   return dispatch => {
     dispatch(submitStart())
     const url = URL+'/orderOn/new/'
@@ -72,10 +75,9 @@ export function submit(data, cb){
         address: addr.addr,
         couponId: data.couponId,
         receiveTime: data.time,
-        cityarea:'上海',
         userId:user_id,
-        areaId:1,
-        cityId:1
+        areaId:data.areaId >0 ? data.areaId : areaid,
+        cityId:data.cityId >0 ? data.cityId : cityid
       })
     })
     .then(response => response.json())
@@ -83,6 +85,9 @@ export function submit(data, cb){
       dispatch(submitSuccess())
       cb(json.number, data);
      })
-    .catch(() => dispatch(submitError()))
+    .catch(() => {
+      dispatch(submitError())
+      errorCb();
+    })
   }
 }

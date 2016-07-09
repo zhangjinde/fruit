@@ -36,6 +36,9 @@ export default function address(state = initialState, action){
       return assign({},state,{
         setDef:true,
       })
+    case types.CITY_CHANGE_QU:
+      state.addrs=[];
+      return state;
     case types.ADDR_CLEAR:
       return assign({},state,{
         setDef:false,

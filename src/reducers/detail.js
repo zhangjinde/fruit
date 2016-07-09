@@ -17,6 +17,7 @@ function genProd(i){
     img: `${IMG_URL}/${i.coverBUrl}`,
     like:false,
     likes: i.likes,
+    comments:[],
     guige: i.standard,
     price: i.price,
     old: i.marketPrice,
@@ -24,6 +25,8 @@ function genProd(i){
     detailUrl: i.detailUrl,
     status: i.status,
     subdetailUrl: i.subdetailUrl,
+    cityId: i.cityId,
+    areaId: i.areaId,
     discount: (i.marketPrice-i.price).toFixed(2),
   }
 }
@@ -44,11 +47,6 @@ export default function detail(state = initialState, action){
       return assign({},state,{
         likes:state.likes+1,
         like:true
-      })
-    case types.DETAIL_UNLIKE:
-      return assign({},state,{
-        likes:state.likes-1,
-        like:false
       })
     case types.FRUIT_DETAIL_GET_START:
       return assign({},state,{

@@ -130,7 +130,11 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .cart-buy .modal .time p{height:3em;line-height:3em;text-align:center;background:#fff;}
 .cart-buy .modal .time p.title{color:#aaa;background:#eee;}
 .cart-buy .modal .time p span{width:50%;line-height:3em;}
-
+.cart-buy .modal .center{position:absolute;height:50%;top:0;bottom:0;margin-top:auto;margin-bottom:auto;width:100%;text-align:center;}
+.cart-buy .modal .center .txt{background: #fff;padding: 1em;}
+.cart-buy .dizhi .choose{color:#333;cursor:pointer;outline:none;-webkit-user-select:none;}
+.cart-buy .dizhi.choose a{color:#333 !important;}
+.cart-buy .dizhi .choose span.you{color:#53CBE6;}
 /*个人记录*/
 ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 
@@ -200,7 +204,7 @@ ul.items .empty{text-align:center;line-height:4em;color:#aaa;}
 .addr .add-list input{border:none;color:#888;font-size:1.2em;}
 .addr .add-list input::-webkit-input-placeholder{color:#aaa;}
 .addr .add-list .block .dizhi{margin-right:1em;color:#53CBE6}
-.addr .addr-list{margin-top:3.5em;}
+.addr .addr-list{margin-top:3.5em;padding-bottom:3.5em;}
 .addr .addr-list li{margin-top:0.5em;background:#fff;padding:1em;color:#888;position:relative;}
 .addr .addr-list li>p{max-width:80%}
 .addr .addr-list li .sp{display:inline-block;width:6em;}

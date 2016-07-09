@@ -33,7 +33,8 @@ export default function cart(state = assign({},initialState), action){
   switch (action.type) {
     case types.CART_CHANGE_COUPON:
       return assign({},state,{
-        couponId:action.val
+        couponId:action.val.id,
+        couponName: action.val.name
       })
     case types.CART_UPDPOS:
       return assign({},state,{
@@ -48,6 +49,7 @@ export default function cart(state = assign({},initialState), action){
       return assign({},state,{
         goods:_add(state,item,val)
       })
+    case types.CITY_CHANGE_QU:
     case types.CART_CLEAR:
       return assign({},initialState,{
         position:state.position

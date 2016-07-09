@@ -16,17 +16,19 @@ class City extends Component {
       this.props.actions.getList();
   }
   change(){
-    this.props.actions.changeType()
+    const {actions} = this.props
+    actions.changeType()
   }
+  
   render() { 
-    let { actions, history, type, qus, cities, NowCity, Nowqu, loading, error } = this.props 
-    let city = cities.filter(c=>c.id===NowCity)[0]
+    let { actions, history, type, qus, cities, NowCity, choCity, Nowqu, loading, error } = this.props 
+    let city = cities.filter(c=>c.id===choCity)[0]
     return (
       <div className="city">
         <NavBack history={history}>
           <div className="title">
-            <p className="ct">{city && city.name || '请选择城市'}</p>
-            <p className="des">{city && city.desc || '请选择区域'}</p>
+            <p className="ct">{city && city.name || cityname}</p>
+            <p className="des">{city && city.desc || areaname}</p>
           </div>
           <a className="choose" onClick={this.change.bind(this)}>
             切换城市
@@ -41,7 +43,7 @@ class City extends Component {
               <Error/>
             :
               type===1 ? 
-              <QuList qus={qus[NowCity]} now={Nowqu} actions={actions}/>
+              <QuList qus={qus[choCity]} now={Nowqu} actions={actions} history={history}/>
               :
               <CityList cities={cities} actions={actions}/>
         }
@@ -66,7 +68,8 @@ function mapStateToProps(state) {
     Nowqu,
     type,
     loading,
-    error
+    error,
+    choCity
   } = state.city;
   
   return {
@@ -76,7 +79,8 @@ function mapStateToProps(state) {
     Nowqu,
     type,
     loading,
-    error    
+    error,
+    choCity
   }
 }
 function mapDispatchToProps(dispatch) {

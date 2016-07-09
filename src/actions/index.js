@@ -17,11 +17,12 @@ function getError(){
     type:types.FRUIT_LIST_GET_ERROR
   }
 }
-export function getList(){
+export function getList(cid,qid){
   return dispatch => {
     dispatch(getStart())
-    
-    return fetch(URL+'/product/all/1/1')
+    cid<0 && (cid=cityid)
+    qid<0 && (qid=areaid)
+    return fetch(`${URL}/product/all/${cid}/${qid}`)
     .then(response => response.json())
     .then(json => {
       dispatch(getSuccess(json.products))

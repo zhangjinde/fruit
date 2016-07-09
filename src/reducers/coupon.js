@@ -23,7 +23,9 @@ const initialState = {
   list1:[],
   list2:[],
   detail:{},
-  type:1
+  type:1,
+  loading:false,
+  error:false
 }
 
 function genList(list){
@@ -34,7 +36,8 @@ function genList(list){
       deadline:l.to,
       title: l.name,
       qianti: `满${l.restrict}元`,
-      guize:`消费满${l.restrict}元 抵扣${l.amount}元`
+      guize:`消费满${l.restrict}元 抵扣${l.amount}元`,
+      cityId: l.cityId
     }
   })
 }
@@ -42,11 +45,27 @@ function genList(list){
 export default function coupon(state = initialState, action){
   const {val} = action
   switch (action.type) {
+    case types.CITY_CHANGE_QU:
+      state.list1=[];
+      state.list2=[];
+      return state;  
     case types.COUPON_GET_SUCCESS:
       return assign({},state,{
         list1: val.type==1 ? genList(val.val): state.list1,
         list2: val.type==2 ? genList(val.val): state.list2,
+        loading: false,
+        error: false
       })
+    case types.COUPON_GET_START:
+      return assign({},state,{
+        loading:true,
+        error:false
+      }) 
+    case types.COUPON_GET_ERROR:
+      return assign({},state,{
+        loading:false,
+        error:true
+      }) 
     case types.COUPON_CHANGE_TYPE:
       return assign({},state,{
         type:action.val

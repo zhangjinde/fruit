@@ -39,6 +39,7 @@ const initialState = {
   cities: [],
   qus: {},
   NowCity: -1,
+  choCity: -1,
   Nowqu: -1,
   type: 2,
 }
@@ -71,11 +72,12 @@ export default function cart(state = initialState, action){
       })
     case types.CITY_CHANGE_QU:
       return assign({},state,{
-        Nowqu:action.val
+        Nowqu:action.val,
+        NowCity: state.choCity
       })
     case types.CITY_CHANGE_CITY:
       return assign({},state,{
-        NowCity:action.val,
+        choCity:action.val,
         type:3-state.type
       }) 
     case types.CITY_GET_START:

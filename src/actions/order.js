@@ -27,10 +27,11 @@ function getError(){
     type:types.ORDER_LIST_GET_ERROR
   }
 }
-export function getList(type,id){
+export function getList(type,id,cid){
   return dispatch => {
     dispatch(getStart())
-    const url = type==1 ? URL+'/orderOn/all/1/'+id: URL+'/orderOff/all/1/'+id
+    cid = cid>0? cid: cityid
+    const url = type==1 ? `${URL}/orderOn/all/${cid}/${id}`: `${URL}/orderOff/all/${cid}/${id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {
@@ -61,10 +62,10 @@ function getDetailError(){
     type:types.ORDER_DETAIL_GET_ERROR
   }
 }
-export function getDetail(type,id){
+export function getDetail(type,id, cid){
   return dispatch => {
     dispatch(getDetailStart())
-    const url = type==1 ? URL+'/orderOn/1/'+id: URL+'/orderOff/1/'+id
+    const url = type==1 ? `${URL}/orderOn/${cid}/{id}` : `${URL}/orderOff/${cid}/{id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {

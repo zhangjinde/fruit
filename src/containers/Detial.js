@@ -13,16 +13,18 @@ import Comment from '../components/detial/Comment'
 
 class Detial extends Component {
   componentDidMount() {
-    const {detailActions, params, item} = this.props
-    if(item.id!=params.id)
-      this.props.detailActions.getDetail(params.id)
+    const {detailActions, params, item, location} = this.props
+    if(item.id!=params.id){
+      const q = location.query
+      this.props.detailActions.getDetail(params.id, q.cityid, q.areaid)
+    }
   }
   showCmt(){
     let cmt = this.refs.cmt
     cmt.className='modal show'
     const {detailActions, item} = this.props
     if(!item.comments.length){
-      detailActions.getCmt(item.id);
+      detailActions.getCmt(item.id, item.cityId, item.areaId);
     }
   }
   hideCmt(e){
@@ -34,9 +36,7 @@ class Detial extends Component {
   like(){
     let {detailActions,item} = this.props
     if(!item.like){
-      detailActions.like(item.id)
-    }else{
-      detailActions.unlike(item.id)
+      detailActions.like(item.id, item.cityId, item.areaId)
     }
   }
   add(cnt){
@@ -82,6 +82,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   let item = state.detail,
       cart = state.cart
+ 
   return {
     item,
     cart,

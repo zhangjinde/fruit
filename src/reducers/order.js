@@ -93,7 +93,9 @@ const initialState = {/*
   type:1,
   now:2,
   detail:{},
-  finish:{}
+  finish:{},
+  loading:false,
+  error: false  
 }
 function genList(list){
   return list.map(it=>{
@@ -124,10 +126,26 @@ function genList(list){
 export default function order(state = initialState, action){
   let val = action.val;
   switch (action.type) {
+    case types.CITY_CHANGE_QU:
+      state.list1=[]
+      state.list2=[]
+      return state;    
+    case types.ORDER_LIST_GET_START:
+      return assign({},state,{
+        loading:true,
+        error: false 
+      })  
+    case types.ORDER_LIST_GET_ERROR:
+      return assign({},state,{
+        loading:false,
+        error: true 
+      })        
     case types.ORDER_LIST_GET_SUCCESS:
       return assign({},state,{
         list1: val.type==1 ? genList(val.val): state.list1,
         list2: val.type==2 ? genList(val.val): state.list2, 
+        loading:false,
+        error: false 
       })
     case types.ORDER_DETAIL_GET_SUCCESS:
       let {order, products} = val

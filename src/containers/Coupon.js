@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 import NavBack from '../components/NavBack'
 import CouponItem from '../components/CouponItem'
 
+import Loading from '../components/Loading'
+import Error from '../components/Error'
+
 import * as couponActions from '../actions/coupon'
 import * as cartActions from '../actions/cart'
 
@@ -14,22 +17,22 @@ class Coupon extends Component {
     this._changeType(1)
   }
   _changeType(t){
-    let { actions, list1, list2 } = this.props
+    let { actions, list1, list2, NowCity } = this.props
     actions.changeType(t)
     if((t==1 && !list1.length) || (t==2 && !list2.length)){
-      actions.getCoupon(user_id, t);
+      actions.getCoupon(user_id, t, NowCity||0);
     }
   }
-  choose(id){
+  choose(id, name){
     const {location, cartActions, type} = this.props;
     if(location.query.choose && type==1){
-      cartActions.chooseCoupon(id);
+      cartActions.chooseCoupon(id, name);
       history.go(-1)
     }
    
   }
   render() {
-    let { history, type, list1, list2, location } = this.props
+    let { history, type, list1, list2, location, loading, error } = this.props
     return (
       <div className="coupon">
         <NavBack me={true} history={history} white={true}>
@@ -38,6 +41,12 @@ class Coupon extends Component {
         </NavBack>
         <ul className="items">
         {
+          loading ?
+          <Loading/>
+          :
+          error ?
+          <Error/>
+          :
           type===1?
           list1.length?
             list1.map(item=>{
@@ -67,19 +76,29 @@ Coupon.propTypes = {
   list1: PropTypes.array.isRequired,
   list2: PropTypes.array.isRequired,
   type:  PropTypes.number.isRequired,
+  
 }
 
 function mapStateToProps(state) {
   const {
     type,
     list1,
-    list2
+    list2,
+    loading,
+    error
   } = state.coupon;
+  
+  const {
+    NowCity
+  } = state.city
   
   return {
     type,
     list1,
-    list2
+    list2,
+    loading,
+    error,
+    NowCity    
   }
 }
 function mapDispatchToProps(dispatch) {

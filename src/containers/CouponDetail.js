@@ -9,9 +9,9 @@ import * as couponActions from '../actions/coupon'
 
 class CouponDetail extends Component {
   componentDidMount(){
-    const {actions, params, detail} = this.props;
+    const {actions, params, detail,location} = this.props;
     if(detail.id != params.id)
-      actions.getCouponDetail(params.id)
+      actions.getCouponDetail(params.id, location.query.cityId)
   }
   render() {
     let { history, detail } = this.props

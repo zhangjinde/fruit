@@ -27,10 +27,12 @@ function getError(){
     type:types.COUPON_GET_ERROR
   }
 }
-export function getCoupon(id, type){
+export function getCoupon(id, type, cid){
   return dispatch => {
     dispatch(getStart())
-    const url = type == 1 ? '/couponOn/all/1/' : '/couponOff/all/1/'
+    cid<=0 && (cid=cityid)
+
+    const url = type == 1 ? `/couponOn/all/${cid}/` : `/couponOff/all/${cid}/`
     return fetch(URL+url+id)
     .then(response => response.json())
     .then(json => {
@@ -56,10 +58,10 @@ function getDetailError(){
     type:types.COUPON_DETAIL_GET_ERROR
   }
 }
-export function getCouponDetail(id){
+export function getCouponDetail(id, cid){
   return dispatch => {
     dispatch(getDetailStart())
-    return fetch(URL+'/couponOn/1/'+id)
+    return fetch(URL+'/couponOn/'+cid+'/'+id)
     .then(response => response.json())
     .then(json => {
       dispatch(getDetailSuccess(json.coupon))

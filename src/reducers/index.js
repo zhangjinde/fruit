@@ -61,7 +61,9 @@ function genPro(list){
       price: item.price,
       type: item.standard,
       old: item.marketPrice,
-      status: item.status
+      status: item.status,
+      areaId: item.areaId,
+      cityId: item.cityId
     }
     return it;
   })
@@ -70,6 +72,9 @@ function genPro(list){
 function fruit(
   state = initialState, action) {
   switch (action.type) { 
+    case types.CITY_CHANGE_QU:
+      state.list=[]
+      return state;    
     case types.FRUIT_LIST_GET_START:
       return assign({},state,{
         loading:true,

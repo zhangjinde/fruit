@@ -41,7 +41,7 @@ class AddrAdd extends Component {
     this.setState({[refs[type]]: v});
   }
   save(){
-    let {actions,moren,setDef,location,history} = this.props
+    let {actions,moren,setDef,location,history,NowCity,Nowqu} = this.props
     let {name,tel,addr} = this.refs
     
     let value = {
@@ -53,11 +53,15 @@ class AddrAdd extends Component {
     }
 
     if(this.update){
-      this.props.actions.update(this.update,value, function(){
+      actions.update(this.update,value, function(){
         history.go(-1)
       })
     }else{
-      this.props.actions.addSave(value, function(){
+      value.cityId = NowCity>0 ? NowCity: cityid
+      value.areaId = Nowqu>0 ? Nowqu: areaid
+
+      actions.addSave(value, function(id){
+        actions.chooseAddr(id)
         history.go(-1)
       })
     }
@@ -67,9 +71,9 @@ class AddrAdd extends Component {
     if(!setDef && location.query.id == moren )
       setDef = true
     let city = cities && cities.filter(c=>c.id===NowCity)[0];
-    city = city && city.name;
+    city = city ? city.name: cityname;
     let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu)[0];
-    qu = qu && qu.name;
+    qu = qu ? qu.name: areaname;
     return (
       <div className="addr">
         <NavBack history={history}>

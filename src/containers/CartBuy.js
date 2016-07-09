@@ -11,6 +11,7 @@ import CartBottom from '../components/CartBottom'
 import CartDetail from '../components/CartDetail'
 import CartBlock from '../components/CartBlock'
 import Time from '../components/Time'
+import Loading from '../components/Loading'
 
 import * as cfg from '../utils/config'
 
@@ -23,10 +24,10 @@ class CartBuy extends Component {
     }
   }
   componentDidMount(){
-    const {addrActions, addrs} = this.props
+    const {addrActions, addrs, NowCity, Nowqu} = this.props
 
     if(!addrs || !addrs.length)
-      addrActions.getList(user_id);
+      addrActions.getList(NowCity,Nowqu,user_id);
   }
   edit(){
     let { actions } = this.props
@@ -37,7 +38,7 @@ class CartBuy extends Component {
     actions.add(item,cnt)
   }
   submit(){
-    let { actions, orderActions, cart, history, time, now, addrs } = this.props
+    let { actions, orderActions, cart, history, time, now, addrs, NowCity, Nowqu } = this.props
     if(cart.count===0){
       alert('请先购买东西')
       return false;
@@ -53,7 +54,13 @@ class CartBuy extends Component {
     }
     cart.time = timeOp.getDay(time)+" "+timeOp.getText(time);    
     cart.addr = addr;
+    cart.cityId = NowCity
+    cart.areaId = Nowqu
+    
+    this.refs.wait.className="modal show"
+    
     actions.submit(cart, (id, val)=>{
+      this.refs.wait.className="modal"
       alert('提交成功')
       orderActions.orderFinish({
         orderNo: id,
@@ -63,6 +70,9 @@ class CartBuy extends Component {
       })
       actions.clear();
       history.replace('/cart/finish')
+    }, ()=>{
+      this.refs.wait.className="modal"
+      alert('提交失败，请重试')
     })
   }
   showTime(){
@@ -71,6 +81,9 @@ class CartBuy extends Component {
   chTime(t){
     this.refs.modal.className="modal"
     this.props.addrActions.chooseTime(t)
+  }
+  chooseCoup(){
+    this.props.history.push('/me/coupon?choose=1')
   }
   render() { 
     let { name, head, points, cart, history, time, addrs, now, moren } = this.props
@@ -117,10 +130,13 @@ class CartBuy extends Component {
         {
           cart.couponId?
           <div className="dizhi">
-            <div>使用优惠券{cart.couponId}</div>
+            <div className='choose' onClick={this.chooseCoup.bind(this)}>
+              使用优惠券：
+              <span className='you'>{cart.couponName}</span>
+            </div>
           </div>
           :
-          <div><Link to="/me/coupon?choose=1">请选择优惠券</Link></div>
+          <div className="dizhi choose"><Link to="/me/coupon?choose=1">请选择优惠券</Link></div>
         }
         </CartBlock>        
         <CartBlock til1="收货" til2="时间">
@@ -133,6 +149,12 @@ class CartBuy extends Component {
         <div className="modal" ref="modal">
           <Time chTime={this.chTime.bind(this)}/>
         </div>
+        <div className="modal" ref="wait">
+          <div className='center'>
+             <Loading/>
+             <p className='txt'>提交中...</p>
+          </div>
+        </div>   
       </div>
     )
   }
@@ -152,6 +174,11 @@ function mapStateToProps(state) {
   } = state.me;
   
   const {
+    NowCity,
+    Nowqu
+  } = state.city
+  
+  const {
     now,
     moren,
     addrs,
@@ -167,7 +194,9 @@ function mapStateToProps(state) {
     now,
     moren,
     addrs,
-    time,    
+    time,
+    NowCity,
+    Nowqu
   }
 }
 

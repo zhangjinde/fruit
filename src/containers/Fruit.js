@@ -14,9 +14,9 @@ import {move} from '../utils/animate'
 
 class Fruit extends Component {
   componentDidMount(){
-    const {list, fruitActions, loading, error} = this.props
+    const {list, fruitActions, loading, error, NowCity, Nowqu} = this.props
     if(error || !list.length){
-      fruitActions.getList()
+      fruitActions.getList(NowCity, Nowqu)
     }
   }
   add(item,elem,hide,cart){
@@ -44,8 +44,8 @@ class Fruit extends Component {
       cities, qus, NowCity, Nowqu, goods, actions } = this.props
     let city = cities && cities.filter(c=>c.id===NowCity)[0];
     let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu);
-      city = (city && city.name) || '城市';    
-      qu = (qu && qu[0] && qu[0].name) || '区域';
+      city = (city && city.name) || cityname;    
+      qu = (qu && qu[0] && qu[0].name) || areaname;
     return (
       <div>
         <Nav type="1" history={history} city={city} qu={qu}/>
