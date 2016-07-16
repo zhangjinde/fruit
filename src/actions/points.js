@@ -104,7 +104,6 @@ function _exchangeSuccess(val){
 }
 export function exchange(val,cb,errorCb){
   return dispatch => {
-    dispatch(_exchangeStart())
     const url = `${URL}/coupon/exchange/${val.cityId}/${val.couponId}/${val.userId}`
 
     return fetch(url, {
@@ -119,7 +118,6 @@ export function exchange(val,cb,errorCb){
       cb && cb()
      })
     .catch(() => {
-      dispatch(_exchangeError())
       errorCb && errorCb()
     })
   }
