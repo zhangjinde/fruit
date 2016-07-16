@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes'
+import fetch from 'isomorphic-fetch'
 
 export function changeType(val){
   return {
@@ -99,7 +100,8 @@ function _getUseError(){
 
 function _exchangeSuccess(val){
   return {
-    type:types.POINT_EXCHANGE_SUCCESS
+    type:types.POINT_EXCHANGE_SUCCESS,
+    val
   }
 }
 export function exchange(val,cb,errorCb){
