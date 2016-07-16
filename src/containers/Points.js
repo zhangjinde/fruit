@@ -7,19 +7,61 @@ import NavBack from '../components/NavBack'
 import ExchangeItem from '../components/points/ExchangeItem'
 import UseItem from '../components/points/UseItem'
 
+import Loading from '../components/Loading'
+import Error from '../components/Error'
+import Empty from '../components/Empty'
+
 import * as pointsActions from '../actions/points'
 
 class Points extends Component {
+  componentDidMount() {
+    const {type} = this.props
+    this.getList(type);
+  }
+  getList(type){
+    const {errorExch, errorRec, errorUse} = this.props
+    const { actions, exchange, use, record, NowCity } = this.props
+    const cid = NowCity>0 ? NowCity: cityid
+
+    if(type == 1 && (!exchange.length || errorExch) ) {
+      actions.getExc(cid);
+    }else if(type == 2 && (!record.length || errorRec) ){
+      //actions.getRec();
+    }else if(type == 3 && (!use.length || errorUse) ){
+      //actions.getUse();
+    }
+  }
   _changeType(t){
     let { actions } = this.props
     actions.changeType(t)
+    this.getList(t);
+  }
+  exchange(point,id,cityId){
+    const {points, actions} = this.props;
+    if(points<point){
+      alert('积分不够')
+    }else{
+      if(confirm('确定兑换码？')){
+        actions.exchange({
+          cityId:cityId,
+          couponId:id,
+          userId:user_id,
+          point
+        },()=>{
+          alert('兑换成功')
+        },()=>{
+          alert('兑换失败')
+        });
+      }
+    }
   }
   render() {
-    let { history, type, now, use, exchange, record } = this.props
+    let { history, type, points, use, exchange, record } = this.props
+    const {loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse} = this.props
     return (
       <div className="points">
         <NavBack me={true} history={history} white={true}>
-         <span className="canuse">可用积分：{now}</span>
+         <span className="canuse">可用积分：{points}</span>
         </NavBack>
         <div className="content">
           <ul className="title">
@@ -30,16 +72,31 @@ class Points extends Component {
           <ul className="items">
           {
             type==1?
+              loadingExch?
+                <Loading/>
+              :
+              errorExch?
+                <Error/>
+              :            
               exchange.length?
                 exchange.map(item=>{
                   return (
-                    <ExchangeItem item={item} key={item.id}/>
+                    <ExchangeItem item={item} key={item.id} exchange={this.exchange.bind(this)}/>
                   )
                 })
               :
-                <p className="empty">空</p>              
+                <Empty/>
             :
+            ""
+          }
+          {
             type==3?
+              loadingUse?
+                <Loading/>
+              :
+              errorUse?
+                <Error/>
+              :            
               use.length?
                 use.map(item=>{
                   return (
@@ -49,6 +106,16 @@ class Points extends Component {
               :
                 <p className="empty">空</p>
             :
+            ""
+          }
+          {
+            type == 2?
+              loadingRec?
+                <Loading/>
+              :
+              errorRec?
+                <Error/>
+              :                
               record.length?
                 record.map(item=>{
                   return (
@@ -57,6 +124,8 @@ class Points extends Component {
                 })
               :
                 <p className="empty">空</p>
+            :
+            ""
           }
           </ul>
         </div>
@@ -79,15 +148,26 @@ function mapStateToProps(state) {
     now,
     use,
     exchange,
-    record
+    record,
+    loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse
   } = state.points;
   
+  const {
+    NowCity
+  } = state.city
+  
+  const {
+    points
+  } = state.me
   return {
     type,
     now,
     use,
     exchange,
-    record
+    record,
+    NowCity,
+    loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse,
+    points
   }
 }
 function mapDispatchToProps(dispatch) {

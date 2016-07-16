@@ -18,6 +18,10 @@ export default function me(state = initialState, action){
         head: IMG_URL+val.avatarUrl,
         id: val.id
       }
+    case types.POINT_EXCHANGE_SUCCESS:
+      return assign({},state,{
+        points: state.points - action.val
+      })
     default:
       return state
   } 

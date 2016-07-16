@@ -1,6 +1,13 @@
 import * as types from '../constants/ActionTypes'
 import fetch from 'isomorphic-fetch'
 
+export function changeType(t){
+  return {
+    type: types.FRUIT_CHANGE_TYPE,
+    val: t  
+  }
+}
+
 function getStart(){
   return {
     type:types.FRUIT_LIST_GET_START

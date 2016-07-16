@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import ListItem from '../components/ListItem'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import Empty from '../components/Empty'
 
 import {move} from '../utils/animate'
 
@@ -25,6 +26,7 @@ export default class FruitList extends Component{
         error?
           <Error/>
         :
+        list.length?
           list.map(item=>{
             let tem = goods?goods.filter(g=>g.id===item.id):[];
             let cnt = tem.length?tem[0].count:0
@@ -32,6 +34,8 @@ export default class FruitList extends Component{
               <ListItem item={item} key={item.id} add={this.add.bind(this)} del={this.del.bind(this)} count={cnt}/>
             )
           })
+        :
+          <Empty />
         }
         <li className="mv-cart" ref="cart">
           <i className="fa fa-cart-arrow-down"></i>

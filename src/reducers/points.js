@@ -2,8 +2,10 @@ import * as types from '../constants/ActionTypes'
 import {assign} from '../utils/Object'
 
 const initialState = {
-  type:2,
-  exchange:[{
+  type:1,
+  exchange:[
+  
+/*  {
     id:1,
     img:'/img/quan.png',
     name:'10元代金券',
@@ -21,28 +23,33 @@ const initialState = {
     name:'100元代金券',
     point:10000,
     desc:'代金券兑换'
-  }],
-  record:[{
-    id:1,
-    desc:'每日登陆',
-    time:'2016-04-28',
-    type:1, //1 ADD 2 DEL  
-    point:3
-  },{
-    id:2,
-    desc:'每日登陆',
-    time:'2016-03-28',
-    type:1,
-    point:2
-  },{
-    id:3,
-    desc:'新用户关注',
-    time:'2016-03-28',
-    type:1,
-    point:100
-  }],
+  }
+  */
+  ],
+  record:[],
   use:[],
   now:0,
+  loadingExch: false, 
+  errorExch: false, 
+  loadingRec: false, 
+  errorRec: false, 
+  loadingUse: false, 
+  errorUse: false  
+}
+
+function getExc(list){
+  let res = [];
+  list.map(l=>{
+    res.push({
+      id:l.id,
+      img: IMG_URL + l.coverSUrl,
+      name: l.name,
+      point:l.point,
+      desc: l.comment,
+      cityId: l.cityId
+    })
+  })
+  return res;
 }
 
 export default function points(state = initialState, action){
@@ -51,6 +58,52 @@ export default function points(state = initialState, action){
       return assign({},state,{
         type:action.val
       })
+    case types.POINT_GET_EXCH_START:
+      return assign({},state,{
+        loadingExch: true,
+        errorExch: false
+      })
+    case types.POINT_GET_EXCH_SUCCESS:
+      return assign({},state,{
+        loadingExch: false,
+        errorExch: false,
+        exchange: getExc(action.val)
+      })
+    case types.POINT_GET_EXCH_ERROR:
+      return assign({},state,{
+        loadingExch: false,
+        errorExch: true
+      })    
+    case types.POINT_GET_REC_START:
+      return assign({},state,{
+        loadingRec: true,
+        errorRec: false
+      })      
+    case types.POINT_GET_REC_SUCCESS:
+      return assign({},state,{
+        loadingRec: false,
+        errorRec: false
+      })       
+    case types.POINT_GET_REC_ERROR:
+      return assign({},state,{
+        loadingRec: false,
+        errorRec: true
+      })       
+    case types.POINT_GET_USE_START:
+      return assign({},state,{
+        loadingUse: true,
+        errorRec: false
+      })     
+    case types.POINT_GET_USE_SUCCESS:
+      return assign({},state,{
+        loadingUse: false,
+        errorRec: false
+      })      
+    case types.POINT_GET_USE_ERROR:
+      return assign({},state,{
+        loadingUse: false,
+        errorUse: true
+      })      
     default:
       return state
   } 

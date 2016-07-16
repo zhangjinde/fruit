@@ -47,8 +47,12 @@ var initialState = {
     },    
   ] */
   list: [],
+  list2: [],
+  list3: [],
+  list4: [],
   loading:true,
-  error:false  
+  error:false,
+  type: 1,
 }
 
 function genPro(list){
@@ -72,6 +76,10 @@ function genPro(list){
 function fruit(
   state = initialState, action) {
   switch (action.type) { 
+    case types.FRUIT_CHANGE_TYPE:
+      return assign({},state,{
+        type: action.val
+      })
     case types.CITY_CHANGE_QU:
       state.list=[]
       return state;    

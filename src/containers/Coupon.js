@@ -8,6 +8,7 @@ import CouponItem from '../components/CouponItem'
 
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import Empty from '../components/Empty'
 
 import * as couponActions from '../actions/coupon'
 import * as cartActions from '../actions/cart'
@@ -60,7 +61,7 @@ class Coupon extends Component {
               )
             })
             :
-            <p className="empty">没有</p>
+            <Empty/>
           :
           list2.length?          
             list2.map(item=>{
@@ -69,7 +70,7 @@ class Coupon extends Component {
               )
             })
             :
-            <p className="empty">没有</p>
+            <Empty/>
         }
         </ul>
       </div>

@@ -8,6 +8,7 @@ import OrderItem from '../components/order/OrderItem'
 
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import Empty from '../components/Empty'
 
 import * as orderActions from '../actions/order'
 
@@ -42,9 +43,12 @@ class Order extends Component {
           error?
             <Error/>
           :
+          list.length?
           list.map(item=>(
             <OrderItem item={item} key={item.id} type={type}/>
           ))
+          :
+            <Empty/>
         }
         </ul>
       </div>
