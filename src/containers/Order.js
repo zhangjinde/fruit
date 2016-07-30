@@ -25,13 +25,21 @@ class Order extends Component {
       actions.getList(2, user_id, NowCity)
     }
   }
+  refresh(){
+    const {type, actions, NowCity} = this.props;
+    if(type==1){
+      actions.getList(1, user_id, NowCity)
+    }else{
+      actions.getList(2, user_id, NowCity)
+    }
+  }
   render() {
     let { history, type, list1, list2,loading, error } = this.props
 
     let list = type===1?list1:list2
     return (
       <div>
-        <NavBack me={true} history={history} white={true}>
+        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未收货订单</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已收货订单</a>
         </NavBack>

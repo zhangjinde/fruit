@@ -17,7 +17,7 @@ class Detial extends Component {
     const {detailActions, params, item, location} = this.props
     if(item.id!=params.id){
       const q = location.query
-      this.props.detailActions.getDetail(params.id, q.cityid, q.areaid)
+      this.props.detailActions.getDetail(params.id, q.cityId, q.areaId)
     }
   }
   showCmt(){
@@ -52,9 +52,9 @@ class Detial extends Component {
     const {item, cmtActions, me} = this.props
 
     cmtActions.submit({
-      name: me.name || '好人',
+      name: me.name || '匿名用户',
       id: me.id || user_id,
-      head: me.head || '',
+      head: me.head ? me.head.substr(me.head.lastIndexOf('/')+1) :'1003234393232034_head.jpg',
       content: this.refs.smtCmt.value,
       pid: item.id,
       cid: item.cityId,
@@ -71,10 +71,6 @@ class Detial extends Component {
         <NavBack  history={history}/>
         <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
         <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
-        <p style={{paddingBottom: '100px'}}>
-          <textarea ref="smtCmt"></textarea>
-          <button onClick={this.sendCmt.bind(this)}>测试评论提交</button>
-        </p>
         <div className="modal" ref="cmt">
           <Comment comments={item.comments} hideCmt={this.hideCmt.bind(this)} like={this.cmtLike.bind(this)}
             loading={item.cmtLoading} error={item.cmtError}

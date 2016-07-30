@@ -52,7 +52,7 @@ class CartBuy extends Component {
       alert('请选择收货地址')
       return false;
     }
-    cart.time = timeOp.getDay(time)+" "+timeOp.getText(time);    
+    cart.time = time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time);    
     cart.addr = addr;
     cart.cityId = NowCity
     cart.areaId = Nowqu
@@ -141,7 +141,7 @@ class CartBuy extends Component {
         </CartBlock>        
         <CartBlock til1="收货" til2="时间">
           <a onClick={this.showTime.bind(this)}>
-            {!time? '请选择收货时间':timeOp.getDay(time)+" "+timeOp.getText(time)}
+            {!time? '请选择收货时间': time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time)}
             <span className="icon right"><i className="fa fa-angle-right"></i></span>
           </a>
         </CartBlock>

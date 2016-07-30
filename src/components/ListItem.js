@@ -18,7 +18,7 @@ export default class ListItem extends Component{
     let { item, count } = this.props;
     return (
       <li className={item.big ? "big":"small"}>
-        <p className="img"><Link to={`/fruit/${item.id}?cityid=${item.cityId}&areaid=${item.areaId}`}><img src={item.img}/></Link></p>
+        <p className="img"><Link to={`/fruit/${item.id}?cityId=${item.cityId}&areaId=${item.areaId}`}><img src={item.img}/></Link></p>
         <div className="txt">
           <p className="tit">
             {item.name}

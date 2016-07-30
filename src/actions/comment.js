@@ -13,7 +13,7 @@ function subError(){
 
 }
 
-export function submit(val){
+export function submit(val, scb, ecb){
   return dispatch => {
     //dispatch(subStart())
     const url = URL+'/comment/new/'
@@ -37,9 +37,11 @@ export function submit(val){
     .then(response => response.json())
     .then(json => {
       //dispatch(subSuccess())
+      scb && scb()
      })
     .catch(() => {
       // dispatch(subError())
+      ecb && ecb()
     })
   }
 }

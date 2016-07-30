@@ -66,7 +66,8 @@ export function getDetail(type,id, cid){
   cid = cid>0? cid: cityid
   return dispatch => {
     dispatch(getDetailStart())
-    const url = type==1 ? `${URL}/orderOn/${cid}/${id}` : `${URL}/orderOff/${cid}/${id}`
+    //const url = type==1 ? `${URL}/orderOn/${cid}/${id}` : `${URL}/orderOff/${cid}/${id}`
+    const url = `${URL}/orderOn/${cid}/${id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {
@@ -80,5 +81,44 @@ export function orderFinish(val){
   return {
     type:types.ORDER_FINISH,
     val
+  }
+}
+
+export function orderChangeState(id, state){
+  return {
+    type:types.ORDER_CHANGE_STATE,
+    val: {
+      id,
+      state
+    }
+  }
+}
+
+export function shouhuo(id, cid, cb, errCb){/*
+  return dispatch => {
+    const url = `${URL}/orderOn/confirm/${cid}/${id}`
+
+    return fetch(url)
+    .then(d => {
+      cb && cb()
+    })
+    .catch((e) => {
+      errCb && errCb()
+    })
+  }*/
+  cb && cb()
+}
+
+export function tuihuo(id, cid, cb, errCb){
+  return dispatch => {
+    const url = `${URL}/orderOff/return/${cid}/${id}`
+
+    return fetch(url)
+    .then(d => {
+      cb && cb()
+    })
+    .catch((e) => {
+      errCb && errCb()
+    })
   }
 }

@@ -55,12 +55,19 @@ class Points extends Component {
       }
     }
   }
+  refresh(){
+    const {type, actions, NowCity} = this.props;
+    const cid = NowCity>0 ? NowCity: cityid
+    if(type==1){
+      actions.getExc(cid);
+    }
+  }  
   render() {
     let { history, type, points, use, exchange, record } = this.props
     const {loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse} = this.props
     return (
       <div className="points">
-        <NavBack me={true} history={history} white={true}>
+        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
          <span className="canuse">可用积分：{points}</span>
         </NavBack>
         <div className="content">

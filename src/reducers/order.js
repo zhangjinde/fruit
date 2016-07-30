@@ -123,6 +123,29 @@ function genList(list){
     }
   })
 }
+function changeState(id, to, state){
+  state.list1 = state.list1.map(l=>{
+    if(l.id==id){
+      l.state=to
+    }
+    return l;
+  })
+  state.list2 = state.list2.map(l=>{
+    if(l.id==id){
+      l.state=to
+    }
+    return l;
+  })  
+  //确认收货 == > 已收货订单
+  if(to==5){
+    let idx = state.list1.map(l=>l.id).indexOf(id), temp;
+    if(idx>-1){
+      temp = state.list1.splice(idx,1)
+      state.list2.unshift(temp[0]);
+    }
+  }
+  return state;
+}
 export default function order(state = initialState, action){
   let val = action.val;
   switch (action.type) {
@@ -154,9 +177,14 @@ export default function order(state = initialState, action){
           arriveTime: order.receiveTime,
           state: order.status,
           history: order.history,
-          goods: products
+          goods: products,
+          id: order.id,
+          cityId: order.cityId,
+          areaId: order.areaId
         }
       })
+    case types.ORDER_CHANGE_STATE:
+      return changeState(val.id, val.state, state);
     case types.ORDER_CHANGE_TYPE:
       return assign({},state,{
         type:val

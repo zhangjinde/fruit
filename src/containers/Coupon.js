@@ -36,12 +36,16 @@ class Coupon extends Component {
     }
    
   }
+  refresh(){
+    const {type, actions, NowCity} = this.props;
+    actions.getCoupon(user_id, type, NowCity||0);
+  }
   render() {
     let { history, type, list1, list2, location, loading, error } = this.props
 
     return (
       <div className="coupon">
-        <NavBack me={true} history={history} white={true}>
+        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未使用优惠券</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已过期优惠券</a>
         </NavBack>
