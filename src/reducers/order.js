@@ -180,7 +180,8 @@ export default function order(state = initialState, action){
           goods: products,
           id: order.id,
           cityId: order.cityId,
-          areaId: order.areaId
+          areaId: order.areaId,
+          number: order.number
         }
       })
     case types.ORDER_CHANGE_STATE:

@@ -12,16 +12,21 @@ export function edit(){
   }
 }
 
-export function chooseCoupon(id,name){
+export function chooseCoupon(id,name,restrict){
   return {
     type:types.CART_CHANGE_COUPON,
     val:{
       id,
-      name
+      name,
+      restrict
     }
   }
 }
-
+export function clearCoupon(){
+  return {
+    type:types.CART_CLEAR_COUPON
+  }
+}
 export function add(item,val){
   return {
     type:types.CART_ADD,

@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import * as actions from '../actions/cart'
 import * as addrActions from '../actions/address'
 import * as orderActions from '../actions/order'
+import * as cartActions from '../actions/cart'
 
 import CartBottom from '../components/CartBottom'
 import CartDetail from '../components/CartDetail'
@@ -34,7 +35,7 @@ class CartBuy extends Component {
     actions.edit()
   }
   add(item,cnt){
-    let { actions } = this.props
+    let { actions, cart } = this.props
     actions.add(item,cnt)
   }
   submit(){
@@ -52,7 +53,7 @@ class CartBuy extends Component {
       alert('请选择收货地址')
       return false;
     }
-    cart.time = time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time);    
+    cart.time = time<0 ? '立即配送' : timeOp.getDay(time, true)+" "+timeOp.getText(time, true);   
     cart.addr = addr;
     cart.cityId = NowCity
     cart.areaId = Nowqu
@@ -82,8 +83,13 @@ class CartBuy extends Component {
     this.refs.modal.className="modal"
     this.props.addrActions.chooseTime(t)
   }
-  chooseCoup(){
-    this.props.history.push('/me/coupon?choose=1')
+  chooseCoup(e){
+    const {history, cartActions} = this.props;
+    if(e.target.id){
+      cartActions.clearCoupon();
+    }else{
+      history.push('/me/coupon?choose=1')
+    }
   }
   render() { 
     let { name, head, points, cart, history, time, addrs, now, moren } = this.props
@@ -133,6 +139,9 @@ class CartBuy extends Component {
             <div className='choose' onClick={this.chooseCoup.bind(this)}>
               使用优惠券：
               <span className='you'>{cart.couponName}</span>
+              <span className="icon">
+                <i id="clear" className="fa fa-close"></i>
+              </span>
             </div>
           </div>
           :
@@ -205,6 +214,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(actions, dispatch),
     addrActions: bindActionCreators(addrActions, dispatch),
     orderActions: bindActionCreators(orderActions, dispatch),
+    cartActions: bindActionCreators(cartActions, dispatch),
   }
 }
 export default connect(

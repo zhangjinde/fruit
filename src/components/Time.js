@@ -38,7 +38,7 @@ export default class Time extends Component{
           <span className={ time.isValid(5) ? "left":"left no"} data-time="5">{time.getText(5)}</span>
           <span className="right" data-time="10">{time.getText(10)}</span>        
         </p>        
-        <p data-time="-1">
+        <p data-time="-1" className={ time.isValid(-1) ? "":"no"}>
           立即配送
         </p>
       </div>

@@ -14,6 +14,12 @@ import * as orderActions from '../actions/order'
 import * as cmtActions from '../actions/comment'
 
 class OrderState extends Component {
+  constructor(){
+    super();
+    this.state = {
+      show: false
+    }
+  }
   componentDidMount(){
     const {params, actions, location, NowCity} = this.props;
     if(location.query.type){
@@ -22,9 +28,12 @@ class OrderState extends Component {
   }
   pay(){
     const {order, actions, history, params} = this.props
-    alert('支付成功')
-    actions.orderChangeState(order.detail.id || params.id, 4)
-    history.go(-1)
+    this.refs.wrap.src = `${URL}/orderOn/pay2?number=${order.detail.number}`;
+    this.setState({
+      show: true
+    })
+   // actions.orderChangeState(order.detail.id || params.id, 4)
+    //history.go(-1)
   }
   confirm(){
     const {order, actions} = this.props
@@ -57,8 +66,13 @@ class OrderState extends Component {
     const {topay,cmt,confirm} = this.props.location.query
     const {me, cmtActions} = this.props
     const isr = this.props.location.query.return
+    const show = this.state.show
     return (
       <div className="ord-sta">
+        <div className={show ? "modal show padded" : 'modal'}>
+          <iframe className="wrap" ref="wrap">
+          </iframe>
+        </div>
         <NavBack history={history} white={true}>
           <span>{topay? "支付":confirm?"确认收货":cmt?"评论":isr?"退货管理":"订单追踪"}</span>
         </NavBack>

@@ -28,7 +28,7 @@ class Coupon extends Component {
     const {location, cartActions, type, cartTotal} = this.props;
     if(location.query.choose && type==1){
       if(cartTotal >= restrict){
-        cartActions.chooseCoupon(id, name);
+        cartActions.chooseCoupon(id, name, restrict);
         history.go(-1)      
       }else{
         alert('消费不满额度')

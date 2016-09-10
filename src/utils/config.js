@@ -24,22 +24,23 @@ export default {
       return t[id%5]
     },
     isValid:function(id){
-      if(id>5||id<0)return true;
+      if(id>5)return true;
       var d = new Date(toDate(+(new Date), 1)+ " " +({
         1: '11:00',
         2: '14:00',
         3: '16:30',
         4: '19:00',
-        5: '21:00'
+        5: '21:00',
+        '-1': '21:00'
       }[id]))
 
       return d>new Date()
     },
-    getDay:function(id){
+    getDay:function(id, year){
       if(id>5)
-        return toDate(+(new Date)+1000*3600*24)
+        return toDate(+(new Date)+1000*3600*24, year)
       else
-       return toDate(+(new Date))
+       return toDate(+(new Date), year)
     }
   }
 }

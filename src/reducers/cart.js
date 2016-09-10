@@ -7,6 +7,8 @@ const initialState = {
   position:null,
   editing:false,
   couponId:0,
+  couponName: "",
+  couponRestrict:0,
   goods:[]
 }
 
@@ -26,7 +28,16 @@ function _add(state,item,cnt){
     state.total+=cnt*item.price
     state.count+=cnt
   }
-  return goods
+  if(state.couponId && state.total < state.couponRestrict){
+    assign(state, {
+      couponId: 0,
+      couponName: "",
+      couponRestrict:0    
+    })
+  }
+  return assign({},state,{
+    goods,
+  })  
 }
 
 export default function cart(state = assign({},initialState), action){
@@ -34,7 +45,14 @@ export default function cart(state = assign({},initialState), action){
     case types.CART_CHANGE_COUPON:
       return assign({},state,{
         couponId:action.val.id,
-        couponName: action.val.name
+        couponName: action.val.name,
+        couponRestrict: action.val.restrict
+      })
+    case types.CART_CLEAR_COUPON:
+      return assign({},state,{
+        couponId: 0,
+        couponName: "",
+        couponRestrict:0
       })
     case types.CART_UPDPOS:
       return assign({},state,{
@@ -46,9 +64,7 @@ export default function cart(state = assign({},initialState), action){
       })
     case types.CART_ADD:
       let {item,val} = action.val
-      return assign({},state,{
-        goods:_add(state,item,val)
-      })
+      return _add(state,item,val)
     case types.CITY_CHANGE_QU:
     case types.CART_CLEAR:
       return assign({},initialState,{
