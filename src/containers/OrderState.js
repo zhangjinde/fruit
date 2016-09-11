@@ -50,6 +50,11 @@ class OrderState extends Component {
           })
         });
       },0)
+    }).catch(()=>{
+      alert('尝试支付失败，请重试')
+      this.setState({
+        disable: false
+      })
     })
   }
   confirm(){
