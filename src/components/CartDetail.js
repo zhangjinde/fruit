@@ -15,7 +15,7 @@ export default class CartBottom extends Component{
       <div className="block detail">
         <p className="tit">
           已购买商品
-          <a href="javascript:;" onClick={edit}>编辑</a>
+          <a href="javascript:;" onClick={edit}>{cart.editing? "完成":"编辑"}</a>
         </p>
         <ul className="list">
         {

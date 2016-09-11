@@ -9,15 +9,20 @@ import BlockTime from '../components/order/BlockTime'
 import BlockProcess from '../components/order/BlockProcess'
 import BlockGoods from '../components/order/BlockGoods'
 import BlockTotal from '../components/order/BlockTotal'
+import Loading from '../components/Loading'
 
 import * as orderActions from '../actions/order'
 import * as cmtActions from '../actions/comment'
+
+import weipay from '../utils/pay'
+import fetch from 'isomorphic-fetch'
 
 class OrderState extends Component {
   constructor(){
     super();
     this.state = {
-      show: false
+      show: false,
+      loading:true
     }
   }
   componentDidMount(){
@@ -28,9 +33,19 @@ class OrderState extends Component {
   }
   pay(){
     const {order, actions, history, params} = this.props
-    this.refs.wrap.src = `${URL}/orderOn/pay2?number=${order.detail.number}`;
     this.setState({
       show: true
+    })
+    console.log(order)
+    fetch(`${URL}/orderOn/pay3?number=${order.detail.number}`)
+    .then(response => response.json())
+    .then(option=>{
+      this.setState({
+        loading: false
+      })    
+      setTimeout(()=>{
+        weipay(option);
+      },0)
     })
    // actions.orderChangeState(order.detail.id || params.id, 4)
     //history.go(-1)
@@ -61,17 +76,35 @@ class OrderState extends Component {
       alert('出错了，请重试')
     })
   }
+  close(){
+    this.setState({
+      show: false,
+      loading: true
+    })
+  }
   render() {
     const ord = this.props.order.detail
     const {topay,cmt,confirm} = this.props.location.query
     const {me, cmtActions} = this.props
     const isr = this.props.location.query.return
-    const show = this.state.show
+    const {show, loading} = this.state
     return (
       <div className="ord-sta">
         <div className={show ? "modal show padded" : 'modal'}>
-          <iframe className="wrap" ref="wrap">
-          </iframe>
+          <p className="close"><i className="fa fa-close" onClick={this.close.bind(this)}></i></p>
+          <div className="wrap" ref="wrap">
+          {
+            loading?
+              <Loading />
+            :
+              <div className="wxapi_container">
+                <div className="lbox_close wxapi_form">
+                  <button className="btn btn_primary" id="chooseWXPay">支付订单</button>
+                </div>
+              </div> 
+          }
+
+          </div>
         </div>
         <NavBack history={history} white={true}>
           <span>{topay? "支付":confirm?"确认收货":cmt?"评论":isr?"退货管理":"订单追踪"}</span>
