@@ -9,7 +9,6 @@ import BlockTime from '../components/order/BlockTime'
 import BlockProcess from '../components/order/BlockProcess'
 import BlockGoods from '../components/order/BlockGoods'
 import BlockTotal from '../components/order/BlockTotal'
-import Loading from '../components/Loading'
 
 import * as orderActions from '../actions/order'
 import * as cmtActions from '../actions/comment'
@@ -21,8 +20,7 @@ class OrderState extends Component {
   constructor(){
     super();
     this.state = {
-      show: false,
-      loading:true
+      disable: false
     }
   }
   componentDidMount(){
@@ -33,22 +31,26 @@ class OrderState extends Component {
   }
   pay(){
     const {order, actions, history, params} = this.props
+    if(this.state.disable)return;
+    
     this.setState({
-      show: true
+      disable: true
     })
-    console.log(order)
+
     fetch(`${URL}/orderOn/pay3?number=${order.detail.number}`)
     .then(response => response.json())
     .then(option=>{
-      this.setState({
-        loading: false
-      })    
       setTimeout(()=>{
-        weipay(option);
+        weipay(option, ()=>{
+          actions.orderChangeState(order.detail.id || params.id, 4)
+          history.go(-1)
+        }, ()=>{
+          this.setState({
+            disable: false
+          })
+        });
       },0)
     })
-   // actions.orderChangeState(order.detail.id || params.id, 4)
-    //history.go(-1)
   }
   confirm(){
     const {order, actions} = this.props
@@ -76,36 +78,14 @@ class OrderState extends Component {
       alert('出错了，请重试')
     })
   }
-  close(){
-    this.setState({
-      show: false,
-      loading: true
-    })
-  }
   render() {
     const ord = this.props.order.detail
     const {topay,cmt,confirm} = this.props.location.query
     const {me, cmtActions} = this.props
     const isr = this.props.location.query.return
-    const {show, loading} = this.state
+    const {disable} = this.state
     return (
       <div className="ord-sta">
-        <div className={show ? "modal show padded" : 'modal'}>
-          <p className="close"><i className="fa fa-close" onClick={this.close.bind(this)}></i></p>
-          <div className="wrap" ref="wrap">
-          {
-            loading?
-              <Loading />
-            :
-              <div className="wxapi_container">
-                <div className="lbox_close wxapi_form">
-                  <button className="btn btn_primary" id="chooseWXPay">支付订单</button>
-                </div>
-              </div> 
-          }
-
-          </div>
-        </div>
         <NavBack history={history} white={true}>
           <span>{topay? "支付":confirm?"确认收货":cmt?"评论":isr?"退货管理":"订单追踪"}</span>
         </NavBack>
@@ -133,7 +113,7 @@ class OrderState extends Component {
         <div className="fix-bottom">
           {
             topay?
-            <a onClick={this.pay.bind(this)}>立即支付</a>
+            <a onClick={this.pay.bind(this)} className={disable?"disable":""}>{disable?"支付中":"立即支付"}</a>
             :
             confirm?
             <a onClick={this.confirm.bind(this)}>确认收货</a>
