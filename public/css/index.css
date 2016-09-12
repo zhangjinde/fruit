@@ -141,7 +141,7 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 /*points*/
 .points .content{margin:3.5em 0.4em 0 0.4em;}
 .points ul.title{height:3em;line-height:3em;display:flex;display:-webkit-flex;display:-webkit-box;-webkit-user-select:none;background:#CECECE;}
-.points ul.title li{flex:1;-webkit-flex:1;display:-webkit-box;text-align:center;color:#888;cursor:pointer;}
+.points ul.title li{flex:1;-webkit-flex:1;display:-webkit-box;text-align:center;color:#888;cursor:pointer;-webkit-box-flex: 1;}
 .points ul.title li.active{background:#fff;color:#53CBE6}
 .points ul.items{background:#fff;color:#888;padding:1em;}
 .points ul.items li{padding:1em 0;border-bottom:1px solid #eee;display:flex;display:-webkit-flex;display:-webkit-box;}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router'
 
+import STATE from '../../utils/orderState'
+
 export default class OrderItem extends Component{
   render() {
     let {item, type} =this.props
@@ -18,25 +20,10 @@ export default class OrderItem extends Component{
             （{item.state}）
           </p>
           {
-            item.state==2 ? 
+            item.state==4 ? 
               <Link to={'/me/order/'+item.id+'?type='+type} className="zhui">订单追踪</Link>
             :
-            item.state==3?
-            <a className="zhui zhifu">已完成</a>
-            :
-            item.state==4?
-            <a className="zhui zhifu">待确认</a>
-            :
-            item.state==5?
-            <a className="zhui zhifu">待评价</a>
-            :
-            item.state==6?
-            <a className="zhui zhifu">退货中</a>
-            :
-            item.state==7?
-            <a className="zhui zhifu">已退货</a>
-            :
-            <a className="zhui zhifu">待支付</a>
+              <a className="zhui zhifu">{STATE[item.state]}</a>
           }
         </div>
         <ul className="goods">
@@ -57,19 +44,22 @@ export default class OrderItem extends Component{
           </li>
         </ul>
         {
-          item.state==3?
+          item.state==13?
           <p className="op"><Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn">查看评价</Link></p>
           :
-          item.state==4?
+          item.state==5?
           <p className="op"><Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn">确认收货</Link></p>
           :
-          item.state==5?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&return=1`} className="btn">申请退货</Link><Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn">立即评价</Link></p>
+          [5,6,13].indexOf(+item.state)>-1?
+          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn">申请退货</Link><Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn">立即评价</Link></p>
           :
-          item.state==6?
-          ""
-          :
+          item.state==1?
           <p className="op"><Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn">立即支付</Link></p>
+          :
+          [1,2,3,4].indexOf(+item.state)>-1?
+          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn">取消订单</Link></p>
+          :
+          ""
         }
         
       </li>

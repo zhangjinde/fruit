@@ -181,7 +181,10 @@ export default function order(state = initialState, action){
           id: order.id,
           cityId: order.cityId,
           areaId: order.areaId,
-          number: order.number
+          number: order.number,
+          receiveTime: order.receiveTime,
+          receiverName: order.receiverName,
+          phoneNumber: order.phoneNumber,
         }
       })
     case types.ORDER_CHANGE_STATE:

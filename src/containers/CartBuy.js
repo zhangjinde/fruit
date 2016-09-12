@@ -61,16 +61,9 @@ class CartBuy extends Component {
     this.refs.wait.className="modal show"
     
     actions.submit(cart, (id, val)=>{
-      this.refs.wait.className="modal"
       alert('提交成功')
-      orderActions.orderFinish({
-        orderNo: id,
-        arriveTime: time,
-        name: addr.name,
-        tel: addr.tel,
-      })
       actions.clear();
-      history.replace('/cart/finish')
+      history.replace('/me/order')
     }, ()=>{
       this.refs.wait.className="modal"
       alert('提交失败，请重试')

@@ -31,19 +31,27 @@ class OrderState extends Component {
   }
   pay(){
     const {order, actions, history, params} = this.props
+    const {number, receiveTime, receiverName, phoneNumber} = order.detail
+    
     if(this.state.disable)return;
     
     this.setState({
       disable: true
     })
 
-    fetch(`${URL}/orderOn/pay3?number=${order.detail.number}`)
+    fetch(`${URL}/orderOn/pay3?number=${number}`)
     .then(response => response.json())
     .then(option=>{
       setTimeout(()=>{
         weipay(option, ()=>{
           actions.orderChangeState(order.detail.id || params.id, 4)
-          history.go(-1)
+          actions.orderFinish({
+            orderNo: number,
+            arriveTime: receiveTime,
+            name: receiverName,
+            tel: phoneNumber,
+          })
+          history.replace('/cart/finish')
         }, ()=>{
           this.setState({
             disable: false
@@ -85,25 +93,24 @@ class OrderState extends Component {
   }
   render() {
     const ord = this.props.order.detail
-    const {topay,cmt,confirm} = this.props.location.query
+    const {topay,cmt,confirm,cancel,tui} = this.props.location.query
     const {me, cmtActions} = this.props
-    const isr = this.props.location.query.return
     const {disable} = this.state
     return (
       <div className="ord-sta">
         <NavBack history={history} white={true}>
-          <span>{topay? "支付":confirm?"确认收货":cmt?"评论":isr?"退货管理":"订单追踪"}</span>
+          <span>{topay? "支付":confirm?"确认收货":cmt?"评论":tui?"退货管理":cancel?"取消订单":"订单追踪"}</span>
         </NavBack>
         <div className="body">
           {
-            topay || cmt || confirm || isr?
+            topay || cmt || confirm || tui || cancel?
             ""
             :
             <BlockTime time={ord.arriveTime} state={ord.state}/> 
           }           
           <BlockGoods submit={this.submit.bind(this)}  goods={ord.goods || []} cmtActions={cmtActions} me={me} showcmt={cmt}/>
           {
-            topay || cmt || confirm || isr?
+            topay || cmt || confirm || tui || cancel?
             ""
             :
             <BlockProcess history={ord.history}/>  
@@ -123,8 +130,11 @@ class OrderState extends Component {
             confirm?
             <a onClick={this.confirm.bind(this)}>确认收货</a>
             :
-            isr?
+            tui?
             <a onClick={this.tui.bind(this)}>申请退货</a>
+            :
+            cancel?
+            <a onClick={this.tui.bind(this)}>取消订单</a>
             :
             <a onClick={this.props.history.go.bind(this,-1)}>好的我知道了</a>
           }

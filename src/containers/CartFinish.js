@@ -36,7 +36,7 @@ class CartFinish extends Component {
         <p className="img-txt">送货员正全力奔向你啦~</p>
         <p className="detail">
           我们将
-          <span className="color">{finish.arriveTime<0? '立即': '在' + timeOp.getDay(finish.arriveTime)+" "+timeOp.getText(finish.arriveTime)}</span>
+          <span className="color">{finish.arriveTime}</span>
           将产品送达
           <span className="color">{finish.name}</span>的手中，请保持电话
           <span className="color">{finish.tel}</span>畅通
