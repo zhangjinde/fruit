@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function (){
+    var guaguale = new GuaGuaLe("front", "back");
+    guaguale.init({msg: "￥5000000.00"});
+    
+    $('#start').click(function(){
+      guaguale.start();
+    })
+  });
+  </script>
+  <style type="text/css">
+    .container{
+      position: relative;
+      width: 400px;
+      height: 160px;
+      margin: 100px auto 0;
+    }
+    #front, #back{
+      position: absolute;
+      width: 200px;
+      left: 50%;
+      top: 100%;
+      margin-left: -130px;
+      height: 80px;
+      border-radius: 5px;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <button id="start">start</button>
+  <canvas id="back" width="200" height="80"></canvas>
+  <canvas id="front" width="200" height="80"></canvas>
+</div>
+
+<script>
+function Canvas2D($canvas){
+  this.$canvas = $canvas;
+  this.context = $canvas[0].getContext("2d");
+  this.width = $canvas[0].width;
+  this.height = $canvas[0].height;
+  this.pageOffset = $canvas.offset();
+  
+  this.init();
+}
+Canvas2D.prototype = {
+  init: function(){
+    this.context.font = "24px Verdana, Geneva, sans-serif";
+    this.context.textBaseline = "top";
+    
+    var _this = this;
+    $(window).resize(function (){
+      _this.pageOffset = _this.$canvas.offset();
+    });
+  },
+  drawRect: function (start, end, isFill){
+    var w = end.x - start.x , h = end.y - start.y;
+    if (isFill){
+      this.context.fillRect(start.x, start.y, w, h);
+    }else{
+      this.context.strokeRect(start.x, start.y, w, h);
+    }
+  },
+  caculateTextCenterPos: function (text){
+    var metrics = this.context.measureText(text);
+    var textWidth = metrics.width;
+    var textHeight = parseInt(this.context.font);
+
+    return {
+      x: this.width / 2 - textWidth / 2,
+      y: this.height / 2 - textHeight / 2
+    };
+  },
+  getWidth: function (){
+    return this.width;
+  },
+  getHeight: function (){
+    return this.height;
+  },
+  resetOffset: function (){
+    this.pageOffset = this.$canvas.offset();
+  },
+  getCanvasPoint: function (pageX, pageY){
+    return{
+      x: pageX - this.pageOffset.left,
+      y: pageY - this.pageOffset.top
+    }
+  },
+  clearRect: function (start, all){
+    if(all){
+      this.context.clearRect(start.x, start.y, start.width, start.height);
+    }else{
+      this.context.clearRect(start.x, start.y, 10, 10);
+    }
+    return this;
+  },
+  drawTextInCenter: function (text, fill){
+    var point = this.caculateTextCenterPos(text);
+    if (fill){
+      this.context.fillText(text, point.x, point.y);
+    }else{
+      this.context.strokeText(text, point.x, point.y);
+    }
+  },
+  penWidth: function (newWidth){
+    if (arguments.length){
+      context.lineWidth = newWidth;
+      return this;
+    }
+    return context.lineWidth;
+  },
+  penColor: function (newColor){
+    if (arguments.length){
+      this.context.strokeStyle = newColor;
+      this.context.fillStyle = newColor;
+      return this;
+    }
+    return this.context.strokeStyle;
+  },
+  fontSize: function (fontSize){
+    if (arguments.length){
+      this.context.font = fontSize + "px Verdana, Geneva, sans-serif";
+      return this;
+    }
+    return this.context.fontSize;
+  }
+}
+</script>
+<script>
+
+function GuaGuaLe(idFront, idBack){
+  this.$eleBack = $("#" + idBack);
+  this.$eleFront = $("#" + idFront);
+  this.frontCanvas = new Canvas2D(this.$eleFront);
+  this.backCanvas = new Canvas2D(this.$eleBack);
+
+  this.isMoving = false;
+  this.isFinished = false;
+  this.flags = new Array(160);
+  this.clearNum = 0;
+}
+
+GuaGuaLe.prototype = {
+  options: {
+    frontFillColor: "silver",
+    backFillColor: "gold",
+    backFontColor: "red",
+    backFontSize: 24,
+    msg: "213213"  
+  },
+  init: function (options)
+  {
+    $.extend(this.options, options);
+  },
+  start: function(){
+    var attr = this.options;
+    
+    this.backCanvas.penColor(attr.backFillColor);
+    this.backCanvas.fontSize(attr.backFontSize);
+    this.backCanvas.drawRect({x: 0, y: 0}, {x: this.backCanvas.getWidth(), y: this.backCanvas.getHeight()}, true);    
+    this.backCanvas.penColor(attr.backFontColor);
+    this.backCanvas.drawTextInCenter(attr.msg, true);
+    this.frontCanvas.penColor(attr.frontFillColor);  
+    this.frontCanvas.drawRect({x: 0, y: 0}, {x: this.frontCanvas.getWidth(), y: this.frontCanvas.getHeight()}, true);
+    
+    this.isFinished = false;
+    this.flags = new Array(160);   
+    this.clearNum = 0;
+    this.bindEvt();
+  },
+  bindEvt: function(){
+    var _this = this;
+
+    this.$eleFront
+    .mousedown(function (event){
+      _this.mouseDown(event);
+    }).mousemove(function (event){
+      _this.mouseMove(event);
+    })
+    .mouseup(function (event){
+      _this.mouseUp(event);
+    });
+    
+    var elem = this.$eleFront[0]
+    elem.addEventListener('touchstart', this.mouseDown.bind(this), false);
+    elem.addEventListener('touchmove', this.mouseMove.bind(this), false);
+    elem.addEventListener('touchend', this.mouseUp.bind(this), false);
+  },
+  unbindEvt:function(){
+    this.$eleFront.unbind();
+  },
+  mouseDown: function (e)
+  {
+    this.isMoving = true;
+    this.startPoint = this.frontCanvas.getCanvasPoint(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
+    
+    return false;
+  },
+  mouseMove: function (e)
+  {
+    if (!this.isMoving || this.isFinished)return;
+    var p = this.frontCanvas.getCanvasPoint(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
+    this.frontCanvas.clearRect(p);
+    this.makeFlag(p);
+    
+    return false;
+  },
+  mouseUp: function (e)
+  {
+    this.isMoving = false;
+    
+    return false;
+  },
+  //划过标记
+  makeFlag: function(p){
+    var x = (p.x/this.backCanvas.getWidth()*20)|0,
+        y = (p.y/this.backCanvas.getHeight()*8)|0;
+    x == 20 && x--;
+    y == 20 && y--;
+    
+    var idx = y*20+x
+    if(!this.flags[idx]){
+      this.flags[idx] = true;
+      this.clearNum++;
+    }
+    if(this.checkFinish()){
+      this.finish();
+    }
+  },
+  //判断是否刮开足够空间
+  checkFinish: function(){
+    return (this.clearNum / this.flags.length) > 0.6
+  },
+  finish: function(){
+    this.isFinished=true;
+    this.frontCanvas.clearRect({
+      x:0,
+      y:0,
+      width:this.frontCanvas.getWidth(),
+      height:this.frontCanvas.getHeight()
+    },true);
+    this.unbindEvt();
+    alert('OK')
+  }
+};
+
+</script>
+</body>
+</html>
