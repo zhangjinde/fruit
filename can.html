@@ -3,6 +3,8 @@
 <head>
   <title></title>
   <meta charset="utf-8">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="full-screen" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
@@ -202,7 +204,7 @@ GuaGuaLe.prototype = {
   {
     this.isMoving = true;
     this.startPoint = this.frontCanvas.getCanvasPoint(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
-    
+    e.preventDefault();
     return false;
   },
   mouseMove: function (e)
@@ -211,13 +213,13 @@ GuaGuaLe.prototype = {
     var p = this.frontCanvas.getCanvasPoint(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
     this.frontCanvas.clearRect(p);
     this.makeFlag(p);
-    
+    e.preventDefault();
     return false;
   },
   mouseUp: function (e)
   {
     this.isMoving = false;
-    
+    e.preventDefault();
     return false;
   },
   //划过标记
@@ -238,7 +240,7 @@ GuaGuaLe.prototype = {
   },
   //判断是否刮开足够空间
   checkFinish: function(){
-    return (this.clearNum / this.flags.length) > 0.6
+    return (this.clearNum / this.flags.length) > 0.5
   },
   finish: function(){
     this.isFinished=true;
