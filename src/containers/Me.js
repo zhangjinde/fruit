@@ -22,9 +22,9 @@ class Me extends Component {
         <NavBack history={history}></NavBack>
         <Head name={name} head={head} points={points}/>
         <ul>
-          <MeItem desc="我的订单" to="/me/order"/>
-          <MeItem desc="我的优惠券" to="/me/coupon"/>
-          <MeItem desc="我的积分中心" to="/me/points"/>        
+          <MeItem desc="我的订单" to="/me/order" icon="order"/>
+          <MeItem desc="我的优惠券" to="/me/coupon" icon="coupon"/>
+          <MeItem desc="我的积分中心" to="/me/points" icon="jifen2"/>        
         </ul>
       </div>
     )

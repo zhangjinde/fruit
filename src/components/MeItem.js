@@ -7,9 +7,9 @@ export default class MeItem extends Component{
     return (
       <li>
         <Link to={to}>
-          <span className="left"><i className={"icon "+icon}></i></span>
+          <span className="left"><i className={"iconfont icon-"+icon}></i></span>
           {desc}
-          <span className="right"><i className="fa fa-angle-right"></i></span>
+          <span className="right"><i className="iconfont icon-jiantou"></i></span>
         </Link>
       </li>
     )

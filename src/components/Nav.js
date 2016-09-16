@@ -16,16 +16,18 @@ export default class Nav extends Component{
     let {type,city,qu} = this.props;
     return (
       <nav className="blue">
-        <a onClick={this.changeCity.bind(this)} className="item city">
-          <p>{city}</p>
-          <p>{qu}</p>
+        <a onClick={this.changeCity.bind(this)} className="city">
+          <p><span>{city}</span></p>
+          <p><span>{qu}</span></p>
         </a>
-        <Link to="" className={type==1 ? "item active":"item"} onClick={this.changeType.bind(this,1)}>水果</Link>
-        <Link to="" className={type==2 ? "item active":"item"} onClick={this.changeType.bind(this,2)}>食材</Link>
-        <Link to="" className={type==3 ? "item active":"item"} onClick={this.changeType.bind(this,3)}>零食</Link>
-        <Link to="" className={type==4 ? "item active":"item"} onClick={this.changeType.bind(this,4)}>省钱</Link>
-        <Link to="/me" className="item me">
-          <i className="fa fa-user"></i>
+        <div className="items">
+          <Link to="" className={type==1 ? "item active":"item"} onClick={this.changeType.bind(this,1)}>水果</Link>
+          <Link to="" className={type==2 ? "item active":"item"} onClick={this.changeType.bind(this,2)}>食材</Link>
+          <Link to="" className={type==3 ? "item active":"item"} onClick={this.changeType.bind(this,3)}>零食</Link>
+          <Link to="" className={type==4 ? "item active":"item"} onClick={this.changeType.bind(this,4)}>省钱</Link>
+        </div>
+        <Link to="/me" className="me">
+          <i className="iconfont icon-user"></i>
         </Link>
       </nav>
     )

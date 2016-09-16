@@ -24,11 +24,11 @@ class Coupon extends Component {
       actions.getCoupon(user_id, t, NowCity||0);
     }
   }
-  choose(id, name, restrict){
+  choose(id, name, restrict, amount){
     const {location, cartActions, type, cartTotal} = this.props;
     if(location.query.choose && type==1){
       if(cartTotal >= restrict){
-        cartActions.chooseCoupon(id, name, restrict);
+        cartActions.chooseCoupon(id, name, restrict, amount);
         history.go(-1)      
       }else{
         alert('消费不满额度')
@@ -45,7 +45,7 @@ class Coupon extends Component {
 
     return (
       <div className="coupon">
-        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
+        <NavBack transparent="1" refresh={this.refresh.bind(this)} history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未使用优惠券</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已过期优惠券</a>
         </NavBack>

@@ -17,7 +17,7 @@ class Detial extends Component {
     const {detailActions, params, item, location} = this.props
     if(item.id!=params.id){
       const q = location.query
-      this.props.detailActions.getDetail(params.id, q.cityId, q.areaId)
+      this.props.detailActions.getDetail(params.id, q.cityId || cityid, q.areaId || areaid)
     }
   }
   showCmt(){
@@ -27,12 +27,16 @@ class Detial extends Component {
     if(!item.comments.length){
       detailActions.getCmt(item.id, item.cityId, item.areaId);
     }
+    document.body.style.overflow='hidden';
+    document.body.style.position='fixed';
   }
   hideCmt(e){
     let cmt = this.refs.cmt
     if(e.target.className.indexOf('comment')){
       cmt.className='modal'    
     }
+    document.body.style.overflow='auto'
+    document.body.style.position='static';
   }
   like(){
     let {detailActions,item} = this.props
@@ -67,7 +71,7 @@ class Detial extends Component {
       return g.id===item.id
     })
     return (
-      <div className="detial">
+      <div className="detial" ref="detail">
         <NavBack  history={history}/>
         <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
         <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)} status={item.status}/>

@@ -27,13 +27,21 @@ export default class CartBottom extends Component{
         }
         </ul>
         <div className="foot">
-          总计共{cart.count}份商品
-          <p className="right">
-            总价：
-            <span className="num">
-            ￥{cart.total.toFixed(2)}
-            </span>
-          </p>
+          <p className="left">总计共{cart.count}份商品</p>
+          <div className="right">
+            <p className="p">
+              <span className="d bl">优惠券：</span>
+              <span className="you bl">
+              - ￥{(+cart.couponAmount).toFixed(2)}
+              </span>            
+            </p>
+            <p className="p">
+              <span className="d bl">总价：</span>
+              <span className="num bl">
+              ￥{(cart.total-cart.couponAmount).toFixed(2)}
+              </span>            
+            </p>
+          </div>
         </div>
       </div>
     )

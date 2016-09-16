@@ -5,16 +5,18 @@ export default class CartBottom extends Component{
     this.props.history.go(-1)
   }
   render() {
-    let {submit} = this.props
+    let {submit, cart} = this.props
     return (
       <div className="fix-bottom">
         <a className="back" onClick={this.back.bind(this)}>
-          <span className="icon"><i className="fa fa-angle-left fa-2x"></i></span>
-          返回购物          
+          需要支付：
+          <span className="yang">￥</span>
+          <span className="num">{cart.total-cart.couponAmount}</span>
+          <span className="yuan">元</span>   
         </a>
         <a className="btn-buy" onClick={submit}>
           提交订单
-          <span className="icon"><i className="fa fa-angle-right fa-2x"></i></span>
+          <span className="icon"><i className="fa fa-angle-right"></i></span>
         </a>
       </div>
     )

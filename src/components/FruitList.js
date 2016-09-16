@@ -37,6 +37,9 @@ export default class FruitList extends Component{
         :
           <Empty />
         }
+        <li className="last">
+          <img src="/img/last.jpg"/>
+        </li>
         <li className="mv-cart" ref="cart">
           <i className="fa fa-cart-arrow-down"></i>
         </li>

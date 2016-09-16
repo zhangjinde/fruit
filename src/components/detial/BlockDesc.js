@@ -12,9 +12,9 @@ export default class BlockDesc extends Component{
         </p>
         <p className="name">
           {item.name}
-          <span className="icon" onClick={this.props.like}>
-            <i className={item.like?"fa fa-heart":"fa fa-heart-o"}></i>
-          </span>
+          <a className="icon" onClick={this.props.like}>
+            <i className={item.like?"iconfont icon-like":"iconfont icon-like1"}></i>
+          </a>
         </p>
         <div className="other clearfix">
           <div>
@@ -22,11 +22,11 @@ export default class BlockDesc extends Component{
             <p className="des">{item.guige}</p>
           </div>
           <div>
-            <p className="tit">原产地</p>
+            <p className="tit">产地</p>
             <p className="des">{item.chandi}</p>
           </div>
           <div>
-            <p className="tit">月销量</p>
+            <p className="tit">销量</p>
             <p className="des">{item.sales}份</p>
           </div>
           <div>

@@ -12,10 +12,8 @@ export default class BlockTotal extends Component{
           共{ord.goods.length}份商品
         </div>
         <div className="right">
-          <div className="left">包装袋</div>
-          <div className="right">￥{}元</div>
-          <div className="left">运费</div>
-          <div className="right">￥{}元</div>
+          <div className="left">使用优惠券</div>
+          <div className="right">- {}元</div>
           <div className="left">总价</div>
           <div className="right">￥{}元</div> 
           <p className="clear"></p>

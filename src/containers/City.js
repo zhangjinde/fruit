@@ -25,14 +25,14 @@ class City extends Component {
     let city = cities.filter(c=>c.id===choCity)[0]
     return (
       <div className="city">
-        <NavBack history={history}>
+        <NavBack history={history} trans1="1">
           <div className="title">
             <p className="ct">{city && city.name || cityname}</p>
             <p className="des">{city && city.desc || areaname}</p>
           </div>
           <a className="choose" onClick={this.change.bind(this)}>
             切换城市
-            <i className={ type===2 ? "fa fa-angle-up":"fa fa-angle-up rotate" }></i>
+            <i className={ type===2 ? "iconfont icon-jiantou-copy-copy-copy":"iconfont icon-jiantou-copy-copy-copy rotate" }></i>
           </a>
         </NavBack>
         {

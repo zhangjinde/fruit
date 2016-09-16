@@ -67,7 +67,7 @@ class Points extends Component {
     const {loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse} = this.props
     return (
       <div className="points">
-        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
+        <NavBack transparent="1" refresh={this.refresh.bind(this)} history={history} white={true}>
          <span className="canuse">可用积分：{points}</span>
         </NavBack>
         <div className="content">

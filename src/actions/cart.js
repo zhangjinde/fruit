@@ -12,13 +12,14 @@ export function edit(){
   }
 }
 
-export function chooseCoupon(id,name,restrict){
+export function chooseCoupon(id,name,restrict, amount){
   return {
     type:types.CART_CHANGE_COUPON,
     val:{
       id,
       name,
-      restrict
+      restrict,
+      amount
     }
   }
 }

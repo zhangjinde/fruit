@@ -9,6 +9,7 @@ const initialState = {
   couponId:0,
   couponName: "",
   couponRestrict:0,
+  couponAmount:0,
   goods:[]
 }
 
@@ -32,7 +33,8 @@ function _add(state,item,cnt){
     assign(state, {
       couponId: 0,
       couponName: "",
-      couponRestrict:0    
+      couponRestrict:0,
+      couponAmount:0
     })
   }
   return assign({},state,{
@@ -46,13 +48,15 @@ export default function cart(state = assign({},initialState), action){
       return assign({},state,{
         couponId:action.val.id,
         couponName: action.val.name,
-        couponRestrict: action.val.restrict
+        couponRestrict: action.val.restrict,
+        couponAmount: action.val.amount
       })
     case types.CART_CLEAR_COUPON:
       return assign({},state,{
         couponId: 0,
         couponName: "",
-        couponRestrict:0
+        couponRestrict:0,
+        couponAmount:0
       })
     case types.CART_UPDPOS:
       return assign({},state,{

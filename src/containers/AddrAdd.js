@@ -76,7 +76,7 @@ class AddrAdd extends Component {
     qu = qu ? qu.name: areaname;
     return (
       <div className="addr">
-        <NavBack history={history}>
+        <NavBack history={history} white="1" transparent="1">
           <span className="tit">
             {
               this.update?
@@ -99,7 +99,7 @@ class AddrAdd extends Component {
             <a><i className="fa fa-angle-right right"></i></a>
           </CartBlock>
           <CartBlock til1="具体" til2="地址">
-            <input placeholder="请输入详细地址" ref="addr" value={this.state.addr} onChange={this.change.bind(this,2)}/>
+            <input placeholder="请输入楼栋门牌号" ref="addr" value={this.state.addr} onChange={this.change.bind(this,2)}/>
           </CartBlock>
           <CartBlock til1="设为" til2="默认">
             <span className="icon" onClick={this.setDefault.bind(this)}>

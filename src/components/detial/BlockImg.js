@@ -4,7 +4,7 @@ export default class BlockImg extends Component{
   render() {
     let {img} = this.props
     return (
-      <div className="block">
+      <div className="block img">
         <img src={img} />
       </div>
     )

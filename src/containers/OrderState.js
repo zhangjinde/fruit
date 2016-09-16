@@ -98,7 +98,7 @@ class OrderState extends Component {
     const {disable} = this.state
     return (
       <div className="ord-sta">
-        <NavBack history={history} white={true}>
+        <NavBack history={history} white={true} transparent="1">
           <span>{topay? "支付":confirm?"确认收货":cmt?"评论":tui?"退货管理":cancel?"取消订单":"订单追踪"}</span>
         </NavBack>
         <div className="body">

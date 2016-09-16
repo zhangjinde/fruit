@@ -8,11 +8,19 @@ export default class Cart extends Component{
     }
   }
   render() {
-    let { total } = this.props
+    let { total, count } = this.props
     return (
-      <div className="cart-bottom" onClick={this.go.bind(this)}>
-        <a className="icon"><i className="fa fa-shopping-cart fa-2x"></i></a>
-        <a className="total">￥{total.toFixed(2)}</a>
+      <div className="cart-bottom">
+        <div className="inner" onClick={this.go.bind(this)}>
+          {
+            count?
+            <span className="num">{count}</span>
+            :
+            ""
+          }
+          <a className="icon"><i className="iconfont icon-gouwuche"></i></a>
+          <a className="total">{total>0?"去结算 ￥":"￥"}{total.toFixed(2)}</a>        
+        </div>
       </div>
     )
   }

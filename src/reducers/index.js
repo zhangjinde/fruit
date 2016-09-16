@@ -61,6 +61,7 @@ function genPro(list){
       id:item.id,
       big: item.showWay === 's' ? 0:1,  
       img: `${IMG_URL}/${item.showWay === 's' ? item.coverSUrl : item.coverBUrl}`,
+      headImg: IMG_URL+item.coverSUrl,
       name: item.productName,
       price: item.price,
       type: item.standard,

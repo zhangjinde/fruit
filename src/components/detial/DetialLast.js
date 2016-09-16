@@ -6,7 +6,7 @@ export default class DetialLast extends Component{
     return (
       <div className="block last">
         <div className="up">
-          <p className="price">
+          <p className="price last">
             <span className="now">￥<span className="num">{item.price}</span></span>
             <span className="old">市场价￥{item.old}元</span>
           </p>

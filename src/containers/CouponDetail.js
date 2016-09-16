@@ -17,7 +17,7 @@ class CouponDetail extends Component {
     let { history, detail } = this.props
     return (
       <div className="coupon-det">
-        <NavBack history={history} white={true}>
+        <NavBack history={history} white={true} transparent="1">
           <span>代金券详情</span>
         </NavBack>
         <div className="img block">

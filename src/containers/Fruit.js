@@ -8,6 +8,7 @@ import * as fruitActions from '../actions/'
 
 import Nav from '../components/Nav'
 import Cart from '../components/Cart'
+import Rocket from '../components/Rocket'
 import FruitList from '../components/FruitList'
 
 import {move} from '../utils/animate'
@@ -54,6 +55,7 @@ class Fruit extends Component {
     list = {1:list,2:list2,3:list3,4:list4}[type];
     return (
       <div>
+        <Rocket/>
         <Nav type={type} history={history} city={city} qu={qu} changeType={this.changeType.bind(this)}/>
         <FruitList list={list} add={this.add.bind(this)} 
           cartPos={cartPos} goods={goods} actions={actions}

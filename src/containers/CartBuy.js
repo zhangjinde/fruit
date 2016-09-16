@@ -8,6 +8,7 @@ import * as addrActions from '../actions/address'
 import * as orderActions from '../actions/order'
 import * as cartActions from '../actions/cart'
 
+import NavBack from '../components/NavBack'
 import CartBottom from '../components/CartBottom'
 import CartDetail from '../components/CartDetail'
 import CartBlock from '../components/CartBlock'
@@ -92,14 +93,16 @@ class CartBuy extends Component {
       dizhi = addrs.filter(add=>add.id===moren)[0]
     return (
       <div className='cart-buy'>
+        <NavBack transparent="1" history={history} white="1">
+          <span className="tit">返回购物</span>
+        </NavBack>
         <CartDetail cart={cart} edit={this.edit.bind(this)} add={this.add.bind(this)}/>
-        <CartBlock til1="送货" til2="方式">
+        <CartBlock til1="送货" til2="方式" type="1">
           <a>
             送货上门
-            <span className="icon"><i className="fa fa-check-circle"></i></span>
           </a>
         </CartBlock>
-        <CartBlock til1="收货" til2="信息">
+        <CartBlock til1="收货" til2="信息" type="2">
           <Link to="/addr" className="two">
             {
               dizhi?
@@ -115,39 +118,33 @@ class CartBuy extends Component {
               :
               <div>请选择收货地址</div>
             }
-            <span className="icon"><i className="fa fa-angle-right"></i></span>
           </Link>        
         </CartBlock>
-        <CartBlock til1="付款" til2="方式">
+        <CartBlock til1="付款" til2="方式" type="1">
           <a>
             <img src="/img/weixin.jpg" />
             微信安全支付
-             <span className="icon"><i className="fa fa-check-circle"></i></span>
           </a>
         </CartBlock>
-        <CartBlock til1="优惠" til2="券">
+        <CartBlock til1="用代" til2="金券" type="2">
         {
           cart.couponId?
           <div className="dizhi">
             <div className='choose' onClick={this.chooseCoup.bind(this)}>
-              使用优惠券：
-              <span className='you'>{cart.couponName}</span>
-              <span className="icon">
-                <i id="clear" className="fa fa-close"></i>
-              </span>
+              <span className="cancel" id="cclose">取消使用</span>              
+              <span className='you right'>-￥{(+cart.couponAmount).toFixed(2)}</span>
             </div>
           </div>
           :
-          <div className="dizhi choose"><Link to="/me/coupon?choose=1">请选择优惠券</Link></div>
+          <div className="dizhi choose"><Link to="/me/coupon?choose=1">请选择代金券</Link></div>
         }
         </CartBlock>        
-        <CartBlock til1="收货" til2="时间">
+        <CartBlock til1="收货" til2="时间" type="2">
           <a onClick={this.showTime.bind(this)}>
             {!time? '请选择收货时间': time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time)}
-            <span className="icon right"><i className="fa fa-angle-right"></i></span>
           </a>
         </CartBlock>
-        <CartBottom history={history} submit={this.submit.bind(this)}/>
+        <CartBottom cart={cart} history={history} submit={this.submit.bind(this)}/>
         <div className="modal" ref="modal">
           <Time chTime={this.chTime.bind(this)}/>
         </div>

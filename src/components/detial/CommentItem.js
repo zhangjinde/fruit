@@ -18,8 +18,8 @@ export default class CommentItem extends Component{
             <p className='date'>{item.date}</p>
           </div>
           <a className={item.liked? "icon color":"icon"} onClick={this.click.bind(this)}>
-            <i className={item.liked ? "fa fa-heart": "fa fa-heart-o"}></i>
-            {item.likes}
+            <i className={item.liked ? "iconfont icon-like":"iconfont icon-like1"}></i>
+            {item.likes ? item.likes : '赞'}
           </a>
         </div>
         <div className="content">{item.content}</div>

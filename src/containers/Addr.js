@@ -38,7 +38,7 @@ class Addr extends Component {
     let {history,editing,addrs,moren} = this.props
     return (
       <div className="addr">
-        <NavBack history={history}>
+        <NavBack history={history} white="1" transparent="1">
           <span className="tit">收货地址</span>
           <a className="edit right" onClick={this.edit.bind(this)}>{editing?"完成":"管理"}</a>
         </NavBack>

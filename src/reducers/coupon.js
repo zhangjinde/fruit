@@ -38,7 +38,8 @@ function genList(list){
       qianti: `满${l.restrict}元`,
       guize:`消费满${l.restrict}元 抵扣${l.amount}元`,
       cityId: l.cityId,
-      restrict: l.restrict
+      restrict: l.restrict,
+      amount: l.amount
     }
   })
 }

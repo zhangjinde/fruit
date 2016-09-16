@@ -39,7 +39,7 @@ class Order extends Component {
     let list = type===1?list1:list2
     return (
       <div>
-        <NavBack refresh={this.refresh.bind(this)} history={history} white={true}>
+        <NavBack transparent="1" refresh={this.refresh.bind(this)} history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未收货订单</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已收货订单</a>
         </NavBack>

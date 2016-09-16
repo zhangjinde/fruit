@@ -32,28 +32,45 @@ export default class ListItem extends Component{
                   ""
             }
           </p>
+          <p className="desc">水果描述</p>
+          {
+          count?
           <p>
-            <span className="price">￥{item.price}</span>
+            <span className="price">
+             <span className="cnt">x</span>
+            {count}</span>
+            <span className="cnt">小计 ￥{item.price*count}</span>
+          </p>
+          :
+          <p>
+            <span className="price">
+              <span className="y">￥</span>
+              {item.price}
+            </span>
             <span className="cnt">/{item.type}</span>
             <span className="del">超市￥{item.old}</span>
           </p>
-        </div>
-        {
-          item.status != '0' ?
-            count===0?
-              <a className="buy" href="javascript:;" onClick={this.add.bind(this,false)}>买</a>
+          }
+          {
+            item.status != '0' ?
+              count===0?
+                <a className="buy ok" href="javascript:;" onClick={this.add.bind(this,false)}>买</a>
+              :
+                <p>
+                  <a href="javascript:;" className="buy ok m" onClick={this.del.bind(this)}>
+                    <i className="iconfont icon-minus"></i>
+                  </a>
+                  <a href="javascript:;" className="buy ok" onClick={this.add.bind(this,true)}>
+                    <i className="iconfont icon-ricon-add"></i>
+                  </a>
+                </p>
             :
-              <p className="upd">
-                <a href="javascript:;" className="del" onClick={this.del.bind(this)}>-</a>
-                <a href="javascript:;" className="add" onClick={this.add.bind(this,true)}>+</a>
-              </p>
-          :
-            <a className="buy not" href="javascript:;">
-              <span>暂时</span>
-              <span>缺货</span>
-            </a>
-        }
-            
+              <a className="buy not" href="javascript:;">
+                <span>暂时</span>
+                <span>缺货</span>
+              </a>
+          }          
+        </div>
       </li>
     )
   }
