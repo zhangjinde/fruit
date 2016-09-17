@@ -36,7 +36,7 @@ nav .city p span{font-size:0.9em;}
 nav .city p:last-child span{padding-bottom: 2px;border-bottom: 2px solid #6DBFD5;}
 nav .city p:first-child span{line-height:3em;}
 nav .me{width:2em;color:#58B1C5;text-align:center;display: inline-block;}
-nav .me i{font-size:1.6em}
+nav .me i{font-size:1.4em}
 nav .items{display:flex;display:-webkit-box;flex:1;-webkit-box-flex:1;-webkit-box-pack: center;justify-content:center; -webkit-box-align: center;}
 
 /*nav back*/
@@ -105,10 +105,13 @@ ul.list li.small .txt{margin-top:0.4em;flex:1;-webkit-flex:1;-webkit-box-flex: 1
 ul.list .loading,ul.list .error{position:relative;top:2em;}
 /*bottom*/
 .fix-bottom{position:fixed;bottom:0;height:3em;width:100%;-webkit-user-select:none;}
-.rocket{position:fixed;z-index:10000;width:3em;height:3em;line-height: 3em;color:#fff;background:rgba(0,0,0,0.3);right:1em;bottom:1em;border-radius:1.5em;text-align:center;}
+.rocket{position:fixed;z-index:10000;width:3em;height:3em;line-height: 3em;
+color:#fff;background:rgba(0,0,0,0.3);right:1em;bottom:1em;border-radius:1.5em;text-align:center;
+transition:all 0.3s;-webkit-transition:all 0.3s;opacity:1;}
+.rocket.hide{bottom:-3em;opacity:0;}
 /*cart*/
 .cart-bottom{position:fixed;bottom:1em;left:0;right:0;margin:auto;z-index:9999;height:3em;text-align:center;line-height:3em;-webkit-user-select:none;}
-.cart-bottom  .inner{height:3em;position:relative;border: 2px solid #fff;display:inline-block;background:#6DBFD5;border-radius:1.5em;cursor:pointer;}
+.cart-bottom  .inner{ -webkit-tap-highlight-color:rgba(0,0,0,0);outline:none;height:3em;position:relative;border: 2px solid #fff;display:inline-block;background:#6DBFD5;border-radius:1.5em;cursor:pointer;}
 .cart-bottom  .inner .num{display: inline-block;
     background: #f00;
     height: 1em;
@@ -126,13 +129,16 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .cart-bottom .total{display:inline-block;vertical-align:top;color:#fff;padding: 0 0.7em 0 0.2em;}
 /*me*/
 .myinfo .profile{margin:0;background:#6DBFD5;padding:3em 0 1em 0;text-align:center;color:#fff;}
-.myinfo .profile .img img{width:4em;height:4em;border-radius:2em;border:2px solid #fff;}
+.myinfo .profile .img img{width:4em;height:4em;border-radius:2em;border:2px solid #fff;border: 2px solid #fff;}
 .myinfo  ul{background:#fff;}
 .myinfo li{border-bottom:1px solid #eee;padding:0.8em}
 .myinfo li a{color:#000;display:inline-block;width:100%;}
 .myinfo li .left{display: inline-block;width:1.8em;}
-.myinfo li .icon{color:#aaa;}
-
+.iconfont.icon-jifen2{margin-left:-0.2em;}
+.myinfo .left .iconfont {font-size:120%;color:#6DBFD5;}
+.myinfo .right .iconfont {color:#aaa;}
+.myinfo .fix-bottom{background:#fff;display:flex;display: -webkit-flex;display: -webkit-box;}
+.myinfo .fix-bottom .item{display:block;text-align: center;flex: 1;-webkit-flex: 1;-webkit-box-flex: 1;margin:0.2em 0 ;line-height: 2.6em;border-right:1px solid #ddd;color:#6DBFD5}
 /*cart*/
 
 .modal{position:fixed;top:0;left:0;bottom:0;right:0;background:rgba(0,0,0,0.7);display:none;z-index:1000;}
@@ -152,7 +158,7 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .block.item .r .two div{flex:1;-webkit-flex:1;-webkit-box-flex: 1;}
 .block.item .r .two .name{margin-right:1em;line-height:1.2}
 .block.item .r img{vertical-align:middle;height:2em;}
-.block.item  a.icon{font-size:1.2em;display: block;color:#6DBFD5;width:2em;text-align:center;}
+.block.item  a.icon{font-size:1.2em;display: block;color:#6DBFD5;width:2.7em;text-align:center;}
 .cart-buy{padding-bottom:4em;}
 .cart-buy .detail>.tit{color:#aaa;margin-top:3.5em;padding:0.5em 0 1em 0.5em;}
 .cart-buy .detail>.tit a{float:right;margin-right:0.5em;color:#6DBFD5;border-radius:1em;border:1px solid #6DBFD5;padding:0.2em 0.7em;}
@@ -174,7 +180,7 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .cart-buy .fix-bottom .back .yang{color:#e3b134;}
 .cart-buy .fix-bottom .back .num{color:#e3b134;font-size:150%;margin:0 0.2em;}
 .cart-buy .fix-bottom .back .yuan{color:#aaa;}
-.cart-buy .fix-bottom .btn-buy{position:absolute;right:1em;top:0.3em;line-height:2.4em;padding:0 1em;border-radius:2em;display:inline-block;background:#6DBFD5;color:#fff;cursor:pointer;}
+.cart-buy .fix-bottom .btn-buy{position:absolute;right:1.4em;top:0.3em;line-height:2.4em;padding:0 1em;border-radius:2em;display:inline-block;background:#6DBFD5;color:#fff;cursor:pointer;}
 .cart-buy .fix-bottom .btn-buy .icon{margin-left:0.4em;position:relative;}
 .cart-buy .modal .time{position:absolute;bottom:0;left:0;height:21em;width:100%;color:#6DBFD5;-webkit-user-select:none;}
 .cart-buy .modal .time p{height:3em;line-height:3em;text-align:center;background:#fff;}
@@ -266,9 +272,9 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 /*detial*/
 .detial .fix-bottom{background:#fff;}
 .detial .fix-bottom>p{float:left;width:50%;text-align:center;}
-.detial .fix-bottom a{display:inline-block;margin-top:0.5em;height:3em;padding:0 1em;line-height:3em;border-radius:2em;}
+.detial .fix-bottom a{display:inline-block;margin-top:0.5em;height:2em;padding:0 1em;line-height:2em;border-radius:2em;}
 .detial .fix-bottom .go{border:1px solid #58B1C5;color:#58B1C5;}
-.detial .fix-bottom p:last-child a{padding:0 1em;height:2.4em;line-height:2.4em;margin:0.8em 0.2em;}
+.detial .fix-bottom p:last-child a{padding:0 1em;height:2em;line-height:2em;margin:0.5em 0.2em;}
 .detial .fix-bottom .del{background:#eee;color:#fff;font-weight:bold;}
 .detial .fix-bottom .add{background:#58B1C5;color:#fff;}
 .detial .fix-bottom .num{border:1px solid #58B1C5;color:#58B1C5}
@@ -289,9 +295,9 @@ ul.list .loading,ul.list .error{position:relative;top:2em;}
 .detial .desc .other .des{color:#333;}
 .detial .block.cmt{text-align:center;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
 .detial .block.cmt a{color:#6DBFD5;}
-.detial .block.cmt a i{margin-right:0.5em;}
-.detial .block.cmt>p{float:left;width:50%;padding:1em 0;box-sizing:border-box;-webkit-box-sizing:border-box;border-right:1px solid #eee;}
-.detial .block.cmt>p:last-child{border:none;}
+.detial .block.cmt .icon{font-size:3em;margin-bottom:0.1em;}
+.detial .block.cmt>div{float:left;width:50%;padding:1em 0;box-sizing:border-box;-webkit-box-sizing:border-box;border-right:1px solid #eee;}
+.detial .block.cmt>duv:last-child{border:none;}
 .detial .last {padding:2em 0.5em;}
 .detial .last .up{position:relative;}
 .detial .last .up .youhui a{display:inline-block;padding:0.5em 1em;border:2px solid #E74880;color:#E74880;margin-top:0.5em;}
