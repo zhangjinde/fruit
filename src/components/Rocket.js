@@ -8,9 +8,9 @@ export default class Rocket extends Component{
   }
   render() { 
     return (
-      <div className='rocket' onClick={this.fei}>
+      <a className='rocket hide' onClick={this.fei}>
         <i className="iconfont icon-jiantou-copy-copy-copy"/>
-      </div>
+      </a>
     )
   }
 }

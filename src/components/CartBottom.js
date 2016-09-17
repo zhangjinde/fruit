@@ -16,7 +16,7 @@ export default class CartBottom extends Component{
         </a>
         <a className="btn-buy" onClick={submit}>
           提交订单
-          <span className="icon"><i className="fa fa-angle-right"></i></span>
+          <span className="icon"><i className="iconfont icon-jiantou"></i></span>
         </a>
       </div>
     )

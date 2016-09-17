@@ -26,6 +26,11 @@ class Me extends Component {
           <MeItem desc="我的优惠券" to="/me/coupon" icon="coupon"/>
           <MeItem desc="我的积分中心" to="/me/points" icon="jifen2"/>        
         </ul>
+        <div className="fix-bottom">
+          <a className="item">111</a>
+          <a className="item">222</a>
+          <a className="item">333</a>
+        </div>
       </div>
     )
   }

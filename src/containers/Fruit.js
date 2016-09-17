@@ -19,6 +19,23 @@ class Fruit extends Component {
     if(error || !list.length){
       fruitActions.getList(NowCity, Nowqu)
     }
+    const addFuc = ()=>{
+      document.addEventListener('scroll', (e)=>{
+        const h = document.body.scrollTop;
+        const rocket = ReactDOM.findDOMNode(this.refs.rocket);
+        if(h>300){
+          rocket.className = 'rocket'
+        }else{
+          rocket.className = 'rocket hide'
+        }
+      },false)
+    }
+    setTimeout(()=>{
+      addFuc();
+    },500)
+  }
+  componentWillUnmount(){
+    document.body.onscroll=null;
   }
   add(item,elem,hide,cart){
     this.props.actions.add(item,1)
@@ -55,7 +72,7 @@ class Fruit extends Component {
     list = {1:list,2:list2,3:list3,4:list4}[type];
     return (
       <div>
-        <Rocket/>
+        <Rocket ref='rocket'/>
         <Nav type={type} history={history} city={city} qu={qu} changeType={this.changeType.bind(this)}/>
         <FruitList list={list} add={this.add.bind(this)} 
           cartPos={cartPos} goods={goods} actions={actions}

@@ -4,18 +4,18 @@ export default class BlockCmt extends Component{
   render() {
     return (
       <div className="block cmt clearfix">
-        <p>
+        <div>
           <a onClick={this.props.showCmt}>
-            <i className="iconfont icon-cshy-comment-copy"></i>
-            查看评价
+            <p className="icon"><i className="iconfont icon-cshy-comment-copy"></i></p>
+            <p>查看评价</p>
           </a>
-        </p>
-        <p>
+        </div>
+        <div>
           <a href="tel:17002102408">
-            <i className="iconfont icon-dianhua"></i>
-            电话咨询
+            <p className="icon"><i className="iconfont icon-dianhua"></i></p>
+            <p>电话咨询</p>
           </a>
-        </p>
+        </div>
       </div>
     )
   }
