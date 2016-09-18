@@ -11,6 +11,9 @@ export default class Cart extends Component{
     let { total, count } = this.props
     return (
       <div className="cart-bottom">
+        <div className="moving-cart">
+          <i className="iconfont icon-cart"></i>
+        </div>
         <div className="inner" onClick={this.go.bind(this)}>
           {
             count?

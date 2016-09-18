@@ -1,9 +1,21 @@
 export function move(obj, option , before, cb){
-  requestAnimationFrame =  requestAnimationFrame || webkitRequestAnimationFrame
-  let s = option.start, e = option.end, time = option.time || 500
+  let raf =  window.requestAnimationFrame || window.webkitRequestAnimationFrame
+  let lastTime = 0, currTime;
+  if (!raf) {
+    raf = function(callback, element) {
+      currTime = new Date().getTime();
+      let timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+      let id = window.setTimeout(function() {
+          callback(currTime + timeToCall);
+      }, timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+  }
+  let s = option.start, e = option.end, time = option.time || 700
   let top = s.top, left = s.left
-  let stp_t = (e.top-s.top)/500*16,
-      stp_l = (e.left-s.left)/500*16
+  let stp_t = (e.top-s.top)/time*16,
+      stp_l = (e.left-s.left)/time*16
   before && (before())
   let _mv=function(){
      obj.style.left=left+'px'
@@ -11,7 +23,7 @@ export function move(obj, option , before, cb){
      left+=stp_l
      top+=stp_t
     if(top < e.top){
-      requestAnimationFrame(_mv)
+      raf(_mv)
     }else{
       cb && (cb())
     }

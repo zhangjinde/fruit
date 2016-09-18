@@ -38,10 +38,10 @@ const initialState = {
   error: false,
   cities: [],
   qus: {},
-  NowCity: -1,
-  choCity: -1,
-  Nowqu: -1,
-  type: 2,
+  NowCity: cityid ? cityid : -1,
+  choCity: cityid ? cityid : -1,
+  Nowqu: areaid? areaid : -1,
+  type: 1,
 }
 function setCity(list){
   let cities=[],qus={};

@@ -20,9 +20,9 @@ class Fruit extends Component {
       fruitActions.getList(NowCity, Nowqu)
     }
     const addFuc = ()=>{
+      const rocket = ReactDOM.findDOMNode(this.refs.rocket);
       document.addEventListener('scroll', (e)=>{
         const h = document.body.scrollTop;
-        const rocket = ReactDOM.findDOMNode(this.refs.rocket);
         if(h>300){
           rocket.className = 'rocket'
         }else{
@@ -42,18 +42,36 @@ class Fruit extends Component {
     
     if(hide)
       return ;
-    let bottomCart = ReactDom.findDOMNode(this.refs.cart)
-    let start = elem.getBoundingClientRect(),
-        end   = bottomCart.getBoundingClientRect()
-
+    cart.style.display='block'
+    
+    const bottomCart = ReactDom.findDOMNode(this.refs.cart)
+    const receiveCart = ReactDom.findDOMNode(this.refs.cart).querySelector('.moving-cart')
+    const s = elem.getBoundingClientRect(),
+        e = bottomCart.getBoundingClientRect(),
+        c = cart.getBoundingClientRect();
+        
+    const start = {
+      left: s.left,
+      top: s.top,
+    }
+    const end = {
+      top: e.top-c.height,
+      left: e.width/2-c.width
+    }
+    
     move(cart, {
       start,
       end,
     },function before(){
-      cart.style.display='block'
-      bottomCart.className="cart-bottom move"
+      receiveCart.style.opacity = '1'
+      receiveCart.style['z-index'] = '1'
+      bottomCart.className="cart-bottom moving"
     },function cb(){
       cart.style.display='none'
+      setTimeout(()=>{
+        receiveCart.style.opacity = '0'
+        receiveCart.style['z-index'] = '-1'
+      },500)
       bottomCart.className="cart-bottom"
     })      
   }

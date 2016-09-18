@@ -25,14 +25,14 @@ export default {
     },
     isValid:function(id){
       if(id>5)return true;
-      var d = new Date(toDate(+(new Date), 1)+ " " +({
+      var d = new Date((toDate(+(new Date), 1)+ " " +({
         1: '11:00',
         2: '14:00',
         3: '16:30',
         4: '19:00',
         5: '21:00',
         '-1': '21:00'
-      }[id]))
+      }[id])).replace(/-/g,'/'))
 
       return d>new Date()
     },

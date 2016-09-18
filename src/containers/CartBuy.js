@@ -122,7 +122,7 @@ class CartBuy extends Component {
         </CartBlock>
         <CartBlock til1="付款" til2="方式" type="1">
           <a>
-            <img src="/img/weixin.jpg" />
+            <img src="/img/wei.jpg" />
             微信安全支付
           </a>
         </CartBlock>

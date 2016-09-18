@@ -15,7 +15,7 @@ export default class QuList extends Component{
         qus && qus.length ? 
           qus.map(item=>{
             return (
-              <QuItem item={item} key={item.id} active={item.id===now} choose={this.choose.bind(this)}/>
+              <QuItem item={item} key={item.id} active={item.id==now} choose={this.choose.bind(this)}/>
             )
           })
         :
