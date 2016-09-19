@@ -16,6 +16,7 @@ export function move(obj, option , before, cb){
   let top = s.top, left = s.left
   let stp_t = (e.top-s.top)/time*16,
       stp_l = (e.left-s.left)/time*16
+  if(stp_t<0)return;
   before && (before())
   let _mv=function(){
      obj.style.left=left+'px'
