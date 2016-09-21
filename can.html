@@ -4,7 +4,7 @@
   <title></title>
   <meta charset="utf-8">
   <meta name="x5-fullscreen" content="true">
-  <meta name="full-screen" content="yes">
+  <meta name="full-screen" content="yes">  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
@@ -12,9 +12,13 @@
     var guaguale = new GuaGuaLe("front", "back");
     guaguale.init({msg: "￥5000000.00"});
     
-    $('#start').click(function(){
+    $('#cover').click(function(){
+      $('#cover').addClass('hide')
       guaguale.start();
     })
+    $('#reset').click(function(){
+      $('#cover').removeClass('hide')
+    })    
   });
   </script>
   <style type="text/css">
@@ -24,22 +28,33 @@
       height: 160px;
       margin: 100px auto 0;
     }
-    #front, #back{
+    #front, #back, #cover{
       position: absolute;
       width: 200px;
       left: 50%;
       top: 100%;
       margin-left: -130px;
       height: 80px;
+      line-height: 80px;
+      text-align:center;
       border-radius: 5px;
       border: 1px solid #444;
+      color:#fff;
+    }
+    #cover{
+      z-index:9;
+      background:#000;
+    }
+    #cover.hide{
+      display:none;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <button id="start">start</button>
+  <button id="reset">再来一次</button>
+  <div id="cover">点击刮奖</div>
   <canvas id="back" width="200" height="80"></canvas>
   <canvas id="front" width="200" height="80"></canvas>
 </div>
@@ -101,7 +116,7 @@ Canvas2D.prototype = {
     if(all){
       this.context.clearRect(start.x, start.y, start.width, start.height);
     }else{
-      this.context.clearRect(start.x, start.y, 30, 30);
+      this.context.clearRect(start.x, start.y, 20, 20);
     }
     return this;
   },
@@ -147,7 +162,6 @@ function GuaGuaLe(idFront, idBack){
 
   this.isMoving = false;
   this.isFinished = false;
-  this.flags = new Array(160);
   this.clearNum = 0;
 }
 
@@ -157,7 +171,10 @@ GuaGuaLe.prototype = {
     backFillColor: "gold",
     backFontColor: "red",
     backFontSize: 24,
-    msg: "213213"  
+    msg: "刮奖",
+    threshold: 0.5,
+    wideNumber:10,
+    heightNumber:8
   },
   init: function (options)
   {
@@ -175,7 +192,7 @@ GuaGuaLe.prototype = {
     this.frontCanvas.drawRect({x: 0, y: 0}, {x: this.frontCanvas.getWidth(), y: this.frontCanvas.getHeight()}, true);
     
     this.isFinished = false;
-    this.flags = new Array(160);   
+    this.flags = new Array(this.options.heightNumber,this.options.wideNumber);   
     this.clearNum = 0;
     this.bindEvt();
   },
@@ -224,12 +241,12 @@ GuaGuaLe.prototype = {
   },
   //划过标记
   makeFlag: function(p){
-    var x = (p.x/this.backCanvas.getWidth()*20)|0,
-        y = (p.y/this.backCanvas.getHeight()*8)|0;
-    x == 20 && x--;
-    y == 20 && y--;
+    var x = (p.x/this.backCanvas.getWidth()*this.options.wideNumber)|0,
+        y = (p.y/this.backCanvas.getHeight()*this.options.heightNumber)|0;
+    x == this.options.wideNumber && x--;
+    y == this.options.heightNumber && y--;
     
-    var idx = y*20+x
+    var idx = y*this.options.wideNumber+x
     if(!this.flags[idx]){
       this.flags[idx] = true;
       this.clearNum++;
@@ -240,7 +257,7 @@ GuaGuaLe.prototype = {
   },
   //判断是否刮开足够空间
   checkFinish: function(){
-    return (this.clearNum / this.flags.length) > 0.5
+    return (this.clearNum / this.flags.length) > this.options.threshold
   },
   finish: function(){
     this.isFinished=true;
