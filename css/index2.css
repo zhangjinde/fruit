@@ -359,8 +359,9 @@ position: absolute;right: -1em;top: -1em;line-height:2em;text-align: center;}
 .order-list .zong{color:#999;margin-top:1em;}
 .order-list .zong .sum{float:right;}
 .order-list .zong .sum .shu{color:#6DBFD5;}
-.order-list .op{border-top:1px solid #eee;padding:1em 0;text-align:right;}
+.order-list .op{border-top:1px solid #eee;padding:1em 0;height:2em;}
 .order-list .op .btn{background:#6DBFD5;color:#fff;padding:0.5em 1em;border-radius:10px;margin-left:1em;}
+.order-list .op .btn.cancel{background:#deb521;}
 /*订单追踪*/
 .ord-sta .nav-back span{margin-left:1em;position:absolute;}
 .ord-sta .body{margin-top:3.5em;}
@@ -369,6 +370,7 @@ position: absolute;right: -1em;top: -1em;line-height:2em;text-align: center;}
 .ord-sta .body .block .t{margin:1em 0;}
 .ord-sta .body .block.goods{padding:1em;}
 .ord-sta .body .goods .tit{color:#58B1C5}
+.ord-sta .body .goods ul{padding-bottom:3em;}
 .ord-sta .body .goods ul.hide{display:none;}
 .ord-sta .body .goods li{padding:1em 0;border-bottom:1px solid #eee;}
 .ord-sta .body .goods li .flex{display:flex;display:-webkit-flex;display:-webkit-box;}
