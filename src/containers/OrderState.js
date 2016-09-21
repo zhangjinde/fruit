@@ -68,27 +68,45 @@ class OrderState extends Component {
   confirm(){
     const {order, actions} = this.props
     const {id, cityId, areaId} = order.detail
+    
+    this.setState({
+      disable: true
+    })    
     actions.shouhuo(id, cityId, ()=>{
-      alert('订单已完成')
+      alert('订单已完成')  
       actions.orderChangeState(id, 5)
       history.go(-1)
     },()=>{
       alert('出错了，请重试')
+      this.setState({
+        disable: false
+      })      
     })
   }  
   submit(){
     const {order, actions} = this.props
     actions.orderChangeState(order.detail.id, 3)
   }
-  tui(){
+  tui(type){
     const {order, actions} = this.props
     const {id, cityId, areaId} = order.detail
-    actions.tuihuo(id, cityId, ()=>{
-      alert('订单已完成')
+    
+    this.setState({
+      disable: true
+    })    
+    actions.tuihuo(id, cityId, type, ()=>{
+      if(type==1){
+        alert('退款申请中')
+      }else{
+        alert('已取消订单')
+      }
       actions.orderChangeState(id, 6)
       history.go(-1)
     },()=>{
       alert('出错了，请重试')
+      this.setState({
+        disable: false
+      })    
     })
   }
   render() {
@@ -131,12 +149,12 @@ class OrderState extends Component {
             <a onClick={this.confirm.bind(this)}>确认收货</a>
             :
             tui?
-            <a onClick={this.tui.bind(this)}>申请退货</a>
+            <a onClick={this.tui.bind(this, 1)}>申请退货</a>
             :
             cancel?
-            <a onClick={this.tui.bind(this)}>取消订单</a>
+            <a onClick={this.tui.bind(this, 2)}>取消订单</a>
             :
-            <a onClick={this.props.history.go.bind(this,-1)}>好的我知道了</a>
+            <a onClick={this.props.history.go.bind(this,-1)}>返回订单列表</a>
           }
         </div>      
       </div>

@@ -95,7 +95,9 @@ const initialState = {/*
   detail:{},
   finish:{},
   loading:false,
-  error: false  
+  error: false,
+  outdate1: true,
+  outdate2: true,
 }
 function genList(list){
   return list.map(it=>{
@@ -124,6 +126,10 @@ function genList(list){
   })
 }
 function changeState(id, to, state){
+  state.outdate1 = true;
+  state.outdate2 = true;
+  return state;
+  //以下省去
   state.list1 = state.list1.map(l=>{
     if(l.id==id){
       l.state=to
@@ -168,7 +174,9 @@ export default function order(state = initialState, action){
         list1: val.type==1 ? genList(val.val): state.list1,
         list2: val.type==2 ? genList(val.val): state.list2, 
         loading:false,
-        error: false 
+        error: false,
+        outdate1: val.type==1 ? false : state.outdate1,
+        outdate2: val.type==2 ? false : state.outdate2
       })
     case types.ORDER_DETAIL_GET_SUCCESS:
       let {order, products} = val
@@ -185,6 +193,8 @@ export default function order(state = initialState, action){
           receiveTime: order.receiveTime,
           receiverName: order.receiverName,
           phoneNumber: order.phoneNumber,
+          otalPrice: order.totalPrice,
+          couponPrice: order.couponPrice,
         }
       })
     case types.ORDER_CHANGE_STATE:
@@ -195,6 +205,8 @@ export default function order(state = initialState, action){
       })
     case types.ORDER_FINISH:
       state.finish= val
+      state.outdate1 = true
+      state.outdate2 = true
       return state;
     default:
       return state

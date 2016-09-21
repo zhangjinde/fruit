@@ -17,11 +17,11 @@ class Order extends Component {
     this._changeType(1);
   }
   _changeType(t){
-    let { actions, list1, list2, NowCity } = this.props
+    let { actions, list1, list2, NowCity, outdate1, outdate2 } = this.props
     actions.changeType(t)
-    if(t==1 && !list1.length){
+    if(t==1 && outdate1){
       actions.getList(1, user_id, NowCity)
-    }else if(t==2 && !list2.length){
+    }else if(t==2 && outdate2){
       actions.getList(2, user_id, NowCity)
     }
   }
@@ -76,7 +76,9 @@ function mapStateToProps(state) {
     list1,
     list2,
     loading,
-    error
+    error,
+    outdate1,
+    outdate2,
   } = state.order;
   
   const {
@@ -89,7 +91,9 @@ function mapStateToProps(state) {
     list2,
     loading,
     error,
-    NowCity  
+    outdate1,
+    outdate2,
+    NowCity 
   }
 }
 function mapDispatchToProps(dispatch) {

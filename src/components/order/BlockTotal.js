@@ -13,9 +13,9 @@ export default class BlockTotal extends Component{
         </div>
         <div className="right">
           <div className="left">使用优惠券</div>
-          <div className="right">- {}元</div>
+          <div className="right">- {ord.couponPrice}元</div>
           <div className="left">总价</div>
-          <div className="right">￥{}元</div> 
+          <div className="right">￥{ord.otalPrice}元</div> 
           <p className="clear"></p>
         </div>
         <p className="clear"></p>

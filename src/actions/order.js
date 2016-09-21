@@ -109,9 +109,9 @@ export function shouhuo(id, cid, cb, errCb){/*
   cb && cb()
 }
 
-export function tuihuo(id, cid, cb, errCb){
+export function tuihuo(id, cid, type, cb, errCb){
   return dispatch => {
-    const url = `${URL}/orderOff/return/${cid}/${id}`
+    const url = `${URL}/orderOff/${type==1?"return":"cancel"}/${cid}/${id}`
 
     return fetch(url)
     .then(d => {

@@ -43,25 +43,38 @@ export default class OrderItem extends Component{
             </span>
           </li>
         </ul>
+        <p className="op">
         {
-          item.state==13?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn">查看评价</Link></p>
-          :
           item.state==5?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn">确认收货</Link></p>
-          :
-          [5,6,13].indexOf(+item.state)>-1?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn">申请退货</Link><Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn">立即评价</Link></p>
+          <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn left cancel">申请退货</Link>
           :
           item.state==1?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn">立即支付</Link></p>
-          :
-          [1,2,3,4].indexOf(+item.state)>-1?
-          <p className="op"><Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn">取消订单</Link></p>
+          <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn left cancel">取消订单</Link>
           :
           ""
         }
-        
+        {
+          item.state==13?
+          <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">查看评价</Link>
+          :
+          item.state==5?
+          <Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn right">确认收货</Link>
+          :
+          [5,6,13].indexOf(+item.state)>-1?
+          <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">立即评价</Link>
+          :
+          item.state==1?
+          <Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn right">立即支付</Link>
+          :
+          [2,3].indexOf(+item.state)>-1?
+          <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn right cancel">取消订单</Link>
+          :
+          [4,5].indexOf(+item.state)>-1?
+          <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn right cancel">申请退货</Link>
+          :          
+          ""
+        }
+        </p>
       </li>
     )
   }
