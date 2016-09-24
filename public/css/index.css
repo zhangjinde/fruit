@@ -192,7 +192,7 @@ transition:all 0.3s;-webkit-transition:all 0.3s;opacity:1;}
 .cart-buy .modal .time p{height:3em;line-height:3em;text-align:center;background:#fff;}
 .cart-buy .modal .time p.title, .cart-buy .modal .time .no{color:#aaa;background:#eee;}
 .cart-buy .modal .time p span{width:50%;line-height:3em;}
-.cart-buy .modal .center{position:absolute;top:50%;transform:translateY(-50%);bottom:0;margin-top:auto;margin-bottom:auto;width:100%;text-align:center;}
+.cart-buy .modal .center{position:absolute;top:50%;transform:translateY(-50%);    background: #fff;bottom:0;margin-top:auto;margin-bottom:auto;width:100%;text-align:center;}
 .cart-buy .modal .center .txt{background: #fff;padding: 1em;}
 .cart-buy .dizhi .choose{color:#333;outline:none;-webkit-user-select:none;}
 .cart-buy .dizhi.choose a{color:#333 !important;display: inline-block;width: 100%;}
