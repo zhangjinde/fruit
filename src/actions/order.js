@@ -94,7 +94,7 @@ export function orderChangeState(id, state){
   }
 }
 
-export function shouhuo(id, cid, cb, errCb){/*
+export function shouhuo(id, cid, cb, errCb){
   return dispatch => {
     const url = `${URL}/orderOn/confirm/${cid}/${id}`
 
@@ -105,13 +105,13 @@ export function shouhuo(id, cid, cb, errCb){/*
     .catch((e) => {
       errCb && errCb()
     })
-  }*/
+  }
   cb && cb()
 }
 
 export function tuihuo(id, cid, type, cb, errCb){
   return dispatch => {
-    const url = `${URL}/orderOff/${type==1?"return":"cancel"}/${cid}/${id}`
+    const url = `${URL}/${type==1 ? "orderOff":"orderOn"}/${type==1?"return":"cancel"}/${cid}/${id}`
 
     return fetch(url)
     .then(d => {

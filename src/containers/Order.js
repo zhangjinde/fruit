@@ -14,7 +14,8 @@ import * as orderActions from '../actions/order'
 
 class Order extends Component {
   componentDidMount(){
-    this._changeType(1);
+    const {type} = this.props
+    this._changeType(+type);
   }
   _changeType(t){
     let { actions, list1, list2, NowCity, outdate1, outdate2 } = this.props

@@ -11,7 +11,7 @@ export default class Time extends Component{
     if(!timeid || !time.isValid(timeid))return;
     chTime(timeid)
   }
-  render() {console.log(time.isValid)
+  render() {
     return (
       <div className="time" onClick={this._chTime.bind(this)}>
         <p className="title">

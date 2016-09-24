@@ -45,11 +45,17 @@ export default class OrderItem extends Component{
         </ul>
         <p className="op">
         {
-          item.state==5?
+          [6].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn left cancel">申请退货</Link>
           :
-          item.state==1?
+          [1].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn left cancel">取消订单</Link>
+          :
+          ""
+        }
+        {
+          [3,4].indexOf(+item.state)>-1?
+          <Link to={`/me/order/${item.id}?type=${type}`} className="btn right">查看订单</Link>
           :
           ""
         }
@@ -60,16 +66,16 @@ export default class OrderItem extends Component{
           item.state==5?
           <Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn right">确认收货</Link>
           :
-          [5,6,13].indexOf(+item.state)>-1?
+          [6].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">立即评价</Link>
           :
           item.state==1?
           <Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn right">立即支付</Link>
           :
-          [2,3].indexOf(+item.state)>-1?
+          [2].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn right cancel">取消订单</Link>
           :
-          [4,5].indexOf(+item.state)>-1?
+          [5].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn right cancel">申请退货</Link>
           :          
           ""

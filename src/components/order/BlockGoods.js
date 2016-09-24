@@ -51,7 +51,6 @@ export default class BlockGoods extends Component{
   render() {
     let {goods, showcmt} = this.props
     const state = this.state || {}
-    console.log(state)
     return (
       <div className="block goods">
         <p className="tit">

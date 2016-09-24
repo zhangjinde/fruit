@@ -23,6 +23,9 @@ class OrderState extends Component {
       disable: false
     }
   }
+  changeListType(t){
+    this.props.actions.changeType(t)
+  }
   componentDidMount(){
     const {params, actions, location, NowCity} = this.props;
     if(location.query.type){
@@ -66,7 +69,7 @@ class OrderState extends Component {
     })
   }
   confirm(){
-    const {order, actions} = this.props
+    const {order, actions, history} = this.props
     const {id, cityId, areaId} = order.detail
     
     this.setState({
@@ -75,6 +78,7 @@ class OrderState extends Component {
     actions.shouhuo(id, cityId, ()=>{
       alert('订单已完成')  
       actions.orderChangeState(id, 5)
+      this.changeListType(2)
       history.go(-1)
     },()=>{
       alert('出错了，请重试')
@@ -88,7 +92,7 @@ class OrderState extends Component {
     actions.orderChangeState(order.detail.id, 3)
   }
   tui(type){
-    const {order, actions} = this.props
+    const {order, actions, history} = this.props
     const {id, cityId, areaId} = order.detail
     
     this.setState({
@@ -101,6 +105,7 @@ class OrderState extends Component {
         alert('已取消订单')
       }
       actions.orderChangeState(id, 6)
+      this.changeListType(2)
       history.go(-1)
     },()=>{
       alert('出错了，请重试')
