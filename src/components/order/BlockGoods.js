@@ -26,11 +26,12 @@ export default class BlockGoods extends Component{
     })
   }
   submit(g, idx){
-    const { me, cmtActions, submit } = this.props;
+    const { me, cmtActions, submit, order } = this.props;
     const val = this.refs['cmt'+idx].value;
     if(!val){
       return ;
     }
+
     cmtActions.submit({
       name: me.name || '匿名用户',
       id: me.id || user_id,
@@ -38,7 +39,8 @@ export default class BlockGoods extends Component{
       content: val,
       pid: g.id,
       cid: g.cityId,
-      aid: g.areaId
+      aid: g.areaId,
+      orderId: order.id
     },()=>{
       g.cmt = val;
       alert("评论成功");
@@ -73,7 +75,7 @@ export default class BlockGoods extends Component{
               </div>
               {
               showcmt?
-              !g.cmt?
+              !g.comment?
               <p className="op" style={{display: !state[g.id] ? "block":"none"}}><a className="btn" onClick={this.showCmt.bind(this,g.id)}>发表评论</a></p>
               :
               <p className="op" style={{display: !state[g.id] ? "block":"none"}}><a className="btn" onClick={this.showCmt.bind(this,g.id)}>查看评论</a></p>
@@ -82,7 +84,7 @@ export default class BlockGoods extends Component{
               }
               {
               showcmt?
-              !g.cmt?
+              !g.comment?
                 <div className="cmt" style={{display: state[g.id] ? "block":"none"}}>
                   <textarea ref={"cmt"+idx}></textarea>
                   <p className="an">
@@ -92,7 +94,7 @@ export default class BlockGoods extends Component{
                 </div>
                 :
                 <div className="cmt" style={{display: state[g.id] ? "block":"none"}}>
-                  <p>{g.cmt}</p>
+                  <p>{g.comment}</p>
                    <p className="an"><a className="btn" onClick={this.hideCmt.bind(this,g.id)}>关闭</a></p>
                 </div>  
               :

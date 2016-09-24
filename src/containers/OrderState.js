@@ -30,7 +30,12 @@ class OrderState extends Component {
   componentDidMount(){
     const {params, actions, location, NowCity} = this.props;
     if(location.query.type){
-      actions.getDetail(location.query.type, params.id, NowCity)
+      const {topay,cmt,confirm,cancel,tui} = this.props.location.query
+      let on = true;
+      if(cmt || tui){
+        on = false
+      }
+      actions.getDetail(location.query.type, params.id, NowCity, on)
     }
     
     scroll(0)

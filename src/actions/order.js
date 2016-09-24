@@ -62,12 +62,12 @@ function getDetailError(){
     type:types.ORDER_DETAIL_GET_ERROR
   }
 }
-export function getDetail(type,id, cid){
+export function getDetail(type,id, cid, on){
   cid = cid>0? cid: cityid
   return dispatch => {
     dispatch(getDetailStart())
     //const url = type==1 ? `${URL}/orderOn/${cid}/${id}` : `${URL}/orderOff/${cid}/${id}`
-    const url = `${URL}/orderOn/${cid}/${id}`
+    const url = `${URL}/${on?"orderOn":"orderOff"}/${cid}/${id}`
     return fetch(url)
     .then(response => response.json())
     .then(json => {

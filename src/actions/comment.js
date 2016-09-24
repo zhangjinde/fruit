@@ -24,7 +24,11 @@ export function submit(val, scb, ecb){
       content: val.content,//评论内容
       productId: val.pid,//被评论商品id
       cityId: val.cid,//被评论商品所在cityId
-      areaId: val.aid//被评论商品所在areaId
+      areaId: val.aid,//被评论商品所在areaId
+      
+    }
+    if(val.orderId){
+      body.orderId = val.orderId
     }
 
     return fetch(url, {
