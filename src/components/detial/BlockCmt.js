@@ -5,7 +5,7 @@ export default class BlockCmt extends Component{
     return (
       <div className="block cmt clearfix">
         <div>
-          <a onClick={this.props.showCmt}>
+          <a onClick={this.props.showCmt} className="bor">
             <p className="icon"><i className="iconfont icon-cshy-comment-copy"></i></p>
             <p>查看评价</p>
           </a>

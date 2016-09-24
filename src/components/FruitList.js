@@ -35,10 +35,10 @@ export default class FruitList extends Component{
             )
           })
         :
-          <Empty />
+          <Empty txt="还没有商品哦"/>
         }
         <li className="last">
-          <img src="/img/last.jpg"/>
+          <img src="/img/last.png"/>
         </li>
         <li className="mv-cart" ref="cart">
           <i className="fa fa-cart-arrow-down"></i>

@@ -12,6 +12,8 @@ import DetialBottom from '../components/detial/DetialBottom'
 import DetialBody from '../components/detial/DetialBody'
 import Comment from '../components/detial/Comment'
 
+import scroll from '../utils/scroll'
+
 class Detial extends Component {
   componentDidMount() {
     const {detailActions, params, item, location} = this.props
@@ -19,6 +21,8 @@ class Detial extends Component {
       const q = location.query
       this.props.detailActions.getDetail(params.id, q.cityId || cityid, q.areaId || areaid)
     }
+    
+    scroll(0)
   }
   showCmt(){
     let cmt = this.refs.cmt

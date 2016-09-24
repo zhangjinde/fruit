@@ -16,6 +16,7 @@ import Time from '../components/Time'
 import Loading from '../components/Loading'
 
 import * as cfg from '../utils/config'
+import scroll from '../utils/scroll'
 
 const timeOp = cfg.default.Time
 
@@ -30,6 +31,8 @@ class CartBuy extends Component {
 
     if(!addrs || !addrs.length)
       addrActions.getList(NowCity,Nowqu,user_id);
+      
+    scroll(0)
   }
   edit(){
     let { actions } = this.props
@@ -64,7 +67,7 @@ class CartBuy extends Component {
     actions.submit(cart, (id, val)=>{
       alert('提交成功')
       actions.clear();
-      //orderActions.orderChangeState();
+      orderActions.orderChangeState();
       orderActions.changeType(1);
       history.replace('/me/order')
     }, ()=>{

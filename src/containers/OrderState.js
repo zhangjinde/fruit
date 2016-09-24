@@ -15,6 +15,7 @@ import * as cmtActions from '../actions/comment'
 
 import weipay from '../utils/pay'
 import fetch from 'isomorphic-fetch'
+import scroll from '../utils/scroll'
 
 class OrderState extends Component {
   constructor(){
@@ -31,6 +32,8 @@ class OrderState extends Component {
     if(location.query.type){
       actions.getDetail(location.query.type, params.id, NowCity)
     }
+    
+    scroll(0)
   }
   pay(){
     const {order, actions, history, params} = this.props
@@ -131,7 +134,7 @@ class OrderState extends Component {
             :
             <BlockTime time={ord.arriveTime} state={ord.state}/> 
           }           
-          <BlockGoods submit={this.submit.bind(this)}  goods={ord.goods || []} cmtActions={cmtActions} me={me} showcmt={cmt}/>
+          <BlockGoods submit={this.submit.bind(this)}  goods={ord.goods || []} order={ord} cmtActions={cmtActions} me={me} showcmt={cmt}/>
           {
             topay || cmt || confirm || tui || cancel?
             ""
@@ -151,13 +154,13 @@ class OrderState extends Component {
             <a onClick={this.pay.bind(this)} className={disable?"disable":""}>{disable?"支付中":"立即支付"}</a>
             :
             confirm?
-            <a onClick={this.confirm.bind(this)}>确认收货</a>
+            <a onClick={this.confirm.bind(this)} className={disable?"disable":""}>确认收货</a>
             :
             tui?
-            <a onClick={this.tui.bind(this, 1)}>申请退货</a>
+            <a onClick={this.tui.bind(this, 1)} className={disable?"disable":""}>申请退货</a>
             :
             cancel?
-            <a onClick={this.tui.bind(this, 2)}>取消订单</a>
+            <a onClick={this.tui.bind(this, 2)} className={disable?"disable":""}>取消订单</a>
             :
             <a onClick={this.props.history.go.bind(this,-1)}>返回订单列表</a>
           }

@@ -18,7 +18,7 @@ export default class CartBlock extends Component{
           :
           ""
         }
-        <a className="icon">
+        <a className={type==1?"icon":"icon w"}>
         {
           type==1?
           <i className="iconfont icon-yes"></i>

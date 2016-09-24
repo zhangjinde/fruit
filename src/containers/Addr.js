@@ -8,12 +8,17 @@ import AddrItem from '../components/AddrItem'
 
 import * as addrActions from '../actions/address'
 
+import scroll from '../utils/scroll'
+
 class Addr extends Component {
   componentWillMount(){
     let {history,addrs} = this.props
     if(addrs.length===0){
       history.replace('/addr/add')
     }
+  }
+  componentDidMount(){
+    scroll(0)
   }
   componentWillUnmount(){
    this.props.actions.clear()

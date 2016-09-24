@@ -18,18 +18,22 @@ export default class DetialBottom extends Component{
         {
           status == '0' ? 
             <p>
-              <a className="del" >已售罄</a>
+              <a className="del" >暂时缺货</a>
             </p>
           :            
           num>0?
             <p>
-              <a className="del" onClick={this.add.bind(this,-1)}>-</a>
+              <a className="del" onClick={this.add.bind(this,-1)}>
+              <i className="iconfont icon-minus"></i>
+              </a>
               <a className="num">{num}</a>
-              <a className="add" onClick={this.add.bind(this,1)}>+</a>
+              <a className="add" onClick={this.add.bind(this,1)}>
+              <i className="iconfont icon-ricon-add"></i>
+              </a>
             </p>        
           :
             <p>
-              <a className="add" onClick={this.add.bind(this,1)}>买</a>
+              <a className="add" onClick={this.add.bind(this,1)}>加入购物车</a>
             </p>
         }
       </div>

@@ -11,12 +11,16 @@ import Loading from '../components/Loading'
 import Error from '../components/Error'
 import Empty from '../components/Empty'
 
+import scroll from '../utils/scroll'
+
 import * as pointsActions from '../actions/points'
 
 class Points extends Component {
   componentDidMount() {
     const {type} = this.props
     this.getList(type);
+    
+    scroll(0)
   }
   getList(type){
     const {errorExch, errorRec, errorUse} = this.props
@@ -67,13 +71,13 @@ class Points extends Component {
     const {loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse} = this.props
     return (
       <div className="points">
-        <NavBack transparent="1" refresh={this.refresh.bind(this)} history={history} white={true}>
+        <NavBack transparent="1" user="1" history={history} white={true}>
          <span className="canuse">可用积分：{points}</span>
         </NavBack>
         <div className="content">
           <ul className="title">
             <li className={type==1?"active":""} onClick={this._changeType.bind(this,1)}>积分兑换</li>
-            <li className={type==2?"active":""} onClick={this._changeType.bind(this,2)}>积分记录</li>
+            
             <li className={type==3?"active":""} onClick={this._changeType.bind(this,3)}>兑换历史</li>
           </ul>
           <ul className="items">
@@ -111,7 +115,7 @@ class Points extends Component {
                   )
                 })
               :
-                <p className="empty">空</p>
+                <Empty/>
             :
             ""
           }
@@ -130,7 +134,7 @@ class Points extends Component {
                   )
                 })
               :
-                <p className="empty">空</p>
+                <Empty/>
             :
             ""
           }

@@ -10,10 +10,14 @@ import Error from '../components/Error'
 
 import * as cityActions from '../actions/city'
 
+import scroll from '../utils/scroll'
+
 class City extends Component {
   componentDidMount(){
     if(!this.props.cities.length)
       this.props.actions.getList();
+      
+    scroll(0)
   }
   change(){
     const {actions} = this.props

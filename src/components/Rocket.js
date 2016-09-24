@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
+import scroll from '../utils/scroll'
+
 export default class Rocket extends Component{
   componentDidMount(){
   }
   fei(){
-    document.body.scrollTop=0;
+    scroll(0)
   }
   render() { 
     return (

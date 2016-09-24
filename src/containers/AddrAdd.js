@@ -7,6 +7,7 @@ import CartBlock from '../components/CartBlock'
 import AddrBottom from '../components/AddrBottom'
 
 import * as addrActions from '../actions/address'
+import scroll from '../utils/scroll'
 
 class AddrAdd extends Component {
   componentWillMount(){
@@ -32,6 +33,9 @@ class AddrAdd extends Component {
       addr: addr.addr,
     }
   }
+  componentDidMount(){
+    scroll(0)
+  }  
   setDefault(){
     this.props.actions.setDefault()
   }

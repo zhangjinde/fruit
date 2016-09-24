@@ -19,7 +19,7 @@ class Me extends Component {
     let { name, head, points, history } = this.props  
     return (
       <div className="myinfo">
-        <NavBack history={history}></NavBack>
+        <NavBack history={history} home="1"></NavBack>
         <Head name={name} head={head} points={points}/>
         <ul>
           <MeItem desc="我的订单" to="/me/order" icon="order"/>

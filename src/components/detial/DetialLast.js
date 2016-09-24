@@ -13,7 +13,7 @@ export default class DetialLast extends Component{
           <p className="youhui">
             <a>优惠{item.discount}元</a>
           </p>
-          <a className="tongzhi">
+          <a className="tongzhi hidden">
             <p>降价时</p>
             <p>通知我</p>
           </a>

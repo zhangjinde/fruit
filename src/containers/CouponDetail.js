@@ -7,11 +7,15 @@ import NavBack from '../components/NavBack'
 
 import * as couponActions from '../actions/coupon'
 
+import scroll from '../utils/scroll'
+
 class CouponDetail extends Component {
   componentDidMount(){
     const {actions, params, detail,location} = this.props;
     if(detail.id != params.id)
       actions.getCouponDetail(params.id, location.query.cityId)
+      
+    scroll(0)
   }
   render() {
     let { history, detail } = this.props

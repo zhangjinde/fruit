@@ -27,7 +27,7 @@ export default class Nav extends Component{
           <Link to="" className={type==4 ? "item active":"item"} onClick={this.changeType.bind(this,4)}>省钱</Link>
         </div>
         <Link to="/me" className="me">
-          <i className="iconfont icon-user"></i>
+          <i className="iconfont icon-40one"></i>
         </Link>
       </nav>
     )

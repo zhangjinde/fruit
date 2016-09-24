@@ -3,6 +3,8 @@ import ReactDom from 'react-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import scroll from '../utils/scroll'
+
 import NavBack from '../components/NavBack'
 import CouponItem from '../components/CouponItem'
 
@@ -16,6 +18,7 @@ import * as cartActions from '../actions/cart'
 class Coupon extends Component {
   componentDidMount(){
     this._changeType(1)
+    scroll(0)
   }
   _changeType(t){
     let { actions, list1, list2, NowCity } = this.props
@@ -45,7 +48,7 @@ class Coupon extends Component {
 
     return (
       <div className="coupon">
-        <NavBack transparent="1" refresh={this.refresh.bind(this)} history={history} white={true}>
+        <NavBack transparent="1" user="1" history={history} white={true}>
           <a className={type==1?"item l active":"item l"} onClick={this._changeType.bind(this,1)}>未使用优惠券</a>
           <a className={type==2?"item r active":"item r"} onClick={this._changeType.bind(this,2)}>已过期优惠券</a>
         </NavBack>

@@ -5,6 +5,8 @@ export default class Empty extends Component{
     const {txt} = this.props;
     return (
       <p className='empty'>
+        <img src="/img/empty.png"/>
+        <br/>
         {txt || '列表为空'}
       </p>
     )

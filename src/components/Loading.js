@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export default class Loading extends Component{
   render() {
     return (
-      <p className='loading'>
-        <i className="fa fa-spinner fa-5x animated infinite rotateIn"></i>
+      <p className='loading all-center'>
+        <img src="/img/load.gif" className="all-center"/>
       </p>
     )
   }
