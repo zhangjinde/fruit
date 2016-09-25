@@ -11,13 +11,12 @@ export default class OrderItem extends Component{
         <div className="detail">
           <p className="ding">
             <Link to={'/me/order/'+item.id+'?type='+type}>
-              订单编号：{item.orderNo}
+              订单编号：<span className="num">{item.orderNo}</span>
             </Link>
           </p>
           <p>下单时间：{item.createTime}</p>
           <p>
             收货时间：{item.arriveTime} 送达（{item.arriveAddr}）
-            （{item.state}）
           </p>
           {
             item.state==4 ? 
@@ -45,10 +44,10 @@ export default class OrderItem extends Component{
         </ul>
         <p className="op">
         {
-          [6].indexOf(+item.state)>-1?
+          [5,6].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn left cancel">申请退货</Link>
           :
-          [1].indexOf(+item.state)>-1?
+          [1,2].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn left cancel">取消订单</Link>
           :
           ""
@@ -56,10 +55,7 @@ export default class OrderItem extends Component{
         {
           [3,4].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}`} className="btn right">查看订单</Link>
-          :
-          ""
-        }
-        {
+          :        
           item.state==13?
           <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">查看评价</Link>
           :
@@ -71,13 +67,7 @@ export default class OrderItem extends Component{
           :
           item.state==1?
           <Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn right">立即支付</Link>
-          :
-          [2].indexOf(+item.state)>-1?
-          <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn right cancel">取消订单</Link>
-          :
-          [5].indexOf(+item.state)>-1?
-          <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn right cancel">申请退货</Link>
-          :          
+          :       
           ""
         }
         </p>

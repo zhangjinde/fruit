@@ -11,7 +11,7 @@ export default class Comment extends Component{
     return (
       <div className="comment"> 
         <a className="close" onClick={hideCmt}>
-          <i className="fa fa-times fa-2x" aria-hidden="true"></i>
+          <i className="iconfont icon-ricon-add" aria-hidden="true"></i>
         </a>
         <ul>
         {

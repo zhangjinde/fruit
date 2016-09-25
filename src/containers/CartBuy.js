@@ -63,7 +63,7 @@ class CartBuy extends Component {
     cart.areaId = Nowqu
     
     this.refs.wait.className="modal show"
-    
+
     actions.submit(cart, (id, val)=>{
       alert('提交成功')
       actions.clear();

@@ -100,14 +100,13 @@ class AddrAdd extends Component {
           <CartBlock til1="收货" til2="地址">
             <span className="dizhi">{city}</span>
             <span className="dizhi">{qu}</span>
-            <a><i className="fa fa-angle-right right"></i></a>
           </CartBlock>
           <CartBlock til1="具体" til2="地址">
             <input placeholder="请输入楼栋门牌号" ref="addr" value={this.state.addr} onChange={this.change.bind(this,2)}/>
           </CartBlock>
           <CartBlock til1="设为" til2="默认">
             <span className="icon" onClick={this.setDefault.bind(this)}>
-              <i className={setDef ? "fa fa-dot-circle-o":"fa fa-circle-o"}></i>
+              <i className={setDef ? "iconfont icon-yes":"iconfont icon-yuanquan"}></i>
             </span>
           </CartBlock>
         </ul>
