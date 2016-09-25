@@ -401,6 +401,7 @@ position: absolute;right: -1em;top: -1em;line-height:2em;text-align: center;}
 .ord-sta .body .goods li .cmt textarea{padding:1em; border-radius:8px;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
 .ord-sta .body .goods li .op{text-align:right;padding-top:0.5em;}
 .ord-sta .body .goods li .btn{background:#58B1C5;color:#fff;padding:0.3em 0.8em;border-radius:10px;}
+.ord-sta .body .goods li .btn.disabled{background:#aaa;pointer-events: none;-webkit-pointer-events: none}
 .ord-sta .body .goods li .sum .price{color:#6DBFD5;margin-top:1em;}
 .ord-sta .fix-bottom{background:#fff;text-align:center;}
 .ord-sta .fix-bottom a{display:inline-block;margin-top:0.5em;line-height:2em;padding:0 2em;color:#fff;background:#58B1C5;border-radius:2em;}

@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import {Link} from 'react-router'
 
 export default class BlockGoods extends Component{
+  constructor(){
+    super();
+    this.state = {
+      disabled: false
+    }
+  }
   show(){
     let {list,icon} = this.refs 
     if(list.className==""){
@@ -22,7 +28,8 @@ export default class BlockGoods extends Component{
   }
   hideCmt(id){
     this.setState({
-      [id]: false
+      [id]: false,
+      disabled: false
     })
   }
   submit(g, idx){
@@ -31,6 +38,9 @@ export default class BlockGoods extends Component{
     if(!val){
       return ;
     }
+    this.setState({
+      disabled: true
+    })
 
     cmtActions.submit({
       name: me.name || '匿名用户',
@@ -42,12 +52,15 @@ export default class BlockGoods extends Component{
       aid: g.areaId,
       orderId: order.id
     },()=>{
-      g.cmt = val;
+      g.comment = val;
       alert("评论成功");
       this.hideCmt(g.id);
       submit();
     },()=>{
-      alert('出错了')
+      this.setState({
+        disabled: false
+      })     
+      alert('出错了')     
     })
   }
   render() {
@@ -89,7 +102,7 @@ export default class BlockGoods extends Component{
                   <textarea ref={"cmt"+idx}></textarea>
                   <p className="an">
                     <a className="btn" onClick={this.hideCmt.bind(this,g.id)}>取消</a>
-                    <a className="btn" onClick={this.submit.bind(this,g,idx)}>发表</a>
+                    <a className={state.disabled ? "btn disabled":"btn"} onClick={this.submit.bind(this,g,idx)}>发表</a>
                   </p>
                 </div>
                 :
