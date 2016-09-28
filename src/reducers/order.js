@@ -121,7 +121,8 @@ function genList(list){
       goods,
       yunfei: it.freight||'0',
       total: (+it.totalPrice).toFixed(2),
-      state: it.status || it.finalStatus,     
+      state: it.status || it.finalStatus,
+      commented: it.commented || 0
     }
   })
 }

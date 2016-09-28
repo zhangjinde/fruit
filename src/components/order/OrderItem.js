@@ -55,15 +55,12 @@ export default class OrderItem extends Component{
         {
           [3,4].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}`} className="btn right">查看订单</Link>
-          :        
-          item.state==13?
-          <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">查看评价</Link>
           :
           item.state==5?
           <Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn right">确认收货</Link>
           :
-          [6].indexOf(+item.state)>-1?
-          <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">立即评价</Link>
+          [6,13].indexOf(+item.state)>-1?
+          <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">{ item.commented == 0 ? '立即评价': '查看评价'}</Link>
           :
           item.state==1?
           <Link to={`/me/order/${item.id}?type=${type}&topay=1`} className="btn right">立即支付</Link>

@@ -70,9 +70,9 @@ class CartBuy extends Component {
       orderActions.orderChangeState();
       orderActions.changeType(1);
       history.replace('/me/order')
-    }, ()=>{
+    }, (e)=>{
       this.refs.wait.className="modal"
-      alert('提交失败，请重试')
+      alert(e)
     })
   }
   showTime(){
