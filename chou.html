@@ -1,0 +1,42 @@
+<script src="dynamics.js"></script>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+<div class="circle c4"></div>
+<div class="circle c5"></div>
+<div class="circle c6"></div>
+<div class="circle c7"></div>
+<style>
+.circle{position:absolute;top:400px;left:100px;height:200px;width:40px;height:40px;border-radius:20px;background:#f01e88;}
+.circle.c2{left:170px;}
+.circle.c3{left:240px;}
+.circle.c4{left:310px;}
+.circle.c5{left:380px;}
+.circle.c6{left:450px;}
+.circle.c7{left:520px;}
+</style>
+<script>
+var dots = document.querySelectorAll('.circle')
+var colors = ['#007EFF', '#FF3700', '#92FF00', '#007EFF', '#FF3700', '#92FF00', '#0104e1']
+
+
+function animateDots() {
+  for(var i=0; i<dots.length; i++) {
+    dynamics.animate(dots[i], {
+      translateY: -200,
+      backgroundColor: colors[i]
+    }, {
+      type: dynamics.forceWithGravity,
+      bounciness: 800,
+      elasticity: 200,
+      duration: 2000,
+      delay: i * 450
+    })
+  }
+
+  dynamics.setTimeout(animateDots, 3500)
+}
+
+animateDots()
+</script>
