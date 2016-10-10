@@ -11,7 +11,7 @@ export default class CartBottom extends Component{
         <a className="back" onClick={this.back.bind(this)}>
           需要支付：
           <span className="yang">￥</span>
-          <span className="num">{cart.total-cart.couponAmount}</span>
+          <span className="num">{(cart.total-cart.couponAmount).toFixed(2)}</span>
           <span className="yuan">元</span>   
         </a>
         <a className="btn-buy" onClick={submit}>

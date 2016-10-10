@@ -49,7 +49,16 @@ class Detial extends Component {
     }
   }
   add(cnt){
-    let { actions, item } = this.props
+    let { actions, item, cart } = this.props
+    const goods = cart.goods.filter(g=>{
+      return g.id===item.id
+    })    
+
+    const num = goods.length ? goods[0]['count']:0
+    if(item.restrict && num>= item.restrict){
+      alert('该商品每单限购'+num+'个')
+      return;
+    }
     actions.add(item,cnt)
   }
   cmtLike(id, cityId, areaId){
@@ -74,11 +83,12 @@ class Detial extends Component {
     let good = cart.goods.filter(g=>{
       return g.id===item.id
     })
+    const num = good.length?good[0]['count']:0
     return (
       <div className="detial" ref="detail">
         <NavBack  history={history}/>
         <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
-        <DetialBottom num={good.length?good[0]['count']:0} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
+        <DetialBottom num={num} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
         <div className="modal" ref="cmt">
           <Comment comments={item.comments} hideCmt={this.hideCmt.bind(this)} like={this.cmtLike.bind(this)}
             loading={item.cmtLoading} error={item.cmtError}

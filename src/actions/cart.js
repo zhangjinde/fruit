@@ -88,15 +88,16 @@ export function submit(data, cb, errorCb){
     })
     .then(response => response.json())
     .then(json => {
-      if(json.msg!='200'){
+      if(json.msg=='203' || json.msg=='204'){
         throw '库存不足'
       }
+
       dispatch(submitSuccess())
-      cb(json.number, data);
+      cb(json.id, data);
      })
     .catch((e) => {
       dispatch(submitError(e))
-      errorCb(e);
+      errorCb('提交失败');
     })
   }
 }

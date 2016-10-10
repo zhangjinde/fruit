@@ -38,15 +38,15 @@ function _getExcError(){
   }
 }
 
-export function getRec(){
+export function getRec(cid){
   return dispatch => {
     dispatch(_getRecStart())
-    const url = URL+''
+    const url = `${URL}/point/history/${cid}/${user_id}`
 
     return fetch(url)
     .then(response => response.json())
     .then(json => {
-      dispatch(_getRecSuc(json))
+      dispatch(_getRecSuc(json.pls))
      })
     .catch(() => dispatch(_getRecError()))
   }
@@ -68,15 +68,15 @@ function _getRecError(){
   }
 }
 
-export function getUse(){
+export function getUse(cid){
   return dispatch => {
     dispatch(_getUseStart())
-    const url = URL+''
+    const url = `${URL}/coupon/history/${cid}/${user_id}`
 
     return fetch(url)
     .then(response => response.json())
     .then(json => {
-      dispatch(_getUseSuc(json))
+      dispatch(_getUseSuc(json.history))
      })
     .catch(() => dispatch(_getUseError()))
   }

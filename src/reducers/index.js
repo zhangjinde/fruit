@@ -50,6 +50,7 @@ var initialState = {
   list2: [],
   list3: [],
   list4: [],
+  catalog: [],
   loading:true,
   error:false,
   type: 1,
@@ -68,7 +69,10 @@ function genPro(list){
       old: item.marketPrice,
       status: item.status,
       areaId: item.areaId,
-      cityId: item.cityId
+      cityId: item.cityId,
+      description: item.description,
+      catalog: item.catalog,
+      restrict: item.restrict
     }
     return it;
   })
@@ -93,7 +97,8 @@ function fruit(
       return assign({},state,{
         loading:false,
         error:false,
-        list: genPro(action.val)
+        list: genPro(action.val.products),
+        catalog: action.val.catalog
       })
     case types.FRUIT_LIST_GET_ERROR:
       return assign({},state,{

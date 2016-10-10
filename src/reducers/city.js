@@ -51,7 +51,7 @@ function setCity(list){
       id,
       name: cityName,
       img: avatarUrl,
-      desc: '当地网点支持六小时内到货'
+      desc: '请选择您所在的区域购买'
     });
     qus[id] = [];
     areas.split(',').map(a=>{

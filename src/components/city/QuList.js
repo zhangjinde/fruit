@@ -3,8 +3,8 @@ import QuItem from './QuItem'
 
 export default class QuList extends Component{
   choose(id){
-    let {actions, history} = this.props
-    actions.changeQu(id)
+    let {actions, history, NowCity} = this.props
+    actions.changeQu(id, NowCity)
     history.replace('/')
   }
   render() {

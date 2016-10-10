@@ -13,18 +13,18 @@ export default class Nav extends Component{
     }
   }
   render() {
-    let {type,city,qu} = this.props;
+    let {type,city,qu, catalog} = this.props;
     return (
       <nav className="blue">
         <a onClick={this.changeCity.bind(this)} className="city">
           <p><span>{city}</span></p>
-          <p><span>{qu}</span></p>
+          <p><span>{qu.length>4?qu.substr(0,4):qu}</span></p>
         </a>
         <div className="items">
-          <Link to="" className={type==1 ? "item active":"item"} onClick={this.changeType.bind(this,1)}>水果</Link>
-          <Link to="" className={type==2 ? "item active":"item"} onClick={this.changeType.bind(this,2)}>食材</Link>
-          <Link to="" className={type==3 ? "item active":"item"} onClick={this.changeType.bind(this,3)}>零食</Link>
-          <Link to="" className={type==4 ? "item active":"item"} onClick={this.changeType.bind(this,4)}>省钱</Link>
+          <Link to="" className={type==1 ? "item active":"item"} onClick={this.changeType.bind(this,1)}>{catalog[0] || '分类'}</Link>
+          <Link to="" className={type==2 ? "item active":"item"} onClick={this.changeType.bind(this,2)}>{catalog[1]}</Link>
+          <Link to="" className={type==3 ? "item active":"item"} onClick={this.changeType.bind(this,3)}>{catalog[2]}</Link>
+          <Link to="" className={type==4 ? "item active":"item"} onClick={this.changeType.bind(this,4)}>{catalog[3]}</Link>
         </div>
         <Link to="/me" className="me">
           <i className="iconfont icon-40one"></i>

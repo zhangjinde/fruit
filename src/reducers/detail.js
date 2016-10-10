@@ -28,6 +28,7 @@ function genProd(i){
     cityId: i.cityId,
     areaId: i.areaId,
     discount: (i.marketPrice-i.price).toFixed(2),
+    restrict: i.restrict
   }
 }
 function updCmt(cmts, id){

@@ -82,7 +82,8 @@ export default function points(state = initialState, action){
     case types.POINT_GET_REC_SUCCESS:
       return assign({},state,{
         loadingRec: false,
-        errorRec: false
+        errorRec: false,
+        record: action.val
       })       
     case types.POINT_GET_REC_ERROR:
       return assign({},state,{
@@ -97,7 +98,8 @@ export default function points(state = initialState, action){
     case types.POINT_GET_USE_SUCCESS:
       return assign({},state,{
         loadingUse: false,
-        errorRec: false
+        errorRec: false,
+        use: action.val
       })      
     case types.POINT_GET_USE_ERROR:
       return assign({},state,{

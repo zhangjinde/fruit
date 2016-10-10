@@ -7,7 +7,11 @@ export default class ListItem extends Component{
       e=hide
       hide=false
     }
-    let {add,item} = this.props
+    const {add,item,count} = this.props
+    if(item.restrict && count>=item.restrict){
+      alert('该商品每单限购'+count+'个')
+      return;
+    }
     add(item,e.target,hide)
   }
   del(e){
@@ -32,14 +36,14 @@ export default class ListItem extends Component{
                   ""
             }
           </p>
-          <p className="desc">水果描述</p>
+          <p className="desc">{item.description}</p>
           {
           count?
           <p>
             <span className="price">
              <span className="cnt">x</span>
             {count}</span>
-            <span className="cnt">小计 ￥{item.price*count}</span>
+            <span className="cnt">小计 ￥{(item.price*count).toFixed(2)}</span>
           </p>
           :
           <p>

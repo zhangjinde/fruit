@@ -65,11 +65,10 @@ class CartBuy extends Component {
     this.refs.wait.className="modal show"
 
     actions.submit(cart, (id, val)=>{
-      alert('提交成功')
       actions.clear();
       orderActions.orderChangeState();
       orderActions.changeType(1);
-      history.replace('/me/order')
+      history.replace(`/me/order/${id}?type=1&topay=1`)
     }, (e)=>{
       this.refs.wait.className="modal"
       alert(e)

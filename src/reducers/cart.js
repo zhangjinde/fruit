@@ -18,9 +18,14 @@ function _add(state,item,cnt){
   state.goods.map(g=>{
     if(g.id===item.id){
       exsit=true
-      g.count+=cnt
-      state.count+=cnt
-      state.total+=cnt*g.price
+      console.log(g.count,item.restrict)
+      if(item.restrict && g.count>=item.restrict && cnt==1){
+        alert('该商品每单限购'+g.count+'个')
+      }else{
+        g.count+=cnt
+        state.count+=cnt
+        state.total+=cnt*g.price
+      }
     }
     g.count>0 && ( goods.push(assign({},g)) )
   })

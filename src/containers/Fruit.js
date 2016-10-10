@@ -81,17 +81,21 @@ class Fruit extends Component {
   }
   render() { 
     let { list, list2, list3, list4, total, count, history, cartPos, loading, error, type,
-      cities, qus, NowCity, Nowqu, goods, actions } = this.props
+      cities, qus, NowCity, Nowqu, goods, actions, catalog } = this.props
     let city = cities && cities.filter(c=>c.id===NowCity)[0];
     let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu);
       city = (city && city.name) || cityname;    
       qu = (qu && qu[0] && qu[0].name) || areaname;
-      
-    list = {1:list,2:list2,3:list3,4:list4}[type];
+
+    const nowType = catalog[type-1]
+    
+    list = list.filter(l=>{
+      return l.catalog == nowType
+    })
     return (
       <div>
         <Rocket ref='rocket'/>
-        <Nav type={type} history={history} city={city} qu={qu} changeType={this.changeType.bind(this)}/>
+        <Nav catalog={catalog} type={type} history={history} city={city} qu={qu} changeType={this.changeType.bind(this)}/>
         <FruitList list={list} add={this.add.bind(this)} 
           cartPos={cartPos} goods={goods} actions={actions}
           loading={loading} error={error}
@@ -118,7 +122,8 @@ function mapStateToProps(state) {
     list, list2, list3, list4,
     loading,
     error,
-    type
+    type,
+    catalog
   } = state.fruit;
 
   const {
@@ -137,6 +142,7 @@ function mapStateToProps(state) {
   
   return {
     list, list2, list3, list4,
+    catalog,
     total,
     count,
     cartPos:position,

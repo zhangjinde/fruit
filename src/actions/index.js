@@ -29,10 +29,11 @@ export function getList(cid,qid){
     dispatch(getStart())
     cid<0 && (cid=cityid)
     qid<0 && (qid=areaid)
+
     return fetch(`${URL}/product/all/${cid}/${qid}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(getSuccess(json.products))
+      dispatch(getSuccess(json))
      })
     .catch(() => dispatch(getError()))
   }

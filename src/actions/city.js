@@ -7,10 +7,11 @@ export function changeType(){
   }
 }
 
-export function changeQu(val){
+export function changeQu(aid, cid){
+  fetch(`${URL}/area/change/${cid}/${aid}/${user_id}`)
   return {
     type:types.CITY_CHANGE_QU,
-    val
+    val:aid
   }
 }
 

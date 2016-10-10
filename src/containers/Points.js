@@ -30,9 +30,9 @@ class Points extends Component {
     if(type == 1 && (!exchange.length || errorExch) ) {
       actions.getExc(cid);
     }else if(type == 2 && (!record.length || errorRec) ){
-      //actions.getRec();
+      actions.getRec(cid);
     }else if(type == 3 && (!use.length || errorUse) ){
-      //actions.getUse();
+      actions.getUse(cid);
     }
   }
   _changeType(t){
@@ -69,6 +69,7 @@ class Points extends Component {
   render() {
     let { history, type, points, use, exchange, record } = this.props
     const {loadingExch, errorExch, loadingRec, errorRec, loadingUse, errorUse} = this.props
+
     return (
       <div className="points">
         <NavBack transparent="1" user="1" history={history} white={true}>
@@ -77,7 +78,7 @@ class Points extends Component {
         <div className="content">
           <ul className="title">
             <li className={type==1?"active":""} onClick={this._changeType.bind(this,1)}>积分兑换</li>
-            
+            <li className={type==2?"active":""} onClick={this._changeType.bind(this,2)}>积分记录</li>
             <li className={type==3?"active":""} onClick={this._changeType.bind(this,3)}>兑换历史</li>
           </ul>
           <ul className="items">
@@ -92,7 +93,7 @@ class Points extends Component {
               exchange.length?
                 exchange.map(item=>{
                   return (
-                    <ExchangeItem item={item} key={item.id} exchange={this.exchange.bind(this)}/>
+                    <ExchangeItem item={item} key={item.id} type={type} exchange={this.exchange.bind(this)}/>
                   )
                 })
               :
@@ -111,7 +112,7 @@ class Points extends Component {
               use.length?
                 use.map(item=>{
                   return (
-                    <UseItem item={item} key={item.id}/>
+                    <UseItem item={item} key={item.id} type={type}/>
                   )
                 })
               :
