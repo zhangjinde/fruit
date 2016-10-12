@@ -47,7 +47,7 @@ class City extends Component {
               <Error/>
             :
               type===1 ? 
-              <QuList qus={qus[choCity]} now={Nowqu} actions={actions} history={history} NowCity={NowCity}/>
+              <QuList qus={qus[choCity]} now={Nowqu} actions={actions} history={history} choCity={choCity}/>
               :
               <CityList cities={cities} actions={actions}/>
         }

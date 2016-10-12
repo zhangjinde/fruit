@@ -12,7 +12,7 @@ export default class BlockProcess extends Component{
           his.map((h, idx)=>{
             const l=h.split('=')
             return (
-              <li className={idx==0?"active":""}>
+              <li className={idx==his.length-1?"active":""}>
                 <p className="txt">{l[0]}</p>
                 <p className="time">{l[1]}</p>
               </li>
