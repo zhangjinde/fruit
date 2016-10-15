@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import labelConfi from '../utils/label'
 
 export default class ListItem extends Component{
   add(hide,e){
@@ -20,8 +21,18 @@ export default class ListItem extends Component{
   }
   render() {
     let { item, count } = this.props;
+    const label = labelConfi[item.label];
     return (
       <li className={item.big ? "big":"small"}>
+        {
+          label ? 
+            <a className="label" style={{"background":label["bgColor"]}}>
+              <p>{label['name1']}</p>
+              <p>{label['name2']}</p>
+            </a>
+          :
+          ""
+        }
         <p className="img"><Link to={`/fruit/${item.id}?cityId=${item.cityId}&areaId=${item.areaId}`}><img src={item.img}/></Link></p>
         <div className="txt">
           <p className="tit">

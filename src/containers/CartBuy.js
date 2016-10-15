@@ -130,6 +130,11 @@ class CartBuy extends Component {
             微信安全支付
           </a>
         </CartBlock>
+        <CartBlock til1="收货" til2="时间" type="2">
+          <a onClick={this.showTime.bind(this)}>
+            {!time? '请选择收货时间': time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time)}
+          </a>
+        </CartBlock>        
         <CartBlock til1="用代" til2="金券" type="2">
         {
           cart.couponId?
@@ -143,11 +148,6 @@ class CartBuy extends Component {
           <div className="dizhi choose"><Link to="/me/coupon?choose=1">请选择代金券</Link></div>
         }
         </CartBlock>        
-        <CartBlock til1="收货" til2="时间" type="2">
-          <a onClick={this.showTime.bind(this)}>
-            {!time? '请选择收货时间': time<0 ? '立即配送' : timeOp.getDay(time)+" "+timeOp.getText(time)}
-          </a>
-        </CartBlock>
         <CartBottom cart={cart} history={history} submit={this.submit.bind(this)}/>
         <div className="modal" ref="modal">
           <Time chTime={this.chTime.bind(this)}/>

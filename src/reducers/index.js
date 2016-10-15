@@ -72,7 +72,8 @@ function genPro(list){
       cityId: item.cityId,
       description: item.description,
       catalog: item.catalog,
-      restrict: item.restrict
+      restrict: item.restrict,
+      label: item.label
     }
     return it;
   })
@@ -98,7 +99,8 @@ function fruit(
         loading:false,
         error:false,
         list: genPro(action.val.products),
-        catalog: action.val.catalog
+        catalog: action.val.catalog,
+        banners: action.val.banners
       })
     case types.FRUIT_LIST_GET_ERROR:
       return assign({},state,{

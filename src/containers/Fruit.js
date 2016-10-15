@@ -81,7 +81,7 @@ class Fruit extends Component {
   }
   render() { 
     let { list, list2, list3, list4, total, count, history, cartPos, loading, error, type,
-      cities, qus, NowCity, Nowqu, goods, actions, catalog } = this.props
+      cities, qus, NowCity, Nowqu, goods, actions, catalog, banners } = this.props
     let city = cities && cities.filter(c=>c.id===NowCity)[0];
     let qu = qus && qus[NowCity] && qus[NowCity].filter(c=>c.id===Nowqu);
       city = (city && city.name) || cityname;    
@@ -92,6 +92,11 @@ class Fruit extends Component {
     list = list.filter(l=>{
       return l.catalog == nowType
     })
+    
+    const banner = (banners || []).filter(l=>{
+      return l.catalogName == nowType
+    })[0]
+
     return (
       <div>
         <Rocket ref='rocket'/>
@@ -99,6 +104,7 @@ class Fruit extends Component {
         <FruitList list={list} add={this.add.bind(this)} 
           cartPos={cartPos} goods={goods} actions={actions}
           loading={loading} error={error}
+          banner={banner}
         />
         <Cart total={total} history={history} ref='cart' count={count}/>
       </div>
@@ -123,7 +129,8 @@ function mapStateToProps(state) {
     loading,
     error,
     type,
-    catalog
+    catalog,
+    banners
   } = state.fruit;
 
   const {
@@ -153,7 +160,8 @@ function mapStateToProps(state) {
     Nowqu,
     loading,
     error,
-    type
+    type,
+    banners
   }
 }
 

@@ -12,10 +12,10 @@ export default class BlockGoods extends Component{
     let {list,icon} = this.refs 
     if(list.className==""){
       list.className="hide"
-      icon.className="fa fa-chevron-circle-up right"
+      icon.className="iconfont icon-jiantou-copy-copy"
     }else{
       list.className=""
-      icon.className="fa fa-chevron-circle-down right"
+      icon.className="iconfont icon-jiantou-copy-copy rotate"
     }
   }
   cmt(id, cid, aid){
@@ -70,7 +70,7 @@ export default class BlockGoods extends Component{
       <div className="block goods">
         <p className="tit">
           您订购的商品
-          <a onClick={this.show.bind(this)}><i ref="icon" className="fa fa-chevron-circle-down right"></i></a>
+          <a onClick={this.show.bind(this)}><i ref="icon" className="iconfont icon-jiantou-copy-copy rotate"></i></a>
         </p>
         <ul ref="list">
         {

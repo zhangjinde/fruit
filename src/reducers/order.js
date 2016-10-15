@@ -122,7 +122,8 @@ function genList(list){
       yunfei: it.freight||'0',
       total: (+it.totalPrice).toFixed(2),
       state: it.status || it.finalStatus,
-      commented: it.commented || 0
+      commented: it.commented || 0,
+      couponPrice: it.couponPrice
     }
   })
 }
@@ -196,6 +197,7 @@ export default function order(state = initialState, action){
           phoneNumber: order.phoneNumber,
           otalPrice: order.totalPrice,
           couponPrice: order.couponPrice,
+          address: order.address
         }
       })
     case types.ORDER_CHANGE_STATE:

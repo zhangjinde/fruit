@@ -16,9 +16,18 @@ export default class FruitList extends Component{
     this.props.actions.add(item,-1)
   }
   render() {
-    let {list, goods, loading, error} = this.props;
+    let {list, goods, loading, error, banner} = this.props;
+
     return (
       <ul className="list">
+        {
+          banner&&banner.status=='上线中'?
+            <li className="last">
+              <Link to={banner.productUrl}><img src={IMG_URL+banner.imgUrl}/></Link>
+            </li>
+          :
+            ""
+        }
         {
         loading?
           <Loading/>

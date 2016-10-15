@@ -7,7 +7,7 @@ export default class OrderItem extends Component{
   render() {
     let {item, type} =this.props
     return (
-      <li>
+      <li className={['7'].indexOf(item.state)>-1?"cancel":""}>
         <div className="detail">
           <p className="ding">
             <Link to={'/me/order/'+item.id+'?type='+type}>
@@ -22,7 +22,7 @@ export default class OrderItem extends Component{
             item.state==4 ? 
               <Link to={'/me/order/'+item.id+'?type='+type} className="zhui">订单追踪</Link>
             :
-              <a className="zhui zhifu">{STATE[item.state]}</a>
+              <a className="zhui zhifu">{STATE[item.state]['s']}</a>
           }
         </div>
         <ul className="goods">
@@ -36,7 +36,7 @@ export default class OrderItem extends Component{
           ))
         }
           <li className="zong">
-            <span className="yun">运费:{item.yunfei}元</span>
+            <span className="yun">优惠券: - {+item.couponPrice}元</span>
             <span className="sum">
               总计：<span className="shu">{item.total}元</span>
             </span>
@@ -44,20 +44,20 @@ export default class OrderItem extends Component{
         </ul>
         <p className="op">
         {
-          [5,6].indexOf(+item.state)>-1?
+          [6].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn left cancel">申请退货</Link>
           :
           [1,2].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn left cancel">取消订单</Link>
           :
+          item.state==5?
+          <Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn left cancel">确认收货</Link>          
+          :
           ""
         }
         {
-          [3,4].indexOf(+item.state)>-1?
+          [3,4,5].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}`} className="btn right">查看订单</Link>
-          :
-          item.state==5?
-          <Link to={`/me/order/${item.id}?type=${type}&confirm=1`} className="btn right">确认收货</Link>
           :
           [6,13].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cmt=1`} className="btn right">{ item.commented == 0 ? '立即评价': '查看评价'}</Link>

@@ -7,7 +7,6 @@ export default class BlockTime extends Component{
     return (
       <div className="block time">
         <p className='s'>收货时间：{time}</p>
-        <p className='t'>{state}</p>
       </div>
     )
   }

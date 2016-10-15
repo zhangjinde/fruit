@@ -42,8 +42,8 @@ class OrderState extends Component {
   }
   pay(){
     const {order, actions, history, params} = this.props
-    const {number, receiveTime, receiverName, phoneNumber} = order.detail
-    
+    const {number, receiveTime, receiverName, phoneNumber, address} = order.detail
+
     if(this.state.disable)return;
     
     this.setState({
@@ -61,6 +61,7 @@ class OrderState extends Component {
             arriveTime: receiveTime,
             name: receiverName,
             tel: phoneNumber,
+            address
           })
           history.replace('/cart/finish')
         }, ()=>{
@@ -77,6 +78,7 @@ class OrderState extends Component {
     })
   }
   confirm(){
+    if(!confirm('确认收货吗？'))return;  
     const {order, actions, history} = this.props
     const {id, cityId, areaId} = order.detail
     
@@ -100,6 +102,7 @@ class OrderState extends Component {
     actions.orderChangeState(order.detail.id, 3)
   }
   tui(type){
+    if(!confirm('确认退货吗？'))return;
     const {order, actions, history} = this.props
     const {id, cityId, areaId} = order.detail
     

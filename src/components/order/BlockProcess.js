@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router'
 
+import STATE from '../../utils/orderState'
+
 export default class BlockProcess extends Component{
   render() {
     let {history} =this.props
-    const his = history ? history.split(',') : [];
+    let his = history ? history.split(',') : [];
+    his = his.reverse();
     return (
       <div className="block proc">
         <ul>
         {
           his.map((h, idx)=>{
+          console.log(idx)
             const l=h.split('=')
+            if(['3','9'].indexOf(l[0])>-1)return "";
             return (
-              <li className={idx==his.length-1?"active":""}>
-                <p className="txt">{l[0]}</p>
+              <li className={idx==0?"active":""} key={idx}>
+                <p className="txt">{STATE[l[0]]['d']}</p>
                 <p className="time">{l[1]}</p>
               </li>
             )
