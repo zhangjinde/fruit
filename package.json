@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "fruit pj",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack --config webpack.production.config.js --progress --colors"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
