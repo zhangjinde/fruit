@@ -19,9 +19,7 @@ export default class DetialLast extends Component{
           </a>
         </div>
         <p className="down">
-        *为了保持。地方撒了个法定时间啊来看看；的撒开发； 发的说说空间啊；房间快点撒； 
-        范德萨范德萨
-        范德萨范德萨fdsf撒九分裤；dsa
+        *为了低碳环保，本平台采用送货上门服务；包装为送货员背包和帆布袋的形式；实际收货时不另使用包装袋，请务必在收货时根据小票核对准确货物详情。
         </p>
       </div>
     )
