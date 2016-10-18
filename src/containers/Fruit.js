@@ -12,6 +12,7 @@ import Rocket from '../components/Rocket'
 import FruitList from '../components/FruitList'
 
 import {move} from '../utils/animate'
+import scroll from '../utils/scroll'
 
 class Fruit extends Component {
   componentDidMount(){
@@ -33,6 +34,7 @@ class Fruit extends Component {
     setTimeout(()=>{
       addFuc();
     },500)
+    scroll(0)
   }
   componentWillUnmount(){
     document.body.onscroll=null;
@@ -78,6 +80,7 @@ class Fruit extends Component {
   changeType(t){
     const {fruitActions} = this.props
     fruitActions.changeType(t);
+    scroll(0)
   }
   render() { 
     let { list, list2, list3, list4, total, count, history, cartPos, loading, error, type,

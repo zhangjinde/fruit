@@ -102,7 +102,8 @@ class OrderState extends Component {
     actions.orderChangeState(order.detail.id, 3)
   }
   tui(type){
-    if(!confirm('确认退货吗？'))return;
+    const msg = type==1 ? '确认退货吗？':'确认取消订单吗？'
+    if(!confirm(msg))return;
     const {order, actions, history} = this.props
     const {id, cityId, areaId} = order.detail
     

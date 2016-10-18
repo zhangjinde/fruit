@@ -47,7 +47,7 @@ export default class OrderItem extends Component{
           [6].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&tui=1`} className="btn left cancel">申请退货</Link>
           :
-          [1,2].indexOf(+item.state)>-1?
+          [1].indexOf(+item.state)>-1?
           <Link to={`/me/order/${item.id}?type=${type}&cancel=1`} className="btn left cancel">取消订单</Link>
           :
           item.state==5?
