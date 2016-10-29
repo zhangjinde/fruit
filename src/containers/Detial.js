@@ -87,7 +87,7 @@ class Detial extends Component {
     return (
       <div className="detial" ref="detail">
         <NavBack  history={history}/>
-        <DetialBody showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
+        <DetialBody phone={item.phone} showCmt={this.showCmt.bind(this)} item={item} like={this.like.bind(this)}/>
         <DetialBottom num={num} history={this.props.history} add={this.add.bind(this)} status={item.status}/>
         <div className="modal" ref="cmt">
           <Comment comments={item.comments} hideCmt={this.hideCmt.bind(this)} like={this.cmtLike.bind(this)}

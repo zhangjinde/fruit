@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class BlockCmt extends Component{
   render() {
+    const {phone} = this.props;
     return (
       <div className="block cmt clearfix">
         <div>
@@ -11,7 +12,7 @@ export default class BlockCmt extends Component{
           </a>
         </div>
         <div>
-          <a href="tel:17002102408">
+          <a href={"tel:"+phone}>
             <p className="icon"><i className="iconfont icon-dianhua"></i></p>
             <p>电话咨询</p>
           </a>

@@ -7,11 +7,11 @@ import DetialLast from './DetialLast'
 
 export default class DetialBody extends Component{
   render() {
-    let {showCmt,item,like} = this.props
+    let {showCmt,item,like, phone} = this.props
      return (
       <div className="body">
         <BlockDesc item={item} like={like}/>
-        <BlockCmt showCmt={showCmt}/>
+        <BlockCmt showCmt={showCmt} phone={phone}/>
         {
           item.subdetailUrl ? 
             <BlockImg img={IMG_URL+item.subdetailUrl}/>
