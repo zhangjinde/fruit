@@ -15,7 +15,6 @@ export default class BlockProcess extends Component{
           his.map((h, idx)=>{
           console.log(idx)
             const l=h.split('=')
-            if(['3','9'].indexOf(l[0])>-1)return "";
             return (
               <li className={idx==0?"active":""} key={idx}>
                 <p className="txt">{STATE[l[0]]['d']}</p>
