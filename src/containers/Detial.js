@@ -55,7 +55,7 @@ class Detial extends Component {
     })    
 
     const num = goods.length ? goods[0]['count']:0
-    if(item.restrict && num>= item.restrict){
+    if(item.restrict && num>= item.restrict && cnt==1){
       alert('该商品每单限购'+num+'个')
       return;
     }
