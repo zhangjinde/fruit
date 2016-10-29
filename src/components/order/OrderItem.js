@@ -19,10 +19,7 @@ export default class OrderItem extends Component{
             收货时间：{item.arriveTime} 送达（{item.arriveAddr}）
           </p>
           {
-            item.state==4 ? 
-              <Link to={'/me/order/'+item.id+'?type='+type} className="zhui">订单追踪</Link>
-            :
-              <a className="zhui zhifu">{STATE[item.state]['s']}</a>
+            <a className="zhui zhifu">{STATE[item.state]['s']}</a>
           }
         </div>
         <ul className="goods">
